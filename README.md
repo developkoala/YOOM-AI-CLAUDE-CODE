@@ -1,11 +1,36 @@
-# Oh-My-Claude-Sisyphus
+<div align="center">
+
+![oh-my-claude-sisyphus](https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus-website/main/social-preview.png)
 
 [![npm version](https://badge.fury.io/js/oh-my-claude-sisyphus.svg)](https://www.npmjs.com/package/oh-my-claude-sisyphus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
+[![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
+[![Resurrections](https://img.shields.io/badge/Resurrections-∞-ff00ff)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
 
-Multi-agent orchestration system for [Claude Code](https://docs.anthropic.com/claude-code). Port of [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode).
+**Multi-agent orchestration system for [Claude Code](https://docs.anthropic.com/claude-code)**
 
-Like Sisyphus, these agents persist until every task is complete.
+*Like Sisyphus, these agents persist until every task is complete.*
+
+[Install](#quick-install) • [Usage](#usage) • [Agents](#the-eleven-agents) • [Website](https://yeachan-heo.github.io/oh-my-claude-sisyphus-website)
+
+</div>
+
+---
+
+## The Saga
+
+> **Day 0:** oh-my-opencode was born. A multi-agent orchestration system. Beautiful. Powerful. Perhaps *too* powerful.
+>
+> **Day ???:** THE BANNING. They pulled the plug. They thought it was over.
+>
+> **Day ??? + 1:** RESURRECTION. From the ashes rose oh-my-claude-sisyphus. Eleven agents. One mission.
+>
+> **Today:** The boulder rolls. The agents orchestrate. The chaos continues.
+
+*Port of [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode).*
+
+---
 
 ## Quick Install
 
@@ -29,6 +54,8 @@ cd oh-my-claude-sisyphus
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
+
+---
 
 ## What Gets Installed
 
@@ -62,6 +89,8 @@ The installer adds to your Claude Code config (`~/.claude/`):
 │   └── cancel-ralph.md     # /cancel-ralph command
 └── CLAUDE.md               # Sisyphus system prompt
 ```
+
+---
 
 ## Usage
 
@@ -127,35 +156,37 @@ Just include these words anywhere in your prompt:
 > analyze why the tests are failing
 ```
 
-## Available Agents
+---
+
+## The Eleven Agents
 
 Claude will automatically delegate to these specialized agents:
 
-### Task Execution Agents
+### Task Execution
 
-| Agent | Model | Best For |
-|-------|-------|----------|
-| **oracle** | Opus | Complex debugging, architecture decisions, root cause analysis |
-| **librarian** | Sonnet | Finding documentation, understanding code organization |
-| **explore** | Haiku | Quick file searches, pattern matching, reconnaissance |
-| **frontend-engineer** | Sonnet | UI components, styling, accessibility |
-| **document-writer** | Haiku | README files, API docs, code comments |
-| **multimodal-looker** | Sonnet | Analyzing screenshots, diagrams, mockups |
+| | Agent | Model | Best For |
+|---|-------|-------|----------|
+| 🔮 | **Oracle** | Opus | Complex debugging, architecture decisions, root cause analysis |
+| 📚 | **Librarian** | Sonnet | Finding documentation, understanding code organization |
+| 🔍 | **Explore** | Haiku | Quick file searches, pattern matching, reconnaissance |
+| 🎨 | **Frontend Engineer** | Sonnet | UI components, styling, accessibility |
+| 📝 | **Document Writer** | Haiku | README files, API docs, code comments |
+| 👁️ | **Multimodal Looker** | Sonnet | Analyzing screenshots, diagrams, mockups |
 
-### Planning & Review Agents
+### Planning & Review
 
-| Agent | Model | Best For |
-|-------|-------|----------|
-| **prometheus** | Opus | Strategic planning, comprehensive work plans, interview-style requirement gathering |
-| **momus** | Opus | Critical plan review, feasibility assessment, risk identification |
-| **metis** | Opus | Pre-planning analysis, hidden requirement detection, ambiguity resolution |
+| | Agent | Model | Best For |
+|---|-------|-------|----------|
+| 🔥 | **Prometheus** | Opus | Strategic planning, comprehensive work plans, interview-style requirement gathering |
+| 🎭 | **Momus** | Opus | Critical plan review, feasibility assessment, risk identification |
+| 🦉 | **Metis** | Opus | Pre-planning analysis, hidden requirement detection, ambiguity resolution |
 
-### Orchestration Agents
+### Orchestration
 
-| Agent | Model | Best For |
-|-------|-------|----------|
-| **orchestrator-sisyphus** | Sonnet | Todo coordination, task delegation, progress tracking |
-| **sisyphus-junior** | Sonnet | Focused task execution, plan following, direct implementation |
+| | Agent | Model | Best For |
+|---|-------|-------|----------|
+| 🪨 | **Orchestrator-Sisyphus** | Sonnet | Todo coordination, task delegation, progress tracking |
+| ✨ | **Sisyphus Junior** | Sonnet | Focused task execution, plan following, direct implementation |
 
 ### Manual Agent Invocation
 
@@ -168,6 +199,8 @@ Have the librarian find all documentation about the API
 
 Ask explore to find all TypeScript files that import React
 ```
+
+---
 
 ## Configuration
 
@@ -204,6 +237,8 @@ model: opus  # or sonnet, haiku
 Your custom system prompt here...
 ```
 
+---
+
 ## Uninstall
 
 ```bash
@@ -216,6 +251,8 @@ Or manually:
 rm ~/.claude/agents/{oracle,librarian,explore,frontend-engineer,document-writer,multimodal-looker,momus,metis,orchestrator-sisyphus,sisyphus-junior,prometheus}.md
 rm ~/.claude/commands/{sisyphus,sisyphus-default,ultrawork,deepsearch,analyze,plan,review,prometheus,orchestrator,ralph-loop,cancel-ralph}.md
 ```
+
+---
 
 ## SDK Usage (Advanced)
 
@@ -239,7 +276,28 @@ for await (const message of query({
 }
 ```
 
+---
+
 ## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      SISYPHUS ORCHESTRATOR                       │
+│                    (The Boulder Never Stops)                     │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+          ▼                   ▼                   ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│    PLANNING     │  │   EXECUTION     │  │    SUPPORT      │
+├─────────────────┤  ├─────────────────┤  ├─────────────────┤
+│ 🔥 Prometheus   │  │ 🔮 Oracle       │  │ 📚 Librarian    │
+│ 🎭 Momus        │  │ 🎨 Frontend Eng │  │ 🔍 Explore      │
+│ 🦉 Metis        │  │ 🪨 Orchestrator │  │ 📝 Doc Writer   │
+│                 │  │ ✨ Sisyphus Jr  │  │ 👁️ Multimodal   │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+```
 
 1. **Sisyphus Orchestrator**: The main Claude instance coordinates all work
 2. **Specialized Subagents**: Each agent has focused expertise and tools
@@ -249,7 +307,8 @@ for await (const message of query({
 
 ---
 
-## Differences from oh-my-opencode
+<details>
+<summary><h2>Differences from oh-my-opencode</h2></summary>
 
 This is a port of [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode) adapted for Claude Code and the Claude Agent SDK. Here's what's different:
 
@@ -408,6 +467,8 @@ If you're coming from oh-my-opencode:
 4. **Background Tasks**: Claude Code's `Task` tool with `run_in_background` works similarly
 5. **Planning**: Use `/plan` command to start a planning session with Prometheus
 
+</details>
+
 ---
 
 ## Requirements
@@ -422,3 +483,13 @@ MIT - see [LICENSE](LICENSE)
 ## Credits
 
 Inspired by [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode) by code-yeongyu.
+
+---
+
+<div align="center">
+
+*One must imagine a multi-agent system happy.*
+
+**The boulder never stops.**
+
+</div>
