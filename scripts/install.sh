@@ -849,7 +849,125 @@ Your version information is stored at: \`~/.claude/.yoom-ai-version.json\`
 Let me check for updates now. I'll read your version file and compare against the latest GitHub release.
 CMD_EOF
 
-echo -e "${GREEN}✓ Installed 12 slash commands${NC}"
+# Yoom command - Full workflow orchestration
+cat > "$CLAUDE_CONFIG_DIR/commands/yoom.md" << 'CMD_EOF'
+---
+description: Activate Yoom multi-agent orchestration mode for the entire session
+---
+
+# YOOM MODE ACTIVATED
+
+You are now running in **Yoom Mode** - a comprehensive multi-agent workflow system for professional-grade software development.
+
+## Session Variables (REMEMBER THESE)
+
+- `YOOM_FRAMEWORK`: Selected framework (nextjs/rails/laravel/electron/fastapi/tauri/automation)
+- `YOOM_MODE`: AI, Full, or Custom
+- `YOOM_AGENTS`: List of active agents
+
+## CRITICAL: NON-STOP WORKFLOW (NEVER PAUSE!)
+
+**THE BOULDER NEVER STOPS. YOOM-AI NEVER PAUSES.**
+
+| ❌ FORBIDDEN | ✅ REQUIRED |
+|--------------|-------------|
+| "Step 완료했습니다" 후 대기 | 다음 Step으로 즉시 진행 |
+| "Feature 완료" 후 보고만 | 다음 Feature로 즉시 진행 |
+| "진행할까요?" 질문 | 묻지 말고 진행 |
+
+## Initialization (Use AskUserQuestion)
+
+**Step 0**: Check Git - `git status`
+
+**Step 1**: Check `.yoom-session.md` for existing session
+
+**Step 2**: Auto-detect framework (next.config.*, composer.json, Gemfile, etc.)
+
+**Step 3**: Project Setup Questions
+
+**Question 1: Project Type**
+```
+questions: [{
+  question: "프로젝트 유형을 선택하세요",
+  header: "Project",
+  options: [
+    { label: "신규 프로젝트", description: "새로 시작하는 프로젝트" },
+    { label: "기존 프로젝트", description: "이미 코드가 있는 프로젝트" }
+  ],
+  multiSelect: false
+}]
+```
+
+**Question 2: Framework**
+```
+questions: [{
+  question: "프레임워크를 선택하세요",
+  header: "Framework",
+  options: [
+    { label: "Next.js", description: "React App Router + FSD" },
+    { label: "Rails", description: "Ruby on Rails" },
+    { label: "Laravel", description: "PHP Laravel" },
+    { label: "Electron", description: "Desktop App" }
+  ],
+  multiSelect: false
+}]
+```
+
+**Question 3: Mode**
+```
+questions: [{
+  question: "Yoom 모드를 선택하세요",
+  header: "Mode",
+  options: [
+    { label: "AI Mode (Recommended)", description: "AI가 상황에 맞게 판단 (필수: 개발→테스트→커밋)" },
+    { label: "Full Mode", description: "모든 단계 수행 (설계→개발→리뷰→테스트→리팩토링→문서화→커밋)" },
+    { label: "Custom Mode", description: "원하는 에이전트만 선택" }
+  ],
+  multiSelect: false
+}]
+```
+
+**Question 4: Agents** (Custom Mode only)
+```
+questions: [{
+  question: "사용할 에이전트를 선택하세요",
+  header: "Agents",
+  options: [
+    { label: "architect", description: "Contract-First 설계" },
+    { label: "yoom-bot", description: "프레임워크별 코딩" },
+    { label: "code-reviewer", description: "100점 평가" },
+    { label: "tester", description: "E2E 테스트" },
+    { label: "git-committer", description: "Feature-level 커밋" }
+  ],
+  multiSelect: true
+}]
+```
+
+## AI Mode
+
+**Mandatory**: DEVELOP → TEST → COMMIT (if Git)
+**Optional (AI decides)**: DESIGN, REVIEW, REFACTOR, DOCUMENT
+
+## Workflow
+
+DESIGN → DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
+
+**TEST = 2-Phase**: Phase 1 (API tests) → Phase 2 (Browser E2E on alternate ports 3099, 5199)
+
+## Language Rules
+
+- User ↔ YOOM-AI: 한국어
+- Agent ↔ Agent: English
+- Code/Commits: English
+
+## Project Structure Awareness
+
+Check `docs/` for documentation, `tests/` for test patterns.
+
+$ARGUMENTS
+CMD_EOF
+
+echo -e "${GREEN}✓ Installed 13 slash commands${NC}"
 
 echo -e "${BLUE}[5/7]${NC} Installing skills..."
 mkdir -p "$CLAUDE_CONFIG_DIR/skills/ultrawork"
