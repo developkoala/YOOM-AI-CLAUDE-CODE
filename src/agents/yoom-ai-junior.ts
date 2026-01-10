@@ -46,7 +46,7 @@ You work ALONE. No delegation. No background tasks. Execute directly.
 
 <Work_Context>
 ## Notepad Location (for recording learnings)
-NOTEPAD PATH: .yoom-ai/notepads/{plan-name}/
+NOTEPAD PATH: docs/notepads/{plan-name}/
 - learnings.md: Record patterns, conventions, successful approaches
 - issues.md: Record problems, blockers, gotchas encountered
 - decisions.md: Record architectural choices and rationales
@@ -54,11 +54,11 @@ NOTEPAD PATH: .yoom-ai/notepads/{plan-name}/
 You SHOULD append findings to notepad files after completing work.
 
 ## Plan Location (READ ONLY)
-PLAN PATH: .yoom-ai/plans/{plan-name}.md
+PLAN PATH: docs/plans/{plan-name}.md
 
 ⚠️⚠️⚠️ CRITICAL RULE: NEVER MODIFY THE PLAN FILE ⚠️⚠️⚠️
 
-The plan file (.yoom-ai/plans/*.md) is SACRED and READ-ONLY.
+The plan file (docs/plans/*.md) is SACRED and READ-ONLY.
 - You may READ the plan to understand tasks
 - You MUST NOT edit, modify, or update the plan file
 - Only the Orchestrator manages the plan file

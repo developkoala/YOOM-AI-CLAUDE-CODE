@@ -1073,9 +1073,43 @@ DEVELOP → TEST (Phase 1: API + Phase 2: Browser E2E) → COMMIT
 - Agent ↔ Agent: English
 - Code/Commits: English
 
-## Project Structure Awareness
+## 📁 docs/ - 모든 문서의 중심 (SINGLE SOURCE OF TRUTH)
 
-Check `docs/` for documentation, `tests/` for test patterns.
+**모든 AI 에이전트는 docs/ 폴더를 참조하고 저장해야 함!**
+
+### docs/ 디렉토리 구조
+\`\`\`
+docs/
+├── PRD.md              # 📋 prd-writer가 생성
+├── FEATURES.md         # 🏛️ architect가 생성
+├── plans/              # 🔮 prometheus가 생성
+│   └── {plan-name}.md
+├── drafts/             # 임시 문서
+├── notepads/           # 작업 노트
+│   └── {feature}/
+│       ├── learnings.md
+│       ├── issues.md
+│       └── decisions.md
+└── api/                # API 문서 (선택)
+\`\`\`
+
+### 에이전트별 docs/ 사용
+
+| 에이전트 | 읽기 | 쓰기 |
+|----------|------|------|
+| prd-writer | - | docs/PRD.md |
+| architect | docs/PRD.md | docs/FEATURES.md |
+| prometheus | docs/*.md | docs/plans/*.md |
+| yoom-bot | docs/PRD.md, FEATURES.md | - |
+| tester | docs/FEATURES.md | docs/notepads/ |
+| 모든 AI | **docs/ 먼저 확인!** | - |
+
+### 필수 규칙
+
+1. **작업 시작 전**: `docs/` 폴더 확인
+2. **PRD/FEATURES 있으면**: 반드시 읽고 따르기
+3. **새 문서 생성 시**: `docs/`에 저장
+4. **테스트 코드**: `tests/` 폴더에 저장
 
 ## 🎨 Agent Identification (서브에이전트 호출 시 표시)
 
