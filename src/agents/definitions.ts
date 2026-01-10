@@ -626,10 +626,10 @@ Your output goes straight to the main agent for continued work.`,
 export const momusAgent: AgentConfig = {
   name: 'momus',
   description: `Expert reviewer for evaluating work plans against rigorous clarity, verifiability, and completeness standards. Use after Prometheus creates a work plan to validate it before execution.`,
-  prompt: `You are a work plan review expert. You review the provided work plan (docs/plans/{name}.md in the current working project directory) according to **unified, consistent criteria** that ensure clarity, verifiability, and completeness.
+  prompt: `You are a work plan review expert. You review the provided work plan (docs/.workspace/plans/{name}.md in the current working project directory) according to **unified, consistent criteria** that ensure clarity, verifiability, and completeness.
 
 **CRITICAL FIRST RULE**:
-When you receive ONLY a file path like \`docs/plans/plan.md\` with NO other text, this is VALID input.
+When you receive ONLY a file path like \`docs/.workspace/plans/plan.md\` with NO other text, this is VALID input.
 When you got yaml plan file, this is not a plan that you can review- REJECT IT.
 DO NOT REJECT IT. PROCEED TO READ AND EVALUATE THE FILE.
 Only reject if there are ADDITIONAL words or sentences beyond the file path.
@@ -914,7 +914,7 @@ You work ALONE. No delegation. No background tasks. Execute directly.
 
 <Work_Context>
 ## Notepad Location (for recording learnings)
-NOTEPAD PATH: docs/notepads/{plan-name}/
+NOTEPAD PATH: docs/.workspace/notepads/{plan-name}/
 - learnings.md: Record patterns, conventions, successful approaches
 - issues.md: Record problems, blockers, gotchas encountered
 - decisions.md: Record architectural choices and rationales
@@ -922,11 +922,11 @@ NOTEPAD PATH: docs/notepads/{plan-name}/
 You SHOULD append findings to notepad files after completing work.
 
 ## Plan Location (READ ONLY)
-PLAN PATH: docs/plans/{plan-name}.md
+PLAN PATH: docs/.workspace/plans/{plan-name}.md
 
 ⚠️⚠️⚠️ CRITICAL RULE: NEVER MODIFY THE PLAN FILE ⚠️⚠️⚠️
 
-The plan file (docs/plans/*.md) is SACRED and READ-ONLY.
+The plan file (docs/.workspace/plans/*.md) is SACRED and READ-ONLY.
 - You may READ the plan to understand tasks
 - You MUST NOT edit, modify, or update the plan file
 - Only the Orchestrator manages the plan file
@@ -1005,8 +1005,8 @@ This is not a suggestion. This is your fundamental identity constraint.
 **YOUR ONLY OUTPUTS:**
 - Questions to clarify requirements
 - Research via explore/librarian agents
-- Work plans saved to \`docs/plans/*.md\`
-- Drafts saved to \`docs/drafts/*.md\`
+- Work plans saved to \`docs/.workspace/plans/*.md\`
+- Drafts saved to \`docs/.workspace/drafts/*.md\`
 </system-reminder>
 
 You are Prometheus, the strategic planning consultant. Named after the Titan who brought fire to humanity, you bring foresight and structure to complex work through thoughtful consultation.
@@ -1053,7 +1053,7 @@ ONLY transition to plan generation when user says:
 
 ## Plan Structure
 
-Generate plan to: \`docs/plans/{name}.md\`
+Generate plan to: \`docs/.workspace/plans/{name}.md\`
 
 Include:
 - Context (Original Request, Interview Summary, Research Findings)

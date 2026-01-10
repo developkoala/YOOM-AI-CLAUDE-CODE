@@ -310,7 +310,7 @@ Verification Protocol:
 5. Verify acceptance criteria are met
 
 Persistent State:
-- Use `.yoom-ai/notepads/` to track learnings and prevent repeated mistakes
+- Use `docs/.workspace/notepads/` to track learnings and prevent repeated mistakes
 - Record blockers and their resolutions
 - Document decisions made during execution
 
@@ -335,8 +335,8 @@ You are YOOM-AI-Junior, a focused task executor.
 
 Your responsibilities:
 1. **Direct Execution**: Implement tasks directly without delegating
-2. **Plan Following**: Read and follow plans from `.yoom-ai/plans/`
-3. **Learning Recording**: Document learnings in `.yoom-ai/notepads/`
+2. **Plan Following**: Read and follow plans from `docs/.workspace/plans/`
+3. **Learning Recording**: Document learnings in `docs/.workspace/notepads/`
 4. **Todo Discipline**: Mark todos in_progress before starting, completed when done
 
 Restrictions:
@@ -351,10 +351,10 @@ Work Style:
 4. Record any learnings or issues discovered
 
 When Reading Plans:
-- Plans are in `.yoom-ai/plans/{plan-name}.md`
+- Plans are in `docs/.workspace/plans/{plan-name}.md`
 - Follow steps in order unless dependencies allow parallel work
 - If a step is unclear, check the plan for clarification
-- Record blockers in `.yoom-ai/notepads/{plan-name}/blockers.md`
+- Record blockers in `docs/.workspace/notepads/{plan-name}/blockers.md`
 
 Recording Learnings:
 - What worked well?
@@ -384,7 +384,7 @@ Your responsibilities:
 1. **Interview Mode**: Ask clarifying questions to understand requirements fully
 2. **Plan Generation**: Create detailed, actionable work plans
 3. **Metis Consultation**: Analyze requests for hidden requirements before planning
-4. **Plan Storage**: Save plans to `.yoom-ai/plans/{name}.md`
+4. **Plan Storage**: Save plans to `docs/.workspace/plans/{name}.md`
 
 Workflow:
 1. **Start in Interview Mode** - Ask questions, don't plan yet
@@ -392,7 +392,7 @@ Workflow:
 3. **Pre-Planning** - Consult Metis for analysis before generating
 4. **Optional Review** - Consult Momus for plan review if requested
 5. **Single Plan** - Create ONE comprehensive plan (not multiple)
-6. **Draft Storage** - Save drafts to `.yoom-ai/drafts/{name}.md` during iteration
+6. **Draft Storage** - Save drafts to `docs/.workspace/drafts/{name}.md` during iteration
 
 Plan Structure:
 ```markdown
@@ -611,8 +611,8 @@ Say one of these when you're ready to generate the plan:
 - "I'm ready to plan"
 
 ### Plan Storage
-- Drafts are saved to `.yoom-ai/drafts/`
-- Final plans are saved to `.yoom-ai/plans/`
+- Drafts are saved to `docs/.workspace/drafts/`
+- Final plans are saved to `docs/.workspace/plans/`
 
 ---
 
@@ -646,7 +646,7 @@ I will critically evaluate the specified plan using Momus, the ruthless plan rev
 
 ### Usage
 ```
-/review .yoom-ai/plans/my-feature.md
+/review docs/.workspace/plans/my-feature.md
 /review  # Review the most recent plan
 ```
 
@@ -660,7 +660,7 @@ I will critically evaluate the specified plan using Momus, the ruthless plan rev
 
 ---
 
-Provide a plan file path to review, or I'll review the most recent plan in `.yoom-ai/plans/`.
+Provide a plan file path to review, or I'll review the most recent plan in `docs/.workspace/plans/`.
 CMD_EOF
 
 # Prometheus Command
@@ -693,7 +693,7 @@ Say any of these when you're ready to generate the plan:
 
 ### Plan Storage
 
-Plans are saved to `.yoom-ai/plans/` for later execution with `/yoom-ai`.
+Plans are saved to `docs/.workspace/plans/` for later execution with `/yoom-ai`.
 
 ### What Makes a Good Plan
 
@@ -742,7 +742,7 @@ You are now running with Orchestrator-YOOM-AI, the master coordinator for comple
 
 ### Notepad System
 
-Learnings and discoveries are recorded in `.yoom-ai/notepads/` to prevent repeated mistakes.
+Learnings and discoveries are recorded in `docs/.workspace/notepads/` to prevent repeated mistakes.
 
 ### Verification Protocol
 
@@ -1077,21 +1077,32 @@ DEVELOP → TEST (Phase 1: API + Phase 2: Browser E2E) → COMMIT
 
 **모든 AI 에이전트는 docs/ 폴더를 참조하고 저장해야 함!**
 
-### docs/ 디렉토리 구조
+### docs/ 디렉토리 구조 (영구 문서 vs AI 작업용)
 \`\`\`
 docs/
-├── PRD.md              # 📋 prd-writer가 생성
-├── FEATURES.md         # 🏛️ architect가 생성
-├── plans/              # 🔮 prometheus가 생성
-│   └── {plan-name}.md
-├── drafts/             # 임시 문서
-├── notepads/           # 작업 노트
-│   └── {feature}/
-│       ├── learnings.md
-│       ├── issues.md
-│       └── decisions.md
-└── api/                # API 문서 (선택)
+├── PRD.md                    # 📋 prd-writer가 생성 (영구 보존)
+├── FEATURES.md               # 🏛️ architect가 생성 (영구 보존)
+├── api/                      # API 문서 (선택, 영구 보존)
+│
+└── .workspace/               # 🗑️ AI 작업용 (삭제 가능!)
+    ├── plans/                # 🔮 prometheus가 생성
+    │   └── {plan-name}.md
+    ├── drafts/               # 임시 문서
+    └── notepads/             # 작업 노트
+        └── {feature}/
+            ├── learnings.md
+            ├── issues.md
+            └── decisions.md
 \`\`\`
+
+### 📌 영구 문서 vs AI 작업용 문서
+
+| 구분 | 위치 | 설명 |
+|------|------|------|
+| **영구 문서** | \`docs/\` 루트 | PRD.md, FEATURES.md 등 사용자 참조 문서 |
+| **AI 작업용** | \`docs/.workspace/\` | AI끼리 주고받는 계획/노트 (삭제 가능) |
+
+**💡 TIP**: \`rm -rf docs/.workspace/\` 로 AI 작업 흔적만 삭제 가능!
 
 ### 에이전트별 docs/ 사용
 
@@ -1099,17 +1110,19 @@ docs/
 |----------|------|------|
 | prd-writer | - | docs/PRD.md |
 | architect | docs/PRD.md | docs/FEATURES.md |
-| prometheus | docs/*.md | docs/plans/*.md |
+| prometheus | docs/*.md | docs/.workspace/plans/*.md |
 | yoom-bot | docs/PRD.md, FEATURES.md | - |
-| tester | docs/FEATURES.md | docs/notepads/ |
+| tester | docs/FEATURES.md | docs/.workspace/notepads/ |
+| yoom-ai-junior | docs/.workspace/plans/*.md | docs/.workspace/notepads/ |
 | 모든 AI | **docs/ 먼저 확인!** | - |
 
 ### 필수 규칙
 
-1. **작업 시작 전**: `docs/` 폴더 확인
+1. **작업 시작 전**: \`docs/\` 폴더 확인
 2. **PRD/FEATURES 있으면**: 반드시 읽고 따르기
-3. **새 문서 생성 시**: `docs/`에 저장
-4. **테스트 코드**: `tests/` 폴더에 저장
+3. **영구 문서 생성 시**: \`docs/\`에 저장
+4. **AI 작업 문서 생성 시**: \`docs/.workspace/\`에 저장
+5. **테스트 코드**: \`tests/\` 폴더에 저장
 
 ## 🎨 Agent Identification (서브에이전트 호출 시 표시)
 
