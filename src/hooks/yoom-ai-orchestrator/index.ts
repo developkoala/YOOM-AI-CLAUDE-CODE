@@ -1,11 +1,11 @@
 /**
- * Sisyphus Orchestrator Hook
+ * YOOM-AI Orchestrator Hook
  *
  * Enforces orchestrator behavior - delegation over direct implementation.
- * When an orchestrator agent tries to directly modify files outside .sisyphus/,
+ * When an orchestrator agent tries to directly modify files outside .yoom-ai/,
  * this hook injects reminders to delegate to subagents instead.
  *
- * Adapted from oh-my-opencode's sisyphus-orchestrator hook for shell-based hooks.
+ * Adapted from oh-my-opencode's yoom-ai-orchestrator hook for shell-based hooks.
  */
 
 import { existsSync, readFileSync } from 'fs';
@@ -340,9 +340,9 @@ export function checkBoulderContinuation(directory: string): {
 }
 
 /**
- * Create sisyphus orchestrator hook handlers
+ * Create yoom-ai orchestrator hook handlers
  */
-export function createSisyphusOrchestratorHook(directory: string) {
+export function createYoomAiOrchestratorHook(directory: string) {
   return {
     /**
      * Hook name identifier

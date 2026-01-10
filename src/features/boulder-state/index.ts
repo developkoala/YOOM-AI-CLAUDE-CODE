@@ -1,8 +1,8 @@
 /**
  * Boulder State Module
  *
- * Manages the active work plan state for Sisyphus orchestrator.
- * Named after Sisyphus's boulder - the eternal task that must be rolled.
+ * Manages the active work plan state for YOOM-AI orchestrator.
+ * Named after YOOM-AI's boulder - the eternal task that must be rolled.
  *
  * Ported from oh-my-opencode's boulder-state.
  */

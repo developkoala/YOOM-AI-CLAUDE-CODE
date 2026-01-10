@@ -10,9 +10,9 @@ import { join } from 'path';
 import { homedir } from 'os';
 
 /** Storage directory for agent usage reminder state */
-export const SISYPHUS_STORAGE_DIR = join(homedir(), '.sisyphus');
+export const YOOM_AI_STORAGE_DIR = join(homedir(), '.yoom-ai');
 export const AGENT_USAGE_REMINDER_STORAGE = join(
-  SISYPHUS_STORAGE_DIR,
+  YOOM_AI_STORAGE_DIR,
   'agent-usage-reminder',
 );
 
@@ -34,7 +34,7 @@ export const TARGET_TOOLS = new Set([
 export const AGENT_TOOLS = new Set([
   'task',
   'call_omo_agent',
-  'sisyphus_task',
+  'yoom-ai_task',
 ]);
 
 /** Reminder message shown to users */

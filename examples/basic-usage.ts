@@ -1,21 +1,21 @@
 /**
  * Basic Usage Example
  *
- * This example demonstrates how to use Oh-My-Claude-Sisyphus
+ * This example demonstrates how to use Oh-My-Claude-YOOM-AI
  * with the Claude Agent SDK.
  */
 
-// Note: In real usage, import from 'oh-my-claude-sisyphus'
-import { createSisyphusSession, enhancePrompt } from '../src/index.js';
+// Note: In real usage, import from 'oh-my-claude-yoom-ai'
+import { createYoomAiSession, enhancePrompt } from '../src/index.js';
 
 // For demonstration - in real usage, import from '@anthropic-ai/claude-agent-sdk'
 // import { query } from '@anthropic-ai/claude-agent-sdk';
 
 async function main() {
-  console.log('=== Oh-My-Claude-Sisyphus Example ===\n');
+  console.log('=== Oh-My-Claude-YOOM-AI Example ===\n');
 
-  // Create a Sisyphus session
-  const session = createSisyphusSession({
+  // Create a YOOM-AI session
+  const session = createYoomAiSession({
     // Optional: custom configuration overrides
     config: {
       features: {
@@ -58,7 +58,7 @@ async function main() {
 // Real usage with Claude Agent SDK:
 import { query } from '@anthropic-ai/claude-agent-sdk';
 
-const session = createSisyphusSession();
+const session = createYoomAiSession();
 
 for await (const message of query({
   prompt: session.processPrompt("ultrawork implement user authentication"),

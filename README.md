@@ -1,18 +1,18 @@
 <div align="center">
 
-![oh-my-claude-sisyphus](https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus-website/main/social-preview.png)
+![oh-my-claude-yoom-ai](https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai-website/main/social-preview.png)
 
-[![npm version](https://badge.fury.io/js/oh-my-claude-sisyphus.svg)](https://www.npmjs.com/package/oh-my-claude-sisyphus)
+[![npm version](https://badge.fury.io/js/oh-my-claude-yoom-ai.svg)](https://www.npmjs.com/package/oh-my-claude-yoom-ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
-[![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
-[![Resurrections](https://img.shields.io/badge/Resurrections-∞-ff00ff)](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus)
+[![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai)
+[![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai)
+[![Resurrections](https://img.shields.io/badge/Resurrections-∞-ff00ff)](https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai)
 
 **Multi-agent orchestration system for [Claude Code](https://docs.anthropic.com/claude-code)**
 
-*Like Sisyphus, these agents persist until every task is complete.*
+*Like YOOM-AI, these agents persist until every task is complete.*
 
-[Install](#quick-install) • [Usage](#usage) • [Agents](#the-eleven-agents) • [Architecture](docs/ARCHITECTURE.md) • [Website](https://yeachan-heo.github.io/oh-my-claude-sisyphus-website)
+[Install](#quick-install) • [Usage](#usage) • [Agents](#the-eleven-agents) • [Architecture](docs/ARCHITECTURE.md) • [Website](https://yeachan-heo.github.io/oh-my-claude-yoom-ai-website)
 
 </div>
 
@@ -24,7 +24,7 @@
 >
 > **Day ???:** THE BANNING. They pulled the plug. They thought it was over.
 >
-> **Day ??? + 1:** RESURRECTION. From the ashes rose oh-my-claude-sisyphus. Eleven agents. One mission.
+> **Day ??? + 1:** RESURRECTION. From the ashes rose oh-my-claude-yoom-ai. Eleven agents. One mission.
 >
 > **Today:** The boulder rolls. The agents orchestrate. The chaos continues.
 
@@ -37,13 +37,13 @@
 ### One-liner (macOS/Linux - recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash
 ```
 
 ### Via npm (All platforms including Windows)
 
 ```bash
-npm install -g oh-my-claude-sisyphus
+npm install -g oh-my-claude-yoom-ai
 ```
 
 > **Windows Users**: This is the only supported installation method. Requires Node.js 18+.
@@ -51,8 +51,8 @@ npm install -g oh-my-claude-sisyphus
 ### Manual Install (macOS/Linux)
 
 ```bash
-git clone https://github.com/Yeachan-Heo/oh-my-claude-sisyphus.git
-cd oh-my-claude-sisyphus
+git clone https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai.git
+cd oh-my-claude-yoom-ai
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
@@ -74,12 +74,12 @@ The installer adds to your Claude Code config (`~/.claude/`):
 │   ├── multimodal-looker.md   # Visual analysis (Sonnet)
 │   ├── momus.md               # Plan reviewer (Opus)
 │   ├── metis.md               # Pre-planning consultant (Opus)
-│   ├── orchestrator-sisyphus.md # Todo coordinator (Sonnet)
-│   ├── sisyphus-junior.md     # Focused executor (Sonnet)
+│   ├── orchestrator-yoom-ai.md # Todo coordinator (Sonnet)
+│   ├── yoom-ai-junior.md     # Focused executor (Sonnet)
 │   └── prometheus.md          # Strategic planner (Opus)
 ├── commands/
-│   ├── sisyphus.md         # /sisyphus command
-│   ├── sisyphus-default.md # /sisyphus-default command
+│   ├── yoom-ai.md         # /yoom-ai command
+│   ├── yoom-ai-default.md # /yoom-ai-default command
 │   ├── ultrawork.md        # /ultrawork command
 │   ├── deepsearch.md       # /deepsearch command
 │   ├── analyze.md          # /analyze command
@@ -89,7 +89,7 @@ The installer adds to your Claude Code config (`~/.claude/`):
 │   ├── orchestrator.md     # /orchestrator command
 │   ├── ralph-loop.md       # /ralph-loop command
 │   └── cancel-ralph.md     # /cancel-ralph command
-└── CLAUDE.md               # Sisyphus system prompt
+└── CLAUDE.md               # YOOM-AI system prompt
 ```
 
 ---
@@ -106,8 +106,8 @@ claude
 
 | Command | Description |
 |---------|-------------|
-| `/sisyphus <task>` | Activate Sisyphus multi-agent orchestration mode |
-| `/sisyphus-default` | Set Sisyphus as your permanent default mode |
+| `/yoom-ai <task>` | Activate YOOM-AI multi-agent orchestration mode |
+| `/yoom-ai-default` | Set YOOM-AI as your permanent default mode |
 | `/ultrawork <task>` | Maximum performance mode with parallel agents |
 | `/deepsearch <query>` | Thorough multi-strategy codebase search |
 | `/analyze <target>` | Deep analysis and investigation |
@@ -124,11 +124,11 @@ claude
 ```bash
 # In Claude Code:
 
-# Activate Sisyphus for a task
-/sisyphus refactor the authentication module
+# Activate YOOM-AI for a task
+/yoom-ai refactor the authentication module
 
 # Set as default mode (persistent)
-/sisyphus-default
+/yoom-ai-default
 
 # Use ultrawork for maximum performance
 /ultrawork implement user dashboard with charts
@@ -163,7 +163,7 @@ Just include these words anywhere in your prompt:
 
 ## Auto-Update
 
-Oh-my-claude-sisyphus includes a silent auto-update system that checks for updates in the background. Updates are applied automatically without interrupting your workflow.
+Oh-my-claude-yoom-ai includes a silent auto-update system that checks for updates in the background. Updates are applied automatically without interrupting your workflow.
 
 To manually check for updates:
 ```bash
@@ -174,14 +174,14 @@ To manually check for updates:
 
 ## Hooks System
 
-Oh-my-claude-sisyphus includes 18 lifecycle hooks that enhance Claude Code's behavior:
+Oh-my-claude-yoom-ai includes 18 lifecycle hooks that enhance Claude Code's behavior:
 
 ### Core Hooks
 
 | Hook | Description |
 |------|-------------|
 | **rules-injector** | Dynamic rules injection with YAML frontmatter parsing |
-| **sisyphus-orchestrator** | Enforces orchestrator behavior and delegation |
+| **yoom-ai-orchestrator** | Enforces orchestrator behavior and delegation |
 | **auto-slash-command** | Automatic slash command detection and execution |
 | **keyword-detector** | Magic keyword detection (ultrawork, search, analyze) |
 | **ralph-loop** | Self-referential development loop management |
@@ -221,7 +221,7 @@ Six builtin skills provide specialized capabilities:
 
 | Skill | Description |
 |-------|-------------|
-| **sisyphus** | Multi-agent orchestration mode |
+| **yoom-ai** | Multi-agent orchestration mode |
 | **orchestrator** | Master coordinator for complex tasks |
 | **ultrawork** | Maximum performance with parallel agents |
 | **ralph-loop** | Self-referential development until completion |
@@ -242,7 +242,7 @@ Skills work in **three composable layers**:
 
 | Layer | Skills | Purpose |
 |-------|--------|---------|
-| **Execution** | sisyphus, orchestrator, prometheus | HOW you work (pick primary) |
+| **Execution** | yoom-ai, orchestrator, prometheus | HOW you work (pick primary) |
 | **Enhancement** | ultrawork, git-master, frontend-ui-ux | ADD capabilities (stack multiple) |
 | **Guarantee** | ralph-loop | ENSURE completion |
 
@@ -254,12 +254,12 @@ Claude uses judgment to detect task type and activate appropriate skill combinat
 
 | Task Type | Skill Combination | When |
 |-----------|-------------------|------|
-| Multi-step implementation | `sisyphus` | Building features, refactoring |
-| + parallel subtasks | `sisyphus + ultrawork` | 3+ independent subtasks |
-| + multi-file changes | `sisyphus + git-master` | Changes span 3+ files |
-| + must complete | `sisyphus + ralph-loop` | User emphasizes completion |
-| UI/frontend work | `sisyphus + frontend-ui-ux` | Components, styling |
-| Complex debugging | `oracle` → `sisyphus` | Root cause → fix |
+| Multi-step implementation | `yoom-ai` | Building features, refactoring |
+| + parallel subtasks | `yoom-ai + ultrawork` | 3+ independent subtasks |
+| + multi-file changes | `yoom-ai + git-master` | Changes span 3+ files |
+| + must complete | `yoom-ai + ralph-loop` | User emphasizes completion |
+| UI/frontend work | `yoom-ai + frontend-ui-ux` | Components, styling |
+| Complex debugging | `oracle` → `yoom-ai` | Root cause → fix |
 | Strategic planning | `prometheus` | Need plan first |
 | Maximum performance | `ultrawork` (stacks) | Speed critical |
 
@@ -267,16 +267,16 @@ Claude uses judgment to detect task type and activate appropriate skill combinat
 
 ```
 "Add dark mode with proper commits"
-→ sisyphus + frontend-ui-ux + git-master
+→ yoom-ai + frontend-ui-ux + git-master
 
 "ultrawork: refactor the entire API layer"
-→ ultrawork + sisyphus + git-master
+→ ultrawork + yoom-ai + git-master
 
 "Plan auth system, then implement it completely"
-→ prometheus (first) → sisyphus + ralph-loop (after plan)
+→ prometheus (first) → yoom-ai + ralph-loop (after plan)
 
 "Fix this bug, don't stop until it's done"
-→ sisyphus + ralph-loop
+→ yoom-ai + ralph-loop
 ```
 
 ---
@@ -308,8 +308,8 @@ Claude will automatically delegate to these specialized agents:
 
 | | Agent | Model | Best For |
 |---|-------|-------|----------|
-| 🪨 | **Orchestrator-Sisyphus** | Sonnet | Todo coordination, task delegation, progress tracking |
-| ✨ | **Sisyphus Junior** | Sonnet | Focused task execution, plan following, direct implementation |
+| 🪨 | **Orchestrator-YOOM-AI** | Sonnet | Todo coordination, task delegation, progress tracking |
+| ✨ | **YOOM-AI Junior** | Sonnet | Focused task execution, plan following, direct implementation |
 
 ### Manual Agent Invocation
 
@@ -365,14 +365,14 @@ Your custom system prompt here...
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus/main/scripts/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/uninstall.sh | bash
 ```
 
 Or manually:
 
 ```bash
-rm ~/.claude/agents/{oracle,librarian,explore,frontend-engineer,document-writer,multimodal-looker,momus,metis,orchestrator-sisyphus,sisyphus-junior,prometheus}.md
-rm ~/.claude/commands/{sisyphus,sisyphus-default,ultrawork,deepsearch,analyze,plan,review,prometheus,orchestrator,ralph-loop,cancel-ralph}.md
+rm ~/.claude/agents/{oracle,librarian,explore,frontend-engineer,document-writer,multimodal-looker,momus,metis,orchestrator-yoom-ai,yoom-ai-junior,prometheus}.md
+rm ~/.claude/commands/{yoom-ai,yoom-ai-default,ultrawork,deepsearch,analyze,plan,review,prometheus,orchestrator,ralph-loop,cancel-ralph}.md
 ```
 
 ---
@@ -382,14 +382,14 @@ rm ~/.claude/commands/{sisyphus,sisyphus-default,ultrawork,deepsearch,analyze,pl
 For programmatic use with the Claude Agent SDK:
 
 ```bash
-npm install oh-my-claude-sisyphus @anthropic-ai/claude-agent-sdk
+npm install oh-my-claude-yoom-ai @anthropic-ai/claude-agent-sdk
 ```
 
 ```typescript
-import { createSisyphusSession } from 'oh-my-claude-sisyphus';
+import { createYOOM-AISession } from 'oh-my-claude-yoom-ai';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 
-const session = createSisyphusSession();
+const session = createYOOM-AISession();
 
 for await (const message of query({
   prompt: session.processPrompt("ultrawork implement feature X"),
@@ -405,7 +405,7 @@ for await (const message of query({
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      SISYPHUS ORCHESTRATOR                       │
+│                      YOOM-AI ORCHESTRATOR                       │
 │                    (The Boulder Never Stops)                     │
 └─────────────────────────────────────────────────────────────────┘
                               │
@@ -418,11 +418,11 @@ for await (const message of query({
 │ 🔥 Prometheus   │  │ 🔮 Oracle       │  │ 📚 Librarian    │
 │ 🎭 Momus        │  │ 🎨 Frontend Eng │  │ 🔍 Explore      │
 │ 🦉 Metis        │  │ 🪨 Orchestrator │  │ 📝 Doc Writer   │
-│                 │  │ ✨ Sisyphus Jr  │  │ 👁️ Multimodal   │
+│                 │  │ ✨ YOOM-AI Jr  │  │ 👁️ Multimodal   │
 └─────────────────┘  └─────────────────┘  └─────────────────┘
 ```
 
-1. **Sisyphus Orchestrator**: The main Claude instance coordinates all work
+1. **YOOM-AI Orchestrator**: The main Claude instance coordinates all work
 2. **Specialized Subagents**: Each agent has focused expertise and tools
 3. **Parallel Execution**: Independent tasks run concurrently
 4. **Continuation Enforcement**: Agents persist until ALL tasks complete
@@ -441,7 +441,7 @@ The original oh-my-opencode used multiple AI providers. This port uses Claude mo
 
 | Agent | Original Model | Ported Model | Notes |
 |-------|---------------|--------------|-------|
-| **Sisyphus** | Claude Opus 4.5 | Claude Opus 4.5 | Same |
+| **YOOM-AI** | Claude Opus 4.5 | Claude Opus 4.5 | Same |
 | **Oracle** | GPT-5.2 | Claude Opus | Was OpenAI's flagship for deep reasoning |
 | **Librarian** | Claude Sonnet or Gemini 3 Flash | Claude Sonnet | Multi-provider → Claude only |
 | **Explore** | Grok Code or Gemini 3 Flash | Claude Haiku 4.5 | Fast/cheap model for quick searches |
@@ -450,8 +450,8 @@ The original oh-my-opencode used multiple AI providers. This port uses Claude mo
 | **Multimodal Looker** | Various | Claude Sonnet | Visual analysis |
 | **Momus** | GPT-5.2 | Claude Opus | Plan reviewer (Greek god of criticism) |
 | **Metis** | Claude Opus 4.5 | Claude Opus | Pre-planning consultant (goddess of wisdom) |
-| **Orchestrator-Sisyphus** | Claude Sonnet 4.5 | Claude Sonnet | Todo coordination and delegation |
-| **Sisyphus-Junior** | Configurable | Claude Sonnet | Focused task executor |
+| **Orchestrator-YOOM-AI** | Claude Sonnet 4.5 | Claude Sonnet | Todo coordination and delegation |
+| **YOOM-AI-Junior** | Configurable | Claude Sonnet | Focused task executor |
 | **Prometheus** | Planning System | Claude Opus | Strategic planner (fire-bringer) |
 
 **Why Claude-only?** The Claude Agent SDK is designed for Claude models. Using Claude throughout provides:
@@ -509,11 +509,11 @@ The original oh-my-opencode used multiple AI providers. This port uses Claude mo
 
 | Feature | Description |
 |---------|-------------|
-| **11 Specialized Agents** | Oracle, Librarian, Explore, Frontend Engineer, Document Writer, Multimodal Looker, Momus, Metis, Orchestrator-Sisyphus, Sisyphus-Junior, Prometheus |
-| **18 Lifecycle Hooks** | rules-injector, sisyphus-orchestrator, auto-slash-command, keyword-detector, ralph-loop, todo-continuation, context-window-limit-recovery, preemptive-compaction, session-recovery, directory-readme-injector, comment-checker, thinking-block-validator, empty-message-sanitizer, edit-error-recovery, non-interactive-env, agent-usage-reminder, background-notification, think-mode |
-| **6 Builtin Skills** | sisyphus, orchestrator, ultrawork, ralph-loop, frontend-ui-ux, git-master |
+| **11 Specialized Agents** | Oracle, Librarian, Explore, Frontend Engineer, Document Writer, Multimodal Looker, Momus, Metis, Orchestrator-YOOM-AI, YOOM-AI-Junior, Prometheus |
+| **18 Lifecycle Hooks** | rules-injector, yoom-ai-orchestrator, auto-slash-command, keyword-detector, ralph-loop, todo-continuation, context-window-limit-recovery, preemptive-compaction, session-recovery, directory-readme-injector, comment-checker, thinking-block-validator, empty-message-sanitizer, edit-error-recovery, non-interactive-env, agent-usage-reminder, background-notification, think-mode |
+| **6 Builtin Skills** | yoom-ai, orchestrator, ultrawork, ralph-loop, frontend-ui-ux, git-master |
 | **Magic Keywords** | `ultrawork`, `search`, `analyze`, `ultrathink` trigger enhanced modes |
-| **Slash Commands** | `/sisyphus`, `/sisyphus-default`, `/ultrawork`, `/deepsearch`, `/analyze`, `/plan`, `/review`, `/prometheus`, `/orchestrator`, `/ralph-loop`, `/cancel-ralph`, `/update` |
+| **Slash Commands** | `/yoom-ai`, `/yoom-ai-default`, `/ultrawork`, `/deepsearch`, `/analyze`, `/plan`, `/review`, `/prometheus`, `/orchestrator`, `/ralph-loop`, `/cancel-ralph`, `/update` |
 | **Auto-Update System** | Silent background updates with manual `/update` command |
 | **Configuration System** | JSONC config with multi-source merging |
 | **Context Injection** | Auto-loads CLAUDE.md and AGENTS.md files |
@@ -536,7 +536,7 @@ The original oh-my-opencode used multiple AI providers. This port uses Claude mo
 ### Architecture Differences
 
 ```
-oh-my-opencode (Original)          oh-my-claude-sisyphus (Port)
+oh-my-opencode (Original)          oh-my-claude-yoom-ai (Port)
 ─────────────────────────          ────────────────────────────
 ┌─────────────────────┐            ┌─────────────────────┐
 │   OpenCode Plugin   │            │    Claude Code      │
@@ -605,7 +605,7 @@ If you're coming from oh-my-opencode:
 | **macOS** | curl or npm | Bash (.sh) |
 | **Linux** | curl or npm | Bash (.sh) |
 
-> **Advanced**: Set `SISYPHUS_USE_NODE_HOOKS=1` to use Node.js hooks on macOS/Linux.
+> **Advanced**: Set `YOOM-AI_USE_NODE_HOOKS=1` to use Node.js hooks on macOS/Linux.
 
 ## License
 

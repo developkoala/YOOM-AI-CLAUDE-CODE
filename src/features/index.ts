@@ -127,3 +127,38 @@ export {
   type SkillMcpConfig,
   type SkillRegistry
 } from './builtin-skills/index.js';
+
+// Yoom Session - workflow session management
+export {
+  // Types
+  type ProjectType,
+  type YoomMode,
+  type FeatureStep,
+  type FeatureStatus,
+  type DiscoveryResult,
+  type YoomFeature,
+  type YoomSessionConfig,
+  type YoomSession,
+  type SessionFileContent,
+  type CreateSessionOptions,
+  type UpdateSessionOptions,
+  // Constants
+  SESSION_FILE,
+  SESSION_VERSION,
+  FRAMEWORK_AGENTS,
+  FEATURE_STEP_ORDER,
+  // Functions
+  getAgentsForFramework,
+  getNextStep,
+  getStepDescription,
+  hasExistingSession,
+  getSessionFilePath,
+  loadSession,
+  saveSession,
+  deleteSession,
+  createSession,
+  updateSession,
+  completeCurrentStep,
+  startNextFeature,
+  getSessionSummary
+} from './yoom-session/index.js';

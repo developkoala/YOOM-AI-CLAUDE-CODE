@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * Oh-My-Claude-Sisyphus CLI
+ * Oh-My-Claude-YOOM-AI CLI
  *
- * Command-line interface for the Sisyphus multi-agent system.
+ * Command-line interface for the YOOM-AI multi-agent system.
  *
  * Commands:
  * - run: Start an interactive session
@@ -21,7 +21,7 @@ import {
   getConfigPaths,
   generateConfigSchema
 } from '../config/loader.js';
-import { createSisyphusSession } from '../index.js';
+import { createYoomAiSession } from '../index.js';
 import {
   checkForUpdates,
   performUpdate,
@@ -29,7 +29,7 @@ import {
   getInstalledVersion
 } from '../features/auto-update.js';
 import {
-  install as installSisyphus,
+  install as installYoomAi,
   isInstalled,
   getInstallInfo
 } from '../installer/index.js';
@@ -49,7 +49,7 @@ try {
 const program = new Command();
 
 program
-  .name('oh-my-claude-sisyphus')
+  .name('oh-my-claude-yoom-ai')
   .description('Multi-agent orchestration system for Claude Agent SDK')
   .version(version);
 
@@ -58,7 +58,7 @@ program
  */
 program
   .command('init')
-  .description('Initialize Sisyphus configuration in the current directory')
+  .description('Initialize YOOM-AI configuration in the current directory')
   .option('-g, --global', 'Initialize global user configuration')
   .option('-f, --force', 'Overwrite existing configuration')
   .action(async (options) => {
@@ -66,7 +66,7 @@ program
     const targetPath = options.global ? paths.user : paths.project;
     const targetDir = dirname(targetPath);
 
-    console.log(chalk.blue('Oh-My-Claude-Sisyphus Configuration Setup\n'));
+    console.log(chalk.blue('Oh-My-Claude-YOOM-AI Configuration Setup\n'));
 
     // Check if config already exists
     if (existsSync(targetPath) && !options.force) {
@@ -82,14 +82,14 @@ program
     }
 
     // Generate config content
-    const configContent = `// Oh-My-Claude-Sisyphus Configuration
-// See: https://github.com/your-repo/oh-my-claude-sisyphus for documentation
+    const configContent = `// Oh-My-Claude-YOOM-AI Configuration
+// See: https://github.com/your-repo/oh-my-claude-yoom-ai for documentation
 {
-  "$schema": "./sisyphus-schema.json",
+  "$schema": "./yoom-ai-schema.json",
 
   // Agent model configurations
   "agents": {
-    "sisyphus": {
+    "yoom-ai": {
       // Main orchestrator - uses the most capable model
       "model": "claude-opus-4-5-20251101"
     },
@@ -164,7 +164,7 @@ program
     console.log(chalk.green(`Created configuration: ${targetPath}`));
 
     // Also create the JSON schema for editor support
-    const schemaPath = join(targetDir, 'sisyphus-schema.json');
+    const schemaPath = join(targetDir, 'yoom-ai-schema.json');
     writeFileSync(schemaPath, JSON.stringify(generateConfigSchema(), null, 2));
     console.log(chalk.green(`Created JSON schema: ${schemaPath}`));
 
@@ -269,9 +269,9 @@ program
   .command('info')
   .description('Show system and agent information')
   .action(async () => {
-    const session = createSisyphusSession();
+    const session = createYoomAiSession();
 
-    console.log(chalk.blue.bold('\nOh-My-Claude-Sisyphus System Information\n'));
+    console.log(chalk.blue.bold('\nOh-My-Claude-YOOM-AI System Information\n'));
     console.log(chalk.gray('━'.repeat(50)));
 
     console.log(chalk.blue('\nAvailable Agents:'));
@@ -313,7 +313,7 @@ program
   .command('test-prompt <prompt>')
   .description('Test how a prompt would be enhanced')
   .action(async (prompt: string) => {
-    const session = createSisyphusSession();
+    const session = createYoomAiSession();
 
     console.log(chalk.blue('Original prompt:'));
     console.log(chalk.gray(prompt));
@@ -339,7 +339,7 @@ program
   .option('-q, --quiet', 'Suppress output except for errors')
   .action(async (options) => {
     if (!options.quiet) {
-      console.log(chalk.blue('Oh-My-Claude-Sisyphus Update\n'));
+      console.log(chalk.blue('Oh-My-Claude-YOOM-AI Update\n'));
     }
 
     try {
@@ -412,7 +412,7 @@ program
   .action(async () => {
     const installed = getInstalledVersion();
 
-    console.log(chalk.blue.bold('\nOh-My-Claude-Sisyphus Version Information\n'));
+    console.log(chalk.blue.bold('\nOh-My-Claude-YOOM-AI Version Information\n'));
     console.log(chalk.gray('━'.repeat(50)));
 
     console.log(`\n  Package version:   ${chalk.green(version)}`);
@@ -433,7 +433,7 @@ program
     }
 
     console.log(chalk.gray('\n━'.repeat(50)));
-    console.log(chalk.gray('\nTo check for updates, run: oh-my-claude-sisyphus update --check'));
+    console.log(chalk.gray('\nTo check for updates, run: oh-my-claude-yoom-ai update --check'));
   });
 
 /**
@@ -441,14 +441,14 @@ program
  */
 program
   .command('install')
-  .description('Install Sisyphus agents and commands to Claude Code config (~/.claude/)')
+  .description('Install YOOM-AI agents and commands to Claude Code config (~/.claude/)')
   .option('-f, --force', 'Overwrite existing files')
   .option('-q, --quiet', 'Suppress output except for errors')
   .option('--skip-claude-check', 'Skip checking if Claude Code is installed')
   .action(async (options) => {
     if (!options.quiet) {
       console.log(chalk.blue('╔═══════════════════════════════════════════════════════════╗'));
-      console.log(chalk.blue('║         Oh-My-Claude-Sisyphus Installer                   ║'));
+      console.log(chalk.blue('║         Oh-My-Claude-YOOM-AI Installer                   ║'));
       console.log(chalk.blue('║   Multi-Agent Orchestration for Claude Code               ║'));
       console.log(chalk.blue('╚═══════════════════════════════════════════════════════════╝'));
       console.log('');
@@ -458,7 +458,7 @@ program
     if (isInstalled() && !options.force) {
       const info = getInstallInfo();
       if (!options.quiet) {
-        console.log(chalk.yellow('Sisyphus is already installed.'));
+        console.log(chalk.yellow('YOOM-AI is already installed.'));
         if (info) {
           console.log(chalk.gray(`  Version: ${info.version}`));
           console.log(chalk.gray(`  Installed: ${info.installedAt}`));
@@ -469,7 +469,7 @@ program
     }
 
     // Run installation
-    const result = installSisyphus({
+    const result = installYoomAi({
       force: options.force,
       verbose: !options.quiet,
       skipClaudeCheck: options.skipClaudeCheck
@@ -488,8 +488,8 @@ program
         console.log('  claude                        # Start Claude Code normally');
         console.log('');
         console.log(chalk.yellow('Slash Commands:'));
-        console.log('  /sisyphus <task>              # Activate Sisyphus orchestration mode');
-        console.log('  /sisyphus-default             # Set Sisyphus as default behavior');
+        console.log('  /yoom-ai <task>              # Activate YOOM-AI orchestration mode');
+        console.log('  /yoom-ai-default             # Set YOOM-AI as default behavior');
         console.log('  /ultrawork <task>             # Maximum performance mode');
         console.log('  /deepsearch <query>           # Thorough codebase search');
         console.log('  /analyze <target>             # Deep analysis mode');
@@ -505,14 +505,14 @@ program
         console.log('  multimodal-looker   - Visual analysis (Sonnet)');
         console.log('  momus               - Plan review (Opus)');
         console.log('  metis               - Pre-planning analysis (Opus)');
-        console.log('  orchestrator-sisyphus - Todo coordination (Sonnet)');
-        console.log('  sisyphus-junior     - Focused execution (Sonnet)');
+        console.log('  orchestrator-yoom-ai - Todo coordination (Sonnet)');
+        console.log('  yoom-ai-junior     - Focused execution (Sonnet)');
         console.log('  prometheus          - Strategic planning (Opus)');
         console.log('');
         console.log(chalk.blue('Quick Start:'));
         console.log('  1. Run \'claude\' to start Claude Code');
-        console.log('  2. Type \'/sisyphus-default\' to enable Sisyphus permanently');
-        console.log('  3. Or use \'/sisyphus <task>\' for one-time activation');
+        console.log('  2. Type \'/yoom-ai-default\' to enable YOOM-AI permanently');
+        console.log('  3. Or use \'/yoom-ai <task>\' for one-time activation');
       }
     } else {
       console.error(chalk.red(`Installation failed: ${result.message}`));
@@ -531,19 +531,19 @@ program
   .description('Run post-install setup (called automatically by npm)')
   .action(async () => {
     // Silent install - only show errors
-    const result = installSisyphus({
+    const result = installYoomAi({
       force: false,
       verbose: false,
       skipClaudeCheck: true
     });
 
     if (result.success) {
-      console.log(chalk.green('✓ Oh-My-Claude-Sisyphus installed successfully!'));
-      console.log(chalk.gray('  Run "oh-my-claude-sisyphus info" to see available agents.'));
+      console.log(chalk.green('✓ Oh-My-Claude-YOOM-AI installed successfully!'));
+      console.log(chalk.gray('  Run "oh-my-claude-yoom-ai info" to see available agents.'));
     } else {
       // Don't fail the npm install, just warn
-      console.warn(chalk.yellow('⚠ Could not complete Sisyphus setup:'), result.message);
-      console.warn(chalk.gray('  Run "oh-my-claude-sisyphus install" manually to complete setup.'));
+      console.warn(chalk.yellow('⚠ Could not complete YOOM-AI setup:'), result.message);
+      console.warn(chalk.gray('  Run "oh-my-claude-yoom-ai install" manually to complete setup.'));
     }
   });
 

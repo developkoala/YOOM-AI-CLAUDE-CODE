@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This plan addresses the significant discrepancies between **Oh-My-ClaudeCode-Sisyphus** and the reference **oh-my-opencode** project.
+This plan addresses the significant discrepancies between **Oh-My-ClaudeCode-YOOM-AI** and the reference **oh-my-opencode** project.
 
 **Critical Note**: This is a PORT to Claude Code (Claude Agent SDK), not OpenCode. The sync must ADAPT patterns from oh-my-opencode while maintaining compatibility with Claude Code's architecture.
 
@@ -49,7 +49,7 @@ Missing hook implementations:
 - `ralph-loop` - Self-referential work loops
 - `auto-slash-command` - Auto-detect slash commands
 - `edit-error-recovery` - Recover from edit failures
-- `sisyphus-orchestrator` - Orchestration hooks
+- `yoom-ai-orchestrator` - Orchestration hooks
 - `keyword-detector` - Detect magic keywords
 - `non-interactive-env` - Handle non-interactive shells
 - Plus 15+ more hooks
@@ -65,7 +65,7 @@ Reference: Separate files per agent with:
 #### 3. Features System (PARTIAL - 5/73 files)
 Missing feature modules:
 - `background-agent/` - Background agent management
-- `boulder-state/` - Sisyphus state management
+- `boulder-state/` - YOOM-AI state management
 - `builtin-commands/` - Built-in CLI commands
 - `builtin-skills/` - Built-in skills system
 - `claude-code-agent-loader/` - Agent loading
@@ -87,7 +87,7 @@ Missing tool modules:
 - `interactive-bash/` - Interactive bash sessions
 - `look-at/` - Visual inspection tools
 - `session-manager/` - Session management
-- `sisyphus-task/` - Sisyphus task tools
+- `yoom-ai-task/` - YOOM-AI task tools
 - `skill/` - Skill execution tools
 - `skill-mcp/` - Skill MCP tools
 - `slashcommand/` - Slash command tools
@@ -114,13 +114,13 @@ Missing tool modules:
   - [x] `src/agents/oracle.ts`
   - [x] `src/agents/explore.ts`
   - [x] `src/agents/librarian.ts`
-  - [x] `src/agents/sisyphus-junior.ts`
+  - [x] `src/agents/yoom-ai-junior.ts`
   - [x] `src/agents/frontend-engineer.ts`
   - [x] `src/agents/document-writer.ts`
   - [x] `src/agents/multimodal-looker.ts`
   - [x] `src/agents/momus.ts`
   - [x] `src/agents/metis.ts`
-  - [x] `src/agents/orchestrator-sisyphus.ts`
+  - [x] `src/agents/orchestrator-yoom-ai.ts`
   - [x] `src/agents/prometheus.ts`
 - [x] Create `src/agents/utils.ts` for shared utilities
 - [x] Create `src/agents/types.ts` for type definitions
@@ -140,7 +140,7 @@ Missing tool modules:
 - [ ] Enhance `ast-grep/` with CLI tools
 - [ ] Port `background-task/` management
 - [ ] Port `session-manager/` for session persistence
-- [ ] Port `sisyphus-task/` for task delegation
+- [ ] Port `yoom-ai-task/` for task delegation
 
 ### Phase 3: Extended Features (Priority: MEDIUM) ✅ PARTIALLY COMPLETED
 **Goal**: Add advanced functionality.
@@ -176,7 +176,7 @@ Missing tool modules:
 ## Technical Considerations
 
 ### SDK Differences
-| Aspect | oh-my-opencode | oh-my-claude-sisyphus |
+| Aspect | oh-my-opencode | oh-my-claude-yoom-ai |
 |--------|----------------|----------------------|
 | SDK | @opencode-ai/sdk | @anthropic-ai/claude-agent-sdk |
 | Runtime | Bun | Node.js |
@@ -199,7 +199,7 @@ src/hooks/
 ├── rules-injector/
 ├── ralph-loop/
 ├── keyword-detector/
-└── sisyphus-orchestrator/
+└── yoom-ai-orchestrator/
 
 src/agents/
 ├── types.ts
@@ -207,7 +207,7 @@ src/agents/
 ├── oracle.ts
 ├── librarian.ts
 ├── explore.ts
-├── sisyphus.ts
+├── yoom-ai.ts
 └── ...individual agents
 
 src/features/
@@ -273,7 +273,7 @@ src/features/
    - Dynamic rules injection for prompts
    - 8 files in reference
 
-2. **Port Sisyphus Orchestrator Hook** (`src/hooks/sisyphus-orchestrator/`)
+2. **Port YOOM-AI Orchestrator Hook** (`src/hooks/yoom-ai-orchestrator/`)
    - Core orchestration integration
    - 2 files in reference
 
@@ -325,8 +325,8 @@ src/features/
 - ✅ Ported rules-injector hook (6 files)
   - types.ts, constants.ts, finder.ts, parser.ts, matcher.ts, storage.ts, index.ts
   - Full YAML frontmatter parsing, glob matching, session-based deduplication
-- ✅ Added orchestrator, sisyphus, ralph-loop as skills (in installer)
-- ✅ Ported sisyphus-orchestrator hook (2 files)
+- ✅ Added orchestrator, yoom-ai, ralph-loop as skills (in installer)
+- ✅ Ported yoom-ai-orchestrator hook (2 files)
   - constants.ts, index.ts
   - Orchestrator behavior enforcement, delegation reminders, boulder continuation
 - ✅ Ported auto-slash-command hook (4 files)
@@ -341,7 +341,7 @@ src/features/
 ### Session 3 (2026-01-09)
 - ✅ Ported builtin-skills feature (3 files)
   - types.ts, skills.ts, index.ts
-  - 6 builtin skills: orchestrator, sisyphus, ralph-loop, frontend-ui-ux, git-master, ultrawork
+  - 6 builtin skills: orchestrator, yoom-ai, ralph-loop, frontend-ui-ux, git-master, ultrawork
 - ✅ Created AGENTS.md documentation
   - Comprehensive project overview, structure, agents, hooks, skills reference
 - ✅ Ported comment-checker hook (4 files)

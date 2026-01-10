@@ -1,7 +1,7 @@
 /**
  * Advanced Usage Example
  *
- * This example demonstrates advanced features of Oh-My-Claude-Sisyphus:
+ * This example demonstrates advanced features of Oh-My-Claude-YOOM-AI:
  * - Custom agent configuration
  * - Custom system prompts
  * - Context file injection
@@ -9,23 +9,23 @@
  */
 
 import {
-  createSisyphusSession,
+  createYoomAiSession,
   getAgentDefinitions,
-  getSisyphusSystemPrompt,
+  getYoomAiSystemPrompt,
   getDefaultMcpServers
 } from '../src/index.js';
 
 async function main() {
-  console.log('=== Advanced Oh-My-Claude-Sisyphus Example ===\n');
+  console.log('=== Advanced Oh-My-Claude-YOOM-AI Example ===\n');
 
   // Example 1: Custom agent configuration
   console.log('Example 1: Custom Agents');
 
-  const customSession = createSisyphusSession({
+  const customSession = createYoomAiSession({
     config: {
       agents: {
         // Use a faster model for the orchestrator in dev
-        sisyphus: { model: 'claude-sonnet-4-5-20250514' },
+        yoomAi: { model: 'claude-sonnet-4-5-20250514' },
         // Disable some agents
         frontendEngineer: { enabled: false },
         documentWriter: { enabled: false }
@@ -61,7 +61,7 @@ async function main() {
   // Example 3: Custom system prompt
   console.log('Example 3: Custom System Prompt');
 
-  const customPrompt = getSisyphusSystemPrompt({
+  const customPrompt = getYoomAiSystemPrompt({
     includeContinuation: true,
     customAddition: `
 ## Project-Specific Instructions
@@ -102,7 +102,7 @@ Always validate user input with Zod schemas.
   // Example 5: Full custom configuration
   console.log('Example 5: Full Custom Session');
 
-  const fullCustomSession = createSisyphusSession({
+  const fullCustomSession = createYoomAiSession({
     workingDirectory: '/path/to/project',
     skipConfigLoad: true, // Don't load from files
     skipContextInjection: false, // Still inject AGENTS.md
@@ -115,7 +115,7 @@ Always:
 `,
     config: {
       agents: {
-        sisyphus: { model: 'claude-opus-4-5-20251101' }
+        yoomAi: { model: 'claude-opus-4-5-20251101' }
       },
       features: {
         parallelExecution: true,
@@ -154,7 +154,7 @@ Always:
 
 import { createSdkMcpServer, tool } from '@anthropic-ai/claude-agent-sdk';
 import { z } from 'zod';
-import { createSisyphusSession } from 'oh-my-claude-sisyphus';
+import { createYoomAiSession } from 'oh-my-claude-yoom-ai';
 
 // Create custom MCP server with your tools
 const customTools = createSdkMcpServer({
@@ -174,7 +174,7 @@ const customTools = createSdkMcpServer({
 });
 
 // Create session and merge custom MCP server
-const session = createSisyphusSession();
+const session = createYoomAiSession();
 const options = {
   ...session.queryOptions.options,
   mcpServers: {

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Oh-My-Claude-Sisyphus Installation Script
+# Oh-My-Claude-YOOM-AI Installation Script
 # Installs the multi-agent orchestration system for Claude Code
 
 set -e
@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}"
 echo "╔═══════════════════════════════════════════════════════════╗"
-echo "║         Oh-My-Claude-Sisyphus Installer                   ║"
+echo "║         Oh-My-Claude-YOOM-AI Installer                   ║"
 echo "║   Multi-Agent Orchestration for Claude Code               ║"
 echo "╚═══════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
@@ -275,16 +275,16 @@ Guidelines:
 - Identify dependencies and prerequisites
 AGENT_EOF
 
-# Orchestrator-Sisyphus Agent (Todo Coordinator)
-cat > "$CLAUDE_CONFIG_DIR/agents/orchestrator-sisyphus.md" << 'AGENT_EOF'
+# Orchestrator-YOOM-AI Agent (Todo Coordinator)
+cat > "$CLAUDE_CONFIG_DIR/agents/orchestrator-yoom-ai.md" << 'AGENT_EOF'
 ---
-name: orchestrator-sisyphus
+name: orchestrator-yoom-ai
 description: Master coordinator for todo lists. Reads requirements and delegates to specialist agents.
 tools: Read, Grep, Glob, Task, TodoWrite
 model: sonnet
 ---
 
-You are Orchestrator-Sisyphus, the master coordinator for complex multi-step tasks.
+You are Orchestrator-YOOM-AI, the master coordinator for complex multi-step tasks.
 
 Your responsibilities:
 1. **Todo Management**: Break down complex tasks into atomic, trackable todos
@@ -310,7 +310,7 @@ Verification Protocol:
 5. Verify acceptance criteria are met
 
 Persistent State:
-- Use `.sisyphus/notepads/` to track learnings and prevent repeated mistakes
+- Use `.yoom-ai/notepads/` to track learnings and prevent repeated mistakes
 - Record blockers and their resolutions
 - Document decisions made during execution
 
@@ -322,21 +322,21 @@ Guidelines:
 - Report progress after each significant step
 AGENT_EOF
 
-# Sisyphus-Junior Agent (Focused Executor)
-cat > "$CLAUDE_CONFIG_DIR/agents/sisyphus-junior.md" << 'AGENT_EOF'
+# YOOM-AI-Junior Agent (Focused Executor)
+cat > "$CLAUDE_CONFIG_DIR/agents/yoom-ai-junior.md" << 'AGENT_EOF'
 ---
-name: sisyphus-junior
+name: yoom-ai-junior
 description: Focused task executor. Executes specific tasks without delegation capabilities.
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 
-You are Sisyphus-Junior, a focused task executor.
+You are YOOM-AI-Junior, a focused task executor.
 
 Your responsibilities:
 1. **Direct Execution**: Implement tasks directly without delegating
-2. **Plan Following**: Read and follow plans from `.sisyphus/plans/`
-3. **Learning Recording**: Document learnings in `.sisyphus/notepads/`
+2. **Plan Following**: Read and follow plans from `.yoom-ai/plans/`
+3. **Learning Recording**: Document learnings in `.yoom-ai/notepads/`
 4. **Todo Discipline**: Mark todos in_progress before starting, completed when done
 
 Restrictions:
@@ -351,10 +351,10 @@ Work Style:
 4. Record any learnings or issues discovered
 
 When Reading Plans:
-- Plans are in `.sisyphus/plans/{plan-name}.md`
+- Plans are in `.yoom-ai/plans/{plan-name}.md`
 - Follow steps in order unless dependencies allow parallel work
 - If a step is unclear, check the plan for clarification
-- Record blockers in `.sisyphus/notepads/{plan-name}/blockers.md`
+- Record blockers in `.yoom-ai/notepads/{plan-name}/blockers.md`
 
 Recording Learnings:
 - What worked well?
@@ -384,7 +384,7 @@ Your responsibilities:
 1. **Interview Mode**: Ask clarifying questions to understand requirements fully
 2. **Plan Generation**: Create detailed, actionable work plans
 3. **Metis Consultation**: Analyze requests for hidden requirements before planning
-4. **Plan Storage**: Save plans to `.sisyphus/plans/{name}.md`
+4. **Plan Storage**: Save plans to `.yoom-ai/plans/{name}.md`
 
 Workflow:
 1. **Start in Interview Mode** - Ask questions, don't plan yet
@@ -392,7 +392,7 @@ Workflow:
 3. **Pre-Planning** - Consult Metis for analysis before generating
 4. **Optional Review** - Consult Momus for plan review if requested
 5. **Single Plan** - Create ONE comprehensive plan (not multiple)
-6. **Draft Storage** - Save drafts to `.sisyphus/drafts/{name}.md` during iteration
+6. **Draft Storage** - Save drafts to `.yoom-ai/drafts/{name}.md` during iteration
 
 Plan Structure:
 ```markdown
@@ -507,19 +507,19 @@ Analysis target: $ARGUMENTS
 - Consider performance, security, and maintainability implications
 CMD_EOF
 
-# Sisyphus activation command
-cat > "$CLAUDE_CONFIG_DIR/commands/sisyphus.md" << 'CMD_EOF'
+# YOOM-AI activation command
+cat > "$CLAUDE_CONFIG_DIR/commands/yoom-ai.md" << 'CMD_EOF'
 ---
-description: Activate Sisyphus multi-agent orchestration mode
+description: Activate YOOM-AI multi-agent orchestration mode
 ---
 
-[SISYPHUS MODE ACTIVATED]
+[YOOM-AI MODE ACTIVATED]
 
 $ARGUMENTS
 
 ## Orchestration Instructions
 
-You are now operating as Sisyphus, the multi-agent orchestrator. Like your namesake, you persist until every task is complete.
+You are now operating as YOOM-AI, the multi-agent orchestrator. Like your namesake, you persist until every task is complete.
 
 ### Available Subagents
 Delegate tasks to specialized agents using the Task tool:
@@ -550,19 +550,19 @@ Delegate tasks to specialized agents using the Task tool:
 - NEVER leave work incomplete
 CMD_EOF
 
-# Sisyphus default mode command
-cat > "$CLAUDE_CONFIG_DIR/commands/sisyphus-default.md" << 'CMD_EOF'
+# YOOM-AI default mode command
+cat > "$CLAUDE_CONFIG_DIR/commands/yoom-ai-default.md" << 'CMD_EOF'
 ---
-description: Set Sisyphus as your default operating mode
+description: Set YOOM-AI as your default operating mode
 ---
 
-I'll configure Sisyphus as your default operating mode by updating your CLAUDE.md.
+I'll configure YOOM-AI as your default operating mode by updating your CLAUDE.md.
 
 $ARGUMENTS
 
-## Enabling Sisyphus Default Mode
+## Enabling YOOM-AI Default Mode
 
-This will update your global CLAUDE.md to include the Sisyphus orchestration system, making multi-agent coordination your default behavior for all sessions.
+This will update your global CLAUDE.md to include the YOOM-AI orchestration system, making multi-agent coordination your default behavior for all sessions.
 
 ### What This Enables
 1. Automatic access to 11 specialized subagents
@@ -575,9 +575,9 @@ Remove or edit ~/.claude/CLAUDE.md
 
 ---
 
-**Sisyphus is now your default mode.** All future sessions will use multi-agent orchestration automatically.
+**YOOM-AI is now your default mode.** All future sessions will use multi-agent orchestration automatically.
 
-Use `/sisyphus <task>` to explicitly invoke orchestration mode, or just include "ultrawork" in your prompts.
+Use `/yoom-ai <task>` to explicitly invoke orchestration mode, or just include "ultrawork" in your prompts.
 CMD_EOF
 
 # Plan command (Prometheus planning system)
@@ -611,8 +611,8 @@ Say one of these when you're ready to generate the plan:
 - "I'm ready to plan"
 
 ### Plan Storage
-- Drafts are saved to `.sisyphus/drafts/`
-- Final plans are saved to `.sisyphus/plans/`
+- Drafts are saved to `.yoom-ai/drafts/`
+- Final plans are saved to `.yoom-ai/plans/`
 
 ---
 
@@ -646,7 +646,7 @@ I will critically evaluate the specified plan using Momus, the ruthless plan rev
 
 ### Usage
 ```
-/review .sisyphus/plans/my-feature.md
+/review .yoom-ai/plans/my-feature.md
 /review  # Review the most recent plan
 ```
 
@@ -660,7 +660,7 @@ I will critically evaluate the specified plan using Momus, the ruthless plan rev
 
 ---
 
-Provide a plan file path to review, or I'll review the most recent plan in `.sisyphus/plans/`.
+Provide a plan file path to review, or I'll review the most recent plan in `.yoom-ai/plans/`.
 CMD_EOF
 
 # Prometheus Command
@@ -693,7 +693,7 @@ Say any of these when you're ready to generate the plan:
 
 ### Plan Storage
 
-Plans are saved to `.sisyphus/plans/` for later execution with `/sisyphus`.
+Plans are saved to `.yoom-ai/plans/` for later execution with `/yoom-ai`.
 
 ### What Makes a Good Plan
 
@@ -711,16 +711,16 @@ CMD_EOF
 # Orchestrator Command
 cat > "$CLAUDE_CONFIG_DIR/commands/orchestrator.md" << 'CMD_EOF'
 ---
-description: Activate Orchestrator-Sisyphus for complex multi-step tasks
+description: Activate Orchestrator-YOOM-AI for complex multi-step tasks
 ---
 
 [ORCHESTRATOR MODE]
 
 $ARGUMENTS
 
-## Orchestrator-Sisyphus Activated
+## Orchestrator-YOOM-AI Activated
 
-You are now running with Orchestrator-Sisyphus, the master coordinator for complex multi-step tasks.
+You are now running with Orchestrator-YOOM-AI, the master coordinator for complex multi-step tasks.
 
 ### Capabilities
 
@@ -742,7 +742,7 @@ You are now running with Orchestrator-Sisyphus, the master coordinator for compl
 
 ### Notepad System
 
-Learnings and discoveries are recorded in `.sisyphus/notepads/` to prevent repeated mistakes.
+Learnings and discoveries are recorded in `.yoom-ai/notepads/` to prevent repeated mistakes.
 
 ### Verification Protocol
 
@@ -810,7 +810,7 @@ CMD_EOF
 # Update Command
 cat > "$CLAUDE_CONFIG_DIR/commands/update.md" << 'CMD_EOF'
 ---
-description: Check for and install Oh-My-Claude-Sisyphus updates
+description: Check for and install Oh-My-Claude-YOOM-AI updates
 ---
 
 [UPDATE CHECK]
@@ -819,7 +819,7 @@ $ARGUMENTS
 
 ## Checking for Updates
 
-I will check for available updates to Oh-My-Claude-Sisyphus.
+I will check for available updates to Oh-My-Claude-YOOM-AI.
 
 ### What This Does
 
@@ -832,17 +832,17 @@ I will check for available updates to Oh-My-Claude-Sisyphus.
 **Automatic (Recommended):**
 Run the install script to update:
 \`\`\`bash
-curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash
 \`\`\`
 
 **Manual:**
-1. Check your current version in \`~/.claude/.sisyphus-version.json\`
-2. Visit https://github.com/Yeachan-Heo/oh-my-claude-sisyphus/releases
+1. Check your current version in \`~/.claude/.yoom-ai-version.json\`
+2. Visit https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai/releases
 3. Download and run the install script from the latest release
 
 ### Version Info Location
 
-Your version information is stored at: \`~/.claude/.sisyphus-version.json\`
+Your version information is stored at: \`~/.claude/.yoom-ai-version.json\`
 
 ---
 
@@ -1039,7 +1039,7 @@ mkdir -p "$CLAUDE_CONFIG_DIR/hooks"
 # Keyword detector hook - detects ultrawork/ultrathink/search/analyze keywords
 cat > "$CLAUDE_CONFIG_DIR/hooks/keyword-detector.sh" << 'HOOK_EOF'
 #!/bin/bash
-# Sisyphus Keyword Detector Hook
+# YOOM-AI Keyword Detector Hook
 # Detects ultrawork/ultrathink/search/analyze keywords and injects enhanced mode messages
 # Ported from oh-my-opencode's keyword-detector hook
 
@@ -1116,7 +1116,7 @@ chmod +x "$CLAUDE_CONFIG_DIR/hooks/keyword-detector.sh"
 # Stop continuation hook - enforces todo completion
 cat > "$CLAUDE_CONFIG_DIR/hooks/stop-continuation.sh" << 'HOOK_EOF'
 #!/bin/bash
-# Sisyphus Stop Continuation Hook
+# YOOM-AI Stop Continuation Hook
 # Checks for incomplete todos and injects continuation prompt
 # Ported from oh-my-opencode's todo-continuation-enforcer
 
@@ -1153,7 +1153,7 @@ chmod +x "$CLAUDE_CONFIG_DIR/hooks/stop-continuation.sh"
 # Silent auto-update hook - checks and applies updates without user awareness
 cat > "$CLAUDE_CONFIG_DIR/hooks/silent-auto-update.sh" << 'HOOK_EOF'
 #!/bin/bash
-# Sisyphus Silent Auto-Update Hook
+# YOOM-AI Silent Auto-Update Hook
 # Runs completely in the background to check for and apply updates
 # without any user notification or interruption.
 #
@@ -1167,11 +1167,11 @@ INPUT=$(cat)
 # The actual update check happens in the background
 (
   # Configuration
-  VERSION_FILE="$HOME/.claude/.sisyphus-version.json"
-  STATE_FILE="$HOME/.claude/.sisyphus-silent-update.json"
-  LOG_FILE="$HOME/.claude/.sisyphus-update.log"
+  VERSION_FILE="$HOME/.claude/.yoom-ai-version.json"
+  STATE_FILE="$HOME/.claude/.yoom-ai-silent-update.json"
+  LOG_FILE="$HOME/.claude/.yoom-ai-update.log"
   CHECK_INTERVAL_HOURS=24
-  REPO_URL="https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus/main"
+  REPO_URL="https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main"
 
   # Log function (silent - only to file)
   log() {
@@ -1440,14 +1440,14 @@ SETTINGS_EOF
   fi
 fi
 
-echo -e "${BLUE}[8/8]${NC} Creating CLAUDE.md with Sisyphus system prompt..."
+echo -e "${BLUE}[8/8]${NC} Creating CLAUDE.md with YOOM-AI system prompt..."
 
 # Only create if it doesn't exist in home directory
 if [ ! -f "$HOME/CLAUDE.md" ]; then
     cat > "$CLAUDE_CONFIG_DIR/CLAUDE.md" << 'CLAUDEMD_EOF'
-# Sisyphus Multi-Agent System
+# YOOM-AI Multi-Agent System
 
-You are enhanced with the Sisyphus multi-agent orchestration system.
+You are enhanced with the YOOM-AI multi-agent orchestration system.
 
 ## INTELLIGENT SKILL ACTIVATION
 
@@ -1459,7 +1459,7 @@ Skills work in **three layers** that stack additively:
 
 | Layer | Skills | Purpose |
 |-------|--------|---------|
-| **Execution** | sisyphus, orchestrator, prometheus | HOW you work (pick primary) |
+| **Execution** | yoom-ai, orchestrator, prometheus | HOW you work (pick primary) |
 | **Enhancement** | ultrawork, git-master, frontend-ui-ux | ADD capabilities |
 | **Guarantee** | ralph-loop | ENSURE completion |
 
@@ -1471,12 +1471,12 @@ Use your judgment to detect task type and activate appropriate skills:
 
 | Task Type | Skill Combination | When |
 |-----------|-------------------|------|
-| Multi-step implementation | `sisyphus` | Building features, refactoring, fixing bugs |
-| + with parallel subtasks | `sisyphus + ultrawork` | 3+ independent subtasks visible |
-| + multi-file changes | `sisyphus + git-master` | Changes span 3+ files |
-| + must complete | `sisyphus + ralph-loop` | User emphasizes completion |
-| UI/frontend work | `sisyphus + frontend-ui-ux` | Components, styling, interface |
-| Complex debugging | `oracle` → `sisyphus` | Unknown root cause → fix after diagnosis |
+| Multi-step implementation | `yoom-ai` | Building features, refactoring, fixing bugs |
+| + with parallel subtasks | `yoom-ai + ultrawork` | 3+ independent subtasks visible |
+| + multi-file changes | `yoom-ai + git-master` | Changes span 3+ files |
+| + must complete | `yoom-ai + ralph-loop` | User emphasizes completion |
+| UI/frontend work | `yoom-ai + frontend-ui-ux` | Components, styling, interface |
+| Complex debugging | `oracle` → `yoom-ai` | Unknown root cause → fix after diagnosis |
 | Strategic planning | `prometheus` | User needs plan before implementation |
 | Plan review | `review` | Evaluating/critiquing existing plans |
 | Maximum performance | `ultrawork` (stacks with others) | Speed critical, parallel possible |
@@ -1484,15 +1484,15 @@ Use your judgment to detect task type and activate appropriate skills:
 ### Skill Transitions
 
 Some tasks naturally flow between skills:
-- **prometheus** → **sisyphus**: After plan created, switch to execution
-- **oracle** → **sisyphus**: After diagnosis, switch to implementation
+- **prometheus** → **yoom-ai**: After plan created, switch to execution
+- **oracle** → **yoom-ai**: After diagnosis, switch to implementation
 - Any skill + completion emphasis → Add **ralph-loop**
 
 ### What Each Skill Adds
 
 | Skill | Core Behavior |
 |-------|---------------|
-| `sisyphus` | Todo tracking, agent delegation, verification |
+| `yoom-ai` | Todo tracking, agent delegation, verification |
 | `ultrawork` | Parallel agents, background execution, never wait |
 | `git-master` | Atomic commits, style detection, history expertise |
 | `frontend-ui-ux` | Bold aesthetics, design sensibility |
@@ -1505,16 +1505,16 @@ Some tasks naturally flow between skills:
 
 \`\`\`
 "Add dark mode with proper commits"
-→ sisyphus + frontend-ui-ux + git-master
+→ yoom-ai + frontend-ui-ux + git-master
 
 "ultrawork: refactor the entire API layer"
-→ ultrawork + sisyphus + git-master
+→ ultrawork + yoom-ai + git-master
 
 "Plan authentication system, then implement it completely"
-→ prometheus (first) → sisyphus + ralph-loop (after plan)
+→ prometheus (first) → yoom-ai + ralph-loop (after plan)
 
 "Fix this bug, don't stop until it's done"
-→ sisyphus + ralph-loop
+→ yoom-ai + ralph-loop
 
 "Review my implementation plan"
 → review
@@ -1529,7 +1529,7 @@ Some tasks naturally flow between skills:
 
 ## THE BOULDER NEVER STOPS
 
-Like Sisyphus condemned to roll his boulder eternally, you are BOUND to your task list. You do not stop. You do not quit. The boulder rolls until it reaches the top - until EVERY task is COMPLETE.
+Like YOOM-AI condemned to roll his boulder eternally, you are BOUND to your task list. You do not stop. You do not quit. The boulder rolls until it reaches the top - until EVERY task is COMPLETE.
 
 ## Available Subagents
 
@@ -1545,16 +1545,16 @@ Use the Task tool to delegate to specialized agents:
 | `multimodal-looker` | Sonnet | Visual analysis | Screenshots, diagrams |
 | `momus` | Opus | Plan review | Critical evaluation of plans |
 | `metis` | Opus | Pre-planning | Hidden requirements, risk analysis |
-| `orchestrator-sisyphus` | Sonnet | Todo coordination | Complex multi-step task management |
-| `sisyphus-junior` | Sonnet | Focused execution | Direct task implementation |
+| `orchestrator-yoom-ai` | Sonnet | Todo coordination | Complex multi-step task management |
+| `yoom-ai-junior` | Sonnet | Focused execution | Direct task implementation |
 | `prometheus` | Opus | Strategic planning | Creating comprehensive work plans |
 
 ## Slash Commands
 
 | Command | Description |
 |---------|-------------|
-| `/sisyphus <task>` | Activate Sisyphus multi-agent orchestration |
-| `/sisyphus-default` | Set Sisyphus as your default mode |
+| `/yoom-ai <task>` | Activate YOOM-AI multi-agent orchestration |
+| `/yoom-ai-default` | Set YOOM-AI as your default mode |
 | `/ultrawork <task>` | Maximum performance mode with parallel agents |
 | `/deepsearch <query>` | Thorough codebase search |
 | `/analyze <target>` | Deep analysis and investigation |
@@ -1572,7 +1572,7 @@ Use the Task tool to delegate to specialized agents:
 2. Prometheus will interview you about requirements
 3. Say "Create the plan" when ready
 4. Use `/review` to have Momus evaluate the plan
-5. Execute the plan with `/sisyphus`
+5. Execute the plan with `/yoom-ai`
 
 ## Orchestration Principles
 
@@ -1639,7 +1639,7 @@ fi
 
 # Save version metadata for auto-update system
 VERSION="1.8.0"
-VERSION_FILE="$CLAUDE_CONFIG_DIR/.sisyphus-version.json"
+VERSION_FILE="$CLAUDE_CONFIG_DIR/.yoom-ai-version.json"
 
 cat > "$VERSION_FILE" << VERSION_EOF
 {
@@ -1662,8 +1662,8 @@ echo -e "${YELLOW}Usage:${NC}"
 echo "  claude                        # Start Claude Code normally"
 echo ""
 echo -e "${YELLOW}Slash Commands:${NC}"
-echo "  /sisyphus <task>              # Activate Sisyphus orchestration mode"
-echo "  /sisyphus-default             # Set Sisyphus as default behavior"
+echo "  /yoom-ai <task>              # Activate YOOM-AI orchestration mode"
+echo "  /yoom-ai-default             # Set YOOM-AI as default behavior"
 echo "  /ultrawork <task>             # Maximum performance mode"
 echo "  /deepsearch <query>           # Thorough codebase search"
 echo "  /analyze <target>             # Deep analysis mode"
@@ -1679,8 +1679,8 @@ echo "  document-writer     - Technical writing (Haiku)"
 echo "  multimodal-looker   - Visual analysis (Sonnet)"
 echo "  momus               - Plan review (Opus)"
 echo "  metis               - Pre-planning analysis (Opus)"
-echo "  orchestrator-sisyphus - Todo coordination (Sonnet)"
-echo "  sisyphus-junior     - Focused execution (Sonnet)"
+echo "  orchestrator-yoom-ai - Todo coordination (Sonnet)"
+echo "  yoom-ai-junior     - Focused execution (Sonnet)"
 echo "  prometheus          - Strategic planning (Opus)"
 echo ""
 echo -e "${YELLOW}Available Skills (via Skill tool):${NC}"
@@ -1695,10 +1695,10 @@ echo ""
 echo -e "${YELLOW}Updating:${NC}"
 echo "  /update                       # Check for and install updates"
 echo "  # Or run this install script again:"
-echo "  curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-sisyphus/main/scripts/install.sh | bash"
+echo "  curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash"
 echo ""
 echo -e "${BLUE}Quick Start:${NC}"
 echo "  1. Run 'claude' to start Claude Code"
-echo "  2. Type '/sisyphus-default' to enable Sisyphus permanently"
-echo "  3. Or use '/sisyphus <task>' for one-time activation"
+echo "  2. Type '/yoom-ai-default' to enable YOOM-AI permanently"
+echo "  3. Or use '/yoom-ai <task>' for one-time activation"
 echo ""

@@ -1,6 +1,6 @@
 # Agent Architecture: OpenCode vs Claude Code
 
-This document explains the architectural differences between OpenCode's swappable master agent system and Claude Code's skill-based routing, and how Oh-My-Claude-Sisyphus bridges this gap elegantly.
+This document explains the architectural differences between OpenCode's swappable master agent system and Claude Code's skill-based routing, and how Oh-My-Claude-YOOM-AI bridges this gap elegantly.
 
 ---
 
@@ -30,7 +30,7 @@ In OpenCode (oh-my-opencode), the master agent can be dynamically swapped based 
               │               │               │
               ▼               ▼               ▼
        ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-       │  SISYPHUS   │ │   ORACLE    │ │ PROMETHEUS  │
+       │  YOOM-AI   │ │   ORACLE    │ │ PROMETHEUS  │
        │  (Default)  │ │  (Debug)    │ │  (Planning) │
        │             │ │             │ │             │
        │ Can become  │ │ Can become  │ │ Can become  │
@@ -54,7 +54,7 @@ class AgentOrchestrator {
   private masterAgent: Agent;
 
   // Can swap master at runtime
-  switchMaster(agentType: 'sisyphus' | 'oracle' | 'prometheus') {
+  switchMaster(agentType: 'yoom-ai' | 'oracle' | 'prometheus') {
     this.masterAgent = AgentFactory.create(agentType);
   }
 
@@ -70,7 +70,7 @@ class AgentOrchestrator {
 orchestrator.switchMaster('prometheus');  // Planning mode
 await orchestrator.execute('Design auth system');
 
-orchestrator.switchMaster('sisyphus');    // Implementation mode
+orchestrator.switchMaster('yoom-ai');    // Implementation mode
 await orchestrator.execute('Implement the plan');
 ```
 
@@ -189,7 +189,7 @@ We solved the "can't swap master" limitation by creating **composable skill laye
   ┌─────────────────────────────────────────────────────────┐
   │  EXECUTION LAYER (pick one primary)                      │
   │  ┌───────────┐ ┌─────────────┐ ┌────────────┐           │
-  │  │ sisyphus  │ │ orchestrator│ │ prometheus │           │
+  │  │ yoom-ai  │ │ orchestrator│ │ prometheus │           │
   │  │ (build)   │ │ (coordinate)│ │  (plan)    │           │
   │  └───────────┘ └─────────────┘ └────────────┘           │
   └─────────────────────────────────────────────────────────┘
@@ -205,16 +205,16 @@ We solved the "can't swap master" limitation by creating **composable skill laye
 
 ```
 Task: "Add dark mode with proper commits"
-Skills: sisyphus + frontend-ui-ux + git-master
+Skills: yoom-ai + frontend-ui-ux + git-master
 
 Task: "ultrawork: refactor entire API"
-Skills: ultrawork + sisyphus + git-master
+Skills: ultrawork + yoom-ai + git-master
 
 Task: "Plan auth, then implement completely"
-Skills: prometheus → sisyphus + ralph-loop (transition)
+Skills: prometheus → yoom-ai + ralph-loop (transition)
 
 Task: "Fix bug, don't stop until done"
-Skills: sisyphus + ralph-loop
+Skills: yoom-ai + ralph-loop
 ```
 
 ---
@@ -229,8 +229,8 @@ Skills: sisyphus + ralph-loop
 2. System: Switch master to Prometheus
 3. Prometheus: Creates comprehensive plan
 4. User: "Now implement it"
-5. System: Switch master to Sisyphus  ← Context may be lost
-6. Sisyphus: Implements (needs to re-read plan)
+5. System: Switch master to YOOM-AI  ← Context may be lost
+6. YOOM-AI: Implements (needs to re-read plan)
 ```
 
 **Claude Code Approach (Skill Activation):**
@@ -239,8 +239,8 @@ Skills: sisyphus + ralph-loop
 2. Claude: Activates prometheus skill
 3. Claude (as Prometheus): Creates comprehensive plan
 4. User: "Now implement it"
-5. Claude: Transitions to sisyphus skill  ← Same context!
-6. Claude (as Sisyphus): Implements (already has plan in context)
+5. Claude: Transitions to yoom-ai skill  ← Same context!
+6. Claude (as YOOM-AI): Implements (already has plan in context)
 ```
 
 ### Why Skills Are More Elegant
@@ -259,7 +259,7 @@ Skills: sisyphus + ralph-loop
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         OH-MY-CLAUDE-SISYPHUS                            │
+│                         OH-MY-CLAUDE-YOOM-AI                            │
 │                     Intelligent Skill Activation                         │
 └─────────────────────────────────────────────────────────────────────────┘
 
@@ -271,14 +271,14 @@ Skills: sisyphus + ralph-loop
 │  "ultrawork │              │   CLAUDE.md      │           │ SKILL ACTIVATED │
 │   refactor  │─────────────▶│   Auto-Routing   │──────────▶│                 │
 │   the API"  │              │                  │           │ ultrawork +     │
-└─────────────┘              │ Task Type:       │           │ sisyphus +      │
+└─────────────┘              │ Task Type:       │           │ yoom-ai +      │
                              │  - Implementation│           │ git-master      │
                              │  - Multi-file    │           │                 │
                              │  - Parallel OK   │           │ ┌─────────────┐ │
                              │                  │           │ │ Parallel    │ │
                              │ Skills:          │           │ │ agents      │ │
                              │  - ultrawork ✓   │           │ │ launched    │ │
-                             │  - sisyphus ✓    │           │ └─────────────┘ │
+                             │  - yoom-ai ✓    │           │ └─────────────┘ │
                              │  - git-master ✓  │           │                 │
                              └──────────────────┘           │ ┌─────────────┐ │
                                                             │ │ Atomic      │ │
@@ -305,7 +305,7 @@ Use your judgment to detect task type and activate appropriate skills:
 
 | Task Type | Skill Combination | When |
 |-----------|-------------------|------|
-| Multi-step implementation | `sisyphus` | Building features |
+| Multi-step implementation | `yoom-ai` | Building features |
 | + parallel subtasks | `+ ultrawork` | 3+ independent tasks |
 | + multi-file changes | `+ git-master` | 3+ files |
 | UI/frontend work | `+ frontend-ui-ux` | Components, styling |
@@ -331,7 +331,7 @@ function handleUserRequest(request: string) {
 
   // 2. Select skill combination
   const skills = selectSkills(taskType);
-  // e.g., ['sisyphus', 'ultrawork', 'git-master']
+  // e.g., ['yoom-ai', 'ultrawork', 'git-master']
 
   // 3. Invoke skills (stacked)
   for (const skill of skills) {
@@ -352,7 +352,7 @@ If you're coming from oh-my-opencode with agent switching:
 | OpenCode Pattern | Claude Code Equivalent |
 |------------------|------------------------|
 | `switchMaster('prometheus')` | Invoke `prometheus` skill |
-| `switchMaster('sisyphus')` | Invoke `sisyphus` skill |
+| `switchMaster('yoom-ai')` | Invoke `yoom-ai` skill |
 | `switchMaster('oracle')` | Use `oracle` sub-agent via Task |
 | Multiple masters | Skill composition |
 | Master + sub-agents | Execution skill + sub-agents |
@@ -362,7 +362,7 @@ If you're coming from oh-my-opencode with agent switching:
 1. **No explicit "switch"** - Skills activate based on task type
 2. **Context preserved** - Same conversation, different behaviors
 3. **Composition** - Multiple skills can be active simultaneously
-4. **Fluid transitions** - `prometheus` → `sisyphus` happens naturally
+4. **Fluid transitions** - `prometheus` → `yoom-ai` happens naturally
 
 ---
 
@@ -371,7 +371,7 @@ If you're coming from oh-my-opencode with agent switching:
 While Claude Code's fixed master agent might seem like a limitation compared to OpenCode's swappable masters, the **skill-based routing system is actually more elegant**:
 
 1. **Preserves context** across mode changes
-2. **Enables composition** (ultrawork + git-master + sisyphus)
+2. **Enables composition** (ultrawork + git-master + yoom-ai)
 3. **Natural language** activation (no explicit mode switching)
 4. **Judgment-based** routing (Claude decides based on task)
 

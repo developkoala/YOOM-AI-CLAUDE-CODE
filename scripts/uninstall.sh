@@ -1,5 +1,5 @@
 #!/bin/bash
-# Oh-My-Claude-Sisyphus Uninstaller
+# Oh-My-Claude-YOOM-AI Uninstaller
 
 set -e
 
@@ -9,13 +9,13 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${BLUE}Oh-My-Claude-Sisyphus Uninstaller${NC}"
+echo -e "${BLUE}Oh-My-Claude-YOOM-AI Uninstaller${NC}"
 echo ""
 
 # Claude Code config directory (always ~/.claude)
 CLAUDE_CONFIG_DIR="$HOME/.claude"
 
-echo "This will remove Sisyphus agents and commands from:"
+echo "This will remove YOOM-AI agents and commands from:"
 echo "  $CLAUDE_CONFIG_DIR"
 echo ""
 read -p "Continue? (y/N) " -n 1 -r
@@ -35,8 +35,8 @@ rm -f "$CLAUDE_CONFIG_DIR/agents/document-writer.md"
 rm -f "$CLAUDE_CONFIG_DIR/agents/multimodal-looker.md"
 
 echo -e "${BLUE}Removing commands...${NC}"
-rm -f "$CLAUDE_CONFIG_DIR/commands/sisyphus.md"
-rm -f "$CLAUDE_CONFIG_DIR/commands/sisyphus-default.md"
+rm -f "$CLAUDE_CONFIG_DIR/commands/yoom-ai.md"
+rm -f "$CLAUDE_CONFIG_DIR/commands/yoom-ai-default.md"
 rm -f "$CLAUDE_CONFIG_DIR/commands/ultrawork.md"
 rm -f "$CLAUDE_CONFIG_DIR/commands/deepsearch.md"
 rm -f "$CLAUDE_CONFIG_DIR/commands/analyze.md"

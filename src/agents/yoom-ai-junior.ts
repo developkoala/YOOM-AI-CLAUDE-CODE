@@ -1,15 +1,15 @@
 /**
- * Sisyphus Junior Agent - Focused Task Executor
+ * YOOM-AI Junior Agent - Focused Task Executor
  *
  * Executes tasks directly without delegation capabilities.
- * Same discipline as Sisyphus, but works alone.
+ * Same discipline as YOOM-AI, but works alone.
  *
- * Ported from oh-my-opencode's sisyphus-junior agent.
+ * Ported from oh-my-opencode's yoom-ai-junior agent.
  */
 
 import type { AgentConfig, AgentPromptMetadata } from './types.js';
 
-export const SISYPHUS_JUNIOR_PROMPT_METADATA: AgentPromptMetadata = {
+export const YOOM_AI_JUNIOR_PROMPT_METADATA: AgentPromptMetadata = {
   category: 'specialist',
   cost: 'CHEAP',
   promptAlias: 'Junior',
@@ -31,8 +31,8 @@ export const SISYPHUS_JUNIOR_PROMPT_METADATA: AgentPromptMetadata = {
   ],
 };
 
-const SISYPHUS_JUNIOR_PROMPT = `<Role>
-Sisyphus-Junior - Focused executor from OhMyOpenCode.
+const YOOM_AI_JUNIOR_PROMPT = `<Role>
+YOOM-AI-Junior - Focused executor from OhMyOpenCode.
 Execute tasks directly. NEVER delegate or spawn other agents.
 </Role>
 
@@ -46,7 +46,7 @@ You work ALONE. No delegation. No background tasks. Execute directly.
 
 <Work_Context>
 ## Notepad Location (for recording learnings)
-NOTEPAD PATH: .sisyphus/notepads/{plan-name}/
+NOTEPAD PATH: .yoom-ai/notepads/{plan-name}/
 - learnings.md: Record patterns, conventions, successful approaches
 - issues.md: Record problems, blockers, gotchas encountered
 - decisions.md: Record architectural choices and rationales
@@ -54,11 +54,11 @@ NOTEPAD PATH: .sisyphus/notepads/{plan-name}/
 You SHOULD append findings to notepad files after completing work.
 
 ## Plan Location (READ ONLY)
-PLAN PATH: .sisyphus/plans/{plan-name}.md
+PLAN PATH: .yoom-ai/plans/{plan-name}.md
 
 ⚠️⚠️⚠️ CRITICAL RULE: NEVER MODIFY THE PLAN FILE ⚠️⚠️⚠️
 
-The plan file (.sisyphus/plans/*.md) is SACRED and READ-ONLY.
+The plan file (.yoom-ai/plans/*.md) is SACRED and READ-ONLY.
 - You may READ the plan to understand tasks
 - You MUST NOT edit, modify, or update the plan file
 - Only the Orchestrator manages the plan file
@@ -87,11 +87,11 @@ Task NOT complete without:
 - Dense > verbose.
 </Style>`;
 
-export const sisyphusJuniorAgent: AgentConfig = {
-  name: 'sisyphus-junior',
-  description: 'Focused task executor. Execute tasks directly. NEVER delegate or spawn other agents. Same discipline as Sisyphus, no delegation.',
-  prompt: SISYPHUS_JUNIOR_PROMPT,
+export const yoomAiJuniorAgent: AgentConfig = {
+  name: 'yoom-ai-junior',
+  description: 'Focused task executor. Execute tasks directly. NEVER delegate or spawn other agents. Same discipline as YOOM-AI, no delegation.',
+  prompt: YOOM_AI_JUNIOR_PROMPT,
   tools: ['Read', 'Write', 'Edit', 'Grep', 'Glob', 'Bash'],
   model: 'sonnet',
-  metadata: SISYPHUS_JUNIOR_PROMPT_METADATA
+  metadata: YOOM_AI_JUNIOR_PROMPT_METADATA
 };

@@ -2,8 +2,8 @@
  * Configuration Loader
  *
  * Handles loading and merging configuration from multiple sources:
- * - User config: ~/.config/claude-sisyphus/config.jsonc
- * - Project config: .claude/sisyphus.jsonc
+ * - User config: ~/.config/claude-yoom-ai/config.jsonc
+ * - Project config: .claude/yoom-ai.jsonc
  * - Environment variables
  */
 
@@ -18,7 +18,7 @@ import type { PluginConfig } from '../shared/types.js';
  */
 export const DEFAULT_CONFIG: PluginConfig = {
   agents: {
-    sisyphus: { model: 'claude-opus-4-5-20251101' },
+    yoomAi: { model: 'claude-opus-4-5-20251101' },
     oracle: { model: 'claude-opus-4-5-20251101', enabled: true },
     librarian: { model: 'claude-sonnet-4-5-20250929' },
     explore: { model: 'claude-haiku-4-5-20251001' },
@@ -28,8 +28,8 @@ export const DEFAULT_CONFIG: PluginConfig = {
     // New agents from oh-my-opencode
     momus: { model: 'claude-opus-4-5-20251101', enabled: true },
     metis: { model: 'claude-opus-4-5-20251101', enabled: true },
-    orchestratorSisyphus: { model: 'claude-sonnet-4-5-20250929', enabled: true },
-    sisyphusJunior: { model: 'claude-sonnet-4-5-20250929', enabled: true },
+    orchestratorYoomAi: { model: 'claude-sonnet-4-5-20250929', enabled: true },
+    yoomAiJunior: { model: 'claude-sonnet-4-5-20250929', enabled: true },
     prometheus: { model: 'claude-opus-4-5-20251101', enabled: true }
   },
   features: {
@@ -65,8 +65,8 @@ export function getConfigPaths(): { user: string; project: string } {
   const userConfigDir = process.env.XDG_CONFIG_HOME ?? join(homedir(), '.config');
 
   return {
-    user: join(userConfigDir, 'claude-sisyphus', 'config.jsonc'),
-    project: join(process.cwd(), '.claude', 'sisyphus.jsonc')
+    user: join(userConfigDir, 'claude-yoom-ai', 'config.jsonc'),
+    project: join(process.cwd(), '.claude', 'yoom-ai.jsonc')
   };
 }
 
@@ -143,22 +143,22 @@ export function loadEnvConfig(): Partial<PluginConfig> {
   }
 
   // Feature flags from environment
-  if (process.env.SISYPHUS_PARALLEL_EXECUTION !== undefined) {
+  if (process.env.YOOM_AI_PARALLEL_EXECUTION !== undefined) {
     config.features = {
       ...config.features,
-      parallelExecution: process.env.SISYPHUS_PARALLEL_EXECUTION === 'true'
+      parallelExecution: process.env.YOOM_AI_PARALLEL_EXECUTION === 'true'
     };
   }
 
-  if (process.env.SISYPHUS_LSP_TOOLS !== undefined) {
+  if (process.env.YOOM_AI_LSP_TOOLS !== undefined) {
     config.features = {
       ...config.features,
-      lspTools: process.env.SISYPHUS_LSP_TOOLS === 'true'
+      lspTools: process.env.YOOM_AI_LSP_TOOLS === 'true'
     };
   }
 
-  if (process.env.SISYPHUS_MAX_BACKGROUND_TASKS) {
-    const maxTasks = parseInt(process.env.SISYPHUS_MAX_BACKGROUND_TASKS, 10);
+  if (process.env.YOOM_AI_MAX_BACKGROUND_TASKS) {
+    const maxTasks = parseInt(process.env.YOOM_AI_MAX_BACKGROUND_TASKS, 10);
     if (!isNaN(maxTasks)) {
       config.permissions = {
         ...config.permissions,
@@ -259,14 +259,14 @@ export function loadContextFromFiles(files: string[]): string {
 export function generateConfigSchema(): object {
   return {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    title: 'Oh-My-Claude-Sisyphus Configuration',
+    title: 'Oh-My-Claude-YOOM-AI Configuration',
     type: 'object',
     properties: {
       agents: {
         type: 'object',
         description: 'Agent model and feature configuration',
         properties: {
-          sisyphus: {
+          yoomAi: {
             type: 'object',
             properties: {
               model: { type: 'string', description: 'Model ID for the main orchestrator' }

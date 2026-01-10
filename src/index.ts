@@ -1,11 +1,11 @@
 /**
- * Oh-My-Claude-Sisyphus
+ * Oh-My-Claude-YOOM-AI
  *
  * A multi-agent orchestration system for the Claude Agent SDK.
  * Port of oh-my-opencode for Claude.
  *
  * Main features:
- * - Sisyphus: Primary orchestrator that delegates to specialized subagents
+ * - YOOM-AI: Primary orchestrator that delegates to specialized subagents
  * - Parallel execution: Background agents run concurrently
  * - LSP/AST tools: IDE-like capabilities for agents
  * - Context management: Auto-injection from AGENTS.md/CLAUDE.md
@@ -14,7 +14,7 @@
  */
 
 import { loadConfig, findContextFiles, loadContextFromFiles } from './config/loader.js';
-import { getAgentDefinitions, sisyphusSystemPrompt } from './agents/definitions.js';
+import { getAgentDefinitions, yoomAiSystemPrompt } from './agents/definitions.js';
 import { getDefaultMcpServers, toSdkMcpFormat } from './mcp/servers.js';
 import { createMagicKeywordProcessor, detectMagicKeywords } from './features/magic-keywords.js';
 import { continuationSystemPromptAddition } from './features/continuation-enforcement.js';
@@ -26,7 +26,14 @@ import {
 } from './features/background-tasks.js';
 import type { PluginConfig, SessionState } from './shared/types.js';
 
-export { loadConfig, getAgentDefinitions, sisyphusSystemPrompt };
+export {
+  getAgentDefinitions,
+  yoomAiSystemPrompt,
+  getDynamicAgentDefinitions,
+  getDynamicSystemPrompt,
+  type DynamicAgentOptions
+} from './agents/definitions.js';
+export { loadConfig } from './config/loader.js';
 export { getDefaultMcpServers, toSdkMcpFormat } from './mcp/servers.js';
 export { lspTools, astTools, allCustomTools } from './tools/index.js';
 export { createMagicKeywordProcessor, detectMagicKeywords } from './features/magic-keywords.js';
@@ -143,8 +150,8 @@ export {
   EXPLORE_PROMPT_METADATA,
   librarianAgent,
   LIBRARIAN_PROMPT_METADATA,
-  sisyphusJuniorAgent,
-  SISYPHUS_JUNIOR_PROMPT_METADATA,
+  yoomAiJuniorAgent,
+  YOOM_AI_JUNIOR_PROMPT_METADATA,
   frontendEngineerAgent,
   FRONTEND_ENGINEER_PROMPT_METADATA,
   documentWriterAgent,
@@ -155,11 +162,46 @@ export {
   MOMUS_PROMPT_METADATA,
   metisAgent,
   METIS_PROMPT_METADATA,
-  orchestratorSisyphusAgent,
-  ORCHESTRATOR_SISYPHUS_PROMPT_METADATA,
+  orchestratorYoomAiAgent,
+  ORCHESTRATOR_YOOM_AI_PROMPT_METADATA,
   prometheusAgent,
-  PROMETHEUS_PROMPT_METADATA
+  PROMETHEUS_PROMPT_METADATA,
+  // Yoom workflow agents
+  yoomBotAgent,
+  YOOM_BOT_PROMPT_METADATA,
+  FRAMEWORK_RULES,
+  generateYoomBotPrompt,
+  createYoomBotAgent,
+  codeReviewerAgent,
+  CODE_REVIEWER_PROMPT_METADATA,
+  testerAgent,
+  TESTER_PROMPT_METADATA,
+  gitCommitterAgent,
+  GIT_COMMITTER_PROMPT_METADATA,
+  refactorerAgent,
+  REFACTORER_PROMPT_METADATA
 } from './agents/index.js';
+
+// Rules module exports (framework detection and coding rules)
+export {
+  // Types
+  type FrameworkConfig,
+  type ReviewDeduction,
+  type CombinedRules,
+  type DetectionResult,
+  // Constants
+  FRAMEWORK_CONFIGS,
+  // Functions
+  detectFramework,
+  getFrameworkConfig,
+  combineRules,
+  formatRulesForPrompt,
+  getFrameworkOptions,
+  getTotalDeductionPoints,
+  // Common rules
+  commonRules,
+  commonDeductions
+} from './rules/index.js';
 
 // Command expansion utilities for SDK integration
 export {
@@ -190,9 +232,9 @@ export {
 } from './installer/index.js';
 
 /**
- * Options for creating a Sisyphus session
+ * Options for creating a YOOM-AI session
  */
-export interface SisyphusOptions {
+export interface YoomAiOptions {
   /** Custom configuration (merged with loaded config) */
   config?: Partial<PluginConfig>;
   /** Working directory (default: process.cwd()) */
@@ -208,9 +250,9 @@ export interface SisyphusOptions {
 }
 
 /**
- * Result of creating a Sisyphus session
+ * Result of creating a YOOM-AI session
  */
-export interface SisyphusSession {
+export interface YoomAiSession {
   /** The query options to pass to Claude Agent SDK */
   queryOptions: {
     options: {
@@ -236,17 +278,17 @@ export interface SisyphusSession {
 }
 
 /**
- * Create a Sisyphus orchestration session
+ * Create a YOOM-AI orchestration session
  *
  * This prepares all the configuration and options needed
  * to run a query with the Claude Agent SDK.
  *
  * @example
  * ```typescript
- * import { createSisyphusSession } from 'oh-my-claude-sisyphus';
+ * import { createYoomAiSession } from 'oh-my-claude-yoom-ai';
  * import { query } from '@anthropic-ai/claude-agent-sdk';
  *
- * const session = createSisyphusSession();
+ * const session = createYoomAiSession();
  *
  * // Use with Claude Agent SDK
  * for await (const message of query({
@@ -257,7 +299,7 @@ export interface SisyphusSession {
  * }
  * ```
  */
-export function createSisyphusSession(options?: SisyphusOptions): SisyphusSession {
+export function createYoomAiSession(options?: YoomAiOptions): YoomAiSession {
   // Load configuration
   const loadedConfig = options?.skipConfigLoad ? {} : loadConfig();
   const config: PluginConfig = {
@@ -275,7 +317,7 @@ export function createSisyphusSession(options?: SisyphusOptions): SisyphusSessio
   }
 
   // Build system prompt
-  let systemPrompt = sisyphusSystemPrompt;
+  let systemPrompt = yoomAiSystemPrompt;
 
   // Add continuation enforcement
   if (config.features?.continuationEnforcement !== false) {
@@ -362,7 +404,7 @@ export function createSisyphusSession(options?: SisyphusOptions): SisyphusSessio
 }
 
 /**
- * Quick helper to process a prompt with Sisyphus enhancements
+ * Quick helper to process a prompt with YOOM-AI enhancements
  */
 export function enhancePrompt(prompt: string, config?: PluginConfig): string {
   const processor = createMagicKeywordProcessor(config?.magicKeywords);
@@ -370,13 +412,13 @@ export function enhancePrompt(prompt: string, config?: PluginConfig): string {
 }
 
 /**
- * Get the system prompt for Sisyphus (for direct use)
+ * Get the system prompt for YOOM-AI (for direct use)
  */
-export function getSisyphusSystemPrompt(options?: {
+export function getYoomAiSystemPrompt(options?: {
   includeContinuation?: boolean;
   customAddition?: string;
 }): string {
-  let prompt = sisyphusSystemPrompt;
+  let prompt = yoomAiSystemPrompt;
 
   if (options?.includeContinuation !== false) {
     prompt += continuationSystemPromptAddition;

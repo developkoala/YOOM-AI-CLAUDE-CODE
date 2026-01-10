@@ -1,7 +1,7 @@
 /**
  * Background Agent Manager
  *
- * Manages background tasks for the Sisyphus system.
+ * Manages background tasks for the YOOM-AI system.
  * This is a simplified version that tracks tasks launched via Claude Code's
  * native Task tool with run_in_background: true.
  *
@@ -25,10 +25,10 @@ import type {
 const DEFAULT_TASK_TTL_MS = 30 * 60 * 1000;
 
 /** Storage directory for task state */
-const BACKGROUND_TASKS_DIR = join(homedir(), '.claude', '.sisyphus', 'background-tasks');
+const BACKGROUND_TASKS_DIR = join(homedir(), '.claude', '.yoom-ai', 'background-tasks');
 
 /**
- * Manages background tasks for the Sisyphus system.
+ * Manages background tasks for the YOOM-AI system.
  */
 export class BackgroundManager {
   private tasks: Map<string, BackgroundTask> = new Map();

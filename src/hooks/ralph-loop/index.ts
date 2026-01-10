@@ -48,17 +48,17 @@ const DEFAULT_COMPLETION_PROMISE = 'TASK_COMPLETE';
  * Get the state file path for Ralph Loop
  */
 function getStateFilePath(directory: string): string {
-  const sisyphusDir = join(directory, '.sisyphus');
-  return join(sisyphusDir, 'ralph-state.json');
+  const yoomAiDir = join(directory, '.yoom-ai');
+  return join(yoomAiDir, 'ralph-state.json');
 }
 
 /**
- * Ensure the .sisyphus directory exists
+ * Ensure the .yoom-ai directory exists
  */
 function ensureStateDir(directory: string): void {
-  const sisyphusDir = join(directory, '.sisyphus');
-  if (!existsSync(sisyphusDir)) {
-    mkdirSync(sisyphusDir, { recursive: true });
+  const yoomAiDir = join(directory, '.yoom-ai');
+  if (!existsSync(yoomAiDir)) {
+    mkdirSync(yoomAiDir, { recursive: true });
   }
 }
 

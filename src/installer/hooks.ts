@@ -10,8 +10,8 @@
  * - Node.js scripts (.mjs) for cross-platform support (Windows, macOS, Linux)
  *
  * The platform is detected at install time, or can be overridden with:
- *   SISYPHUS_USE_NODE_HOOKS=1  - Force Node.js hooks on any platform
- *   SISYPHUS_USE_BASH_HOOKS=1  - Force Bash hooks (Unix only)
+ *   YOOM_AI_USE_NODE_HOOKS=1  - Force Node.js hooks on any platform
+ *   YOOM_AI_USE_BASH_HOOKS=1  - Force Bash hooks (Unix only)
  */
 
 import { homedir } from 'os';
@@ -28,10 +28,10 @@ export function isWindows(): boolean {
 /** Check if Node.js hooks should be used (env override or Windows) */
 export function shouldUseNodeHooks(): boolean {
   // Environment variable overrides
-  if (process.env.SISYPHUS_USE_NODE_HOOKS === '1') {
+  if (process.env.YOOM_AI_USE_NODE_HOOKS === '1') {
     return true;
   }
-  if (process.env.SISYPHUS_USE_BASH_HOOKS === '1') {
+  if (process.env.YOOM_AI_USE_BASH_HOOKS === '1') {
     return false;
   }
   // Default: use Node.js on Windows, Bash elsewhere
@@ -230,7 +230,7 @@ Incomplete tasks remain in your todo list. Continue working on the next pending 
  * This script is installed to ~/.claude/hooks/keyword-detector.sh
  */
 export const KEYWORD_DETECTOR_SCRIPT = `#!/bin/bash
-# Sisyphus Keyword Detector Hook
+# YOOM-AI Keyword Detector Hook
 # Detects ultrawork/ultrathink/search/analyze keywords and injects enhanced mode messages
 # Ported from oh-my-opencode's keyword-detector hook
 
@@ -311,7 +311,7 @@ exit 0
  * Ported from oh-my-opencode's todo-continuation-enforcer
  */
 export const STOP_CONTINUATION_SCRIPT = `#!/bin/bash
-# Sisyphus Stop Continuation Hook
+# YOOM-AI Stop Continuation Hook
 # Checks for incomplete todos and injects continuation prompt
 # Ported from oh-my-opencode's todo-continuation-enforcer
 
@@ -362,7 +362,7 @@ exit 0
  * This script is installed to ~/.claude/hooks/keyword-detector.mjs
  */
 export const KEYWORD_DETECTOR_SCRIPT_NODE = `#!/usr/bin/env node
-// Sisyphus Keyword Detector Hook (Node.js)
+// YOOM-AI Keyword Detector Hook (Node.js)
 // Detects ultrawork/ultrathink/search/analyze keywords and injects enhanced mode messages
 // Cross-platform: Windows, macOS, Linux
 
@@ -541,7 +541,7 @@ main();
  * This script is installed to ~/.claude/hooks/stop-continuation.mjs
  */
 export const STOP_CONTINUATION_SCRIPT_NODE = `#!/usr/bin/env node
-// Sisyphus Stop Continuation Hook (Node.js)
+// YOOM-AI Stop Continuation Hook (Node.js)
 // Checks for incomplete todos and injects continuation prompt
 // Cross-platform: Windows, macOS, Linux
 

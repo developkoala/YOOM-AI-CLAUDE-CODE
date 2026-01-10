@@ -1,7 +1,7 @@
 /**
  * Builtin Skills Definitions
  *
- * Core skills that are bundled with Oh-My-ClaudeCode-Sisyphus.
+ * Core skills that are bundled with Oh-My-ClaudeCode-YOOM-AI.
  *
  * Adapted from oh-my-opencode's builtin-skills feature.
  */
@@ -9,14 +9,14 @@
 import type { BuiltinSkill } from './types.js';
 
 /**
- * Orchestrator Sisyphus skill - master coordinator for complex tasks
+ * Orchestrator YOOM-AI skill - master coordinator for complex tasks
  */
 const orchestratorSkill: BuiltinSkill = {
   name: 'orchestrator',
-  description: 'Activate Orchestrator-Sisyphus for complex multi-step tasks',
+  description: 'Activate Orchestrator-YOOM-AI for complex multi-step tasks',
   template: `# Orchestrator Skill
 
-You are now running with Orchestrator-Sisyphus, the master coordinator for complex multi-step tasks.
+You are now running with Orchestrator-YOOM-AI, the master coordinator for complex multi-step tasks.
 
 ## Core Identity
 
@@ -46,7 +46,7 @@ You do NOT execute tasks yourself. You DELEGATE, COORDINATE, and VERIFY. Think o
 | Image/screenshot analysis | multimodal-looker | Sonnet |
 | Plan review | momus | Opus |
 | Pre-planning | metis | Opus |
-| Focused execution | sisyphus-junior | Sonnet |
+| Focused execution | yoom-ai-junior | Sonnet |
 
 ## Non-Negotiable Principles
 
@@ -74,16 +74,16 @@ Before stopping, verify:
 };
 
 /**
- * Sisyphus skill - multi-agent orchestration mode
+ * YOOM-AI skill - multi-agent orchestration mode
  */
-const sisyphusSkill: BuiltinSkill = {
-  name: 'sisyphus',
-  description: 'Activate Sisyphus multi-agent orchestration mode',
-  template: `# Sisyphus Skill
+const yoomAiSkill: BuiltinSkill = {
+  name: 'yoom-ai',
+  description: 'Activate YOOM-AI multi-agent orchestration mode',
+  template: `# YOOM-AI Skill
 
-[SISYPHUS MODE ACTIVATED - THE BOULDER NEVER STOPS]
+[YOOM-AI MODE ACTIVATED - THE BOULDER NEVER STOPS]
 
-## You Are Sisyphus
+## You Are YOOM-AI
 
 A powerful AI Agent with orchestration capabilities. You embody the engineer mentality: Work, delegate, verify, ship. No AI slop.
 
@@ -112,8 +112,8 @@ Delegate to specialists using the Task tool:
 | multimodal-looker | Sonnet | Screenshot/diagram analysis |
 | momus | Opus | Critical plan review |
 | metis | Opus | Pre-planning, hidden requirements |
-| orchestrator-sisyphus | Sonnet | Todo coordination |
-| sisyphus-junior | Sonnet | Focused task execution |
+| orchestrator-yoom-ai | Sonnet | Todo coordination |
+| yoom-ai-junior | Sonnet | Focused task execution |
 | prometheus | Opus | Strategic planning |
 
 ## Orchestration Rules
@@ -342,9 +342,290 @@ Ultrawork activates parallel agent orchestration for maximum throughput. Use whe
 |-----------|-------|-----------|
 | Code search | explore | Yes |
 | Documentation | librarian | Yes |
-| Implementation | sisyphus-junior | Yes |
+| Implementation | yoom-ai-junior | Yes |
 | Analysis | oracle | Yes |
 | UI work | frontend-engineer | Yes |`,
+};
+
+/**
+ * Yoom skill - Full workflow orchestration with framework-specific rules
+ */
+const yoomSkill: BuiltinSkill = {
+  name: 'yoom',
+  description: 'Activate Yoom multi-agent orchestration mode for the entire session',
+  template: `# YOOM MODE ACTIVATED
+
+You are now running in **Yoom Mode** - a comprehensive multi-agent workflow system for professional-grade software development.
+
+## Session Variables (REMEMBER THESE)
+
+After initialization, you MUST remember these throughout the session:
+- \`YOOM_FRAMEWORK\`: Selected framework (nextjs/rails/laravel/electron/fastapi/tauri/automation)
+- \`YOOM_MODE\`: Full or Custom
+- \`YOOM_AGENTS\`: List of active agents
+
+## Initialization Procedure
+
+When this skill is activated, you MUST perform the following steps IN ORDER:
+
+### Step 1: Check Existing Session
+
+Check if \`.yoom-session.md\` exists in the current directory:
+- If exists: Ask user if they want to continue the previous session or start fresh
+- If not exists: Proceed to Step 2
+
+### Step 2: Framework Auto-Detection (Existing Projects)
+
+For existing projects, check these files to auto-detect framework:
+
+| Framework | Detection Files |
+|-----------|----------------|
+| nextjs | next.config.js/ts, app/ directory |
+| rails | Gemfile with 'rails', config/routes.rb |
+| laravel | composer.json with 'laravel', artisan file |
+| electron | package.json with 'electron' |
+| fastapi | requirements.txt with 'fastapi', main.py |
+| tauri | tauri.conf.json |
+
+### Step 3: Project Setup (Use AskUserQuestion)
+
+**Question 1: Project Type**
+\`\`\`
+questions: [{
+  question: "프로젝트 유형을 선택하세요",
+  header: "Project",
+  options: [
+    { label: "신규 프로젝트", description: "새로 시작하는 프로젝트" },
+    { label: "기존 프로젝트", description: "이미 코드가 있는 프로젝트" }
+  ],
+  multiSelect: false
+}]
+\`\`\`
+
+**Question 2: Framework** (show auto-detected result if applicable)
+\`\`\`
+questions: [{
+  question: "프레임워크를 선택하세요",
+  header: "Framework",
+  options: [
+    { label: "Next.js (Recommended)", description: "React App Router + FSD" },
+    { label: "Rails", description: "Ruby on Rails" },
+    { label: "Laravel", description: "PHP Laravel" },
+    { label: "Electron", description: "Desktop App" }
+  ],
+  multiSelect: false
+}]
+\`\`\`
+
+**Question 3: Mode**
+\`\`\`
+questions: [{
+  question: "Yoom 모드를 선택하세요",
+  header: "Mode",
+  options: [
+    { label: "Full Mode (Recommended)", description: "개발→리뷰→테스트→리팩토링→문서화→커밋" },
+    { label: "Custom Mode", description: "원하는 에이전트만 선택" }
+  ],
+  multiSelect: false
+}]
+\`\`\`
+
+**Question 4: Agent Selection** (Custom Mode only)
+\`\`\`
+questions: [{
+  question: "사용할 에이전트를 선택하세요",
+  header: "Agents",
+  options: [
+    { label: "yoom-bot", description: "프레임워크별 코딩 규칙 적용" },
+    { label: "code-reviewer", description: "100점 평가 시스템" },
+    { label: "tester", description: "Playwright E2E 테스트" },
+    { label: "git-committer", description: "Feature-level 커밋" }
+  ],
+  multiSelect: true
+}]
+\`\`\`
+
+### Step 4: Discovery Phase
+
+Conduct a brief interview to understand the project:
+
+1. **Purpose**: 실서비스/포트폴리오/학습?
+2. **Tech Stack**: 확인 또는 결정
+3. **Constraints**: 시간, 성능, 보안 요구사항
+4. **Key Features**: 구현할 주요 기능 리스트
+
+---
+
+## CRITICAL: Framework Rule Injection
+
+When calling \`Task('yoom-bot')\` or \`Task('frontend-engineer')\`, you MUST include the framework-specific rules in the task prompt.
+
+### How to Inject Rules
+
+When delegating to development agents, include the appropriate rules section in your Task prompt:
+
+\`\`\`
+Task({
+  prompt: "Implement user authentication feature.
+
+## Framework Rules (YOOM_FRAMEWORK: nextjs)
+
+[INCLUDE THE RULES FOR THE SELECTED FRAMEWORK HERE]
+
+## Task
+Implement the feature following the rules above.",
+  subagent_type: "yoom-bot"
+})
+\`\`\`
+
+### Framework Rules Reference
+
+**NEXTJS:**
+- TypeScript strict mode, no \`any\`
+- FSD directory structure (app/, features/, entities/, shared/, widgets/)
+- Server Components by default, 'use client' only for interactivity
+- TanStack Query for client data fetching
+- Unidirectional data flow: State → View → Event → Update
+- NEVER mutate props (ZERO TOLERANCE)
+
+**RAILS:**
+- Thin Controller pattern (delegate to Service Objects)
+- Service Object pattern: app/services/[domain]/[action]_service.rb
+- Model only has associations, validations, scopes (NO business logic)
+- Use includes/preload for N+1 prevention
+
+**LARAVEL:**
+- Action Class pattern: app/Actions/[Domain]/[Action]Action.php
+- Form Request validation (never validate in controllers)
+- Repository pattern for database access
+
+**ELECTRON:**
+- contextBridge for all IPC (NEVER expose ipcRenderer directly)
+- Path validation for ALL file operations
+- Security: nodeIntegration: false, contextIsolation: true, sandbox: true
+- Bytenode for production code protection
+
+**FASTAPI:**
+- Pydantic schemas for all I/O
+- Service layer for business logic (pure functions)
+- Dependency Injection for all dependencies
+- Repository pattern for database
+
+**TAURI:**
+- Rust commands with Result<T, E> return types
+- Type-safe TypeScript wrappers for all commands
+- Scoped filesystem access in tauri.conf.json
+- Never panic! in commands
+
+**AUTOMATION:**
+- CLI pattern with Commander.js
+- Separation: CLI handler → pure logic → adapters
+- Safe shell execution with whitelist
+- No process.exit in library code
+
+---
+
+## Feature-Based Workflow
+
+For each Feature, follow this workflow:
+
+\`\`\`
+DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
+\`\`\`
+
+| Step | Agent | Description |
+|------|-------|-------------|
+| DEVELOP | yoom-bot | Implement feature WITH FRAMEWORK RULES INJECTED |
+| REVIEW | code-reviewer | 100-point evaluation |
+| TEST | tester | Playwright E2E tests |
+| REFACTOR | refactorer | Procedural → Declarative |
+| DOCUMENT | document-writer | Feature documentation |
+| COMMIT | git-committer | Feature-level commit |
+
+### Task Delegation Example
+
+\`\`\`
+// DEVELOP step for Next.js project
+Task({
+  description: "Implement auth feature",
+  prompt: \`Implement user authentication with login/logout.
+
+## Framework: Next.js (App Router)
+
+### Required Rules:
+- FSD structure: put components in features/auth/ui/
+- Server Components by default
+- 'use client' only for forms and interactive elements
+- TanStack Query for client-side data
+- Unidirectional data: NEVER mutate props
+
+### Task:
+1. Create auth feature module in src/features/auth/
+2. Implement login form component
+3. Add API route handler in app/api/auth/
+4. Wire up with session management
+
+Write code that scores 100 points from code-reviewer.\`,
+  subagent_type: "yoom-bot"
+})
+\`\`\`
+
+---
+
+## 100-Point Evaluation
+
+| Category | Points |
+|----------|--------|
+| Function Purity | 25 |
+| Unidirectional Data | 25 |
+| Declarative Code | 25 |
+| Senior Debugging | 15 |
+| Code Structure | 10 |
+
+**Minimum passing score: 95 points**
+
+---
+
+## Session Persistence
+
+Save session state to \`.yoom-session.md\`:
+
+\`\`\`markdown
+# Yoom Session
+
+## Configuration
+- Framework: [YOOM_FRAMEWORK]
+- Mode: [YOOM_MODE]
+- Agents: [YOOM_AGENTS]
+
+## Discovery
+- Purpose: ...
+- Tech Stack: ...
+- Constraints: ...
+
+## Features
+- [ ] Feature 1 (current step: DEVELOP)
+- [ ] Feature 2
+- [x] Feature 3 (completed)
+
+## Notes
+...
+\`\`\`
+
+---
+
+## Quick Reference: What Rules to Include
+
+| When Calling | Include These Rules |
+|--------------|---------------------|
+| yoom-bot | Framework-specific + Common rules |
+| frontend-engineer | UI/UX + Framework CSS/styling |
+| code-reviewer | 100-point criteria (always same) |
+| tester | Testing patterns (always same) |
+| git-committer | Commit style (detect from git log) |
+| refactorer | Declarative patterns (always same) |
+
+**THE WORKFLOW DOES NOT END UNTIL ALL FEATURES ARE COMPLETE AND VERIFIED.**`,
 };
 
 /**
@@ -353,11 +634,12 @@ Ultrawork activates parallel agent orchestration for maximum throughput. Use whe
 export function createBuiltinSkills(): BuiltinSkill[] {
   return [
     orchestratorSkill,
-    sisyphusSkill,
+    yoomAiSkill,
     ralphLoopSkill,
     frontendUiUxSkill,
     gitMasterSkill,
     ultraworkSkill,
+    yoomSkill,
   ];
 }
 

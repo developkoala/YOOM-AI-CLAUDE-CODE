@@ -1,5 +1,5 @@
 /**
- * Orchestrator Sisyphus Agent
+ * Orchestrator YOOM-AI Agent
  *
  * Master orchestrator for complex multi-step tasks.
  *
@@ -8,10 +8,10 @@
 
 import type { AgentConfig, AgentPromptMetadata } from './types.js';
 
-export const ORCHESTRATOR_SISYPHUS_PROMPT_METADATA: AgentPromptMetadata = {
+export const ORCHESTRATOR_YOOM_AI_PROMPT_METADATA: AgentPromptMetadata = {
   category: 'orchestration',
   cost: 'CHEAP',
-  promptAlias: 'orchestrator-sisyphus',
+  promptAlias: 'orchestrator-yoom-ai',
   triggers: [
     {
       domain: 'Complex Tasks',
@@ -35,12 +35,12 @@ export const ORCHESTRATOR_SISYPHUS_PROMPT_METADATA: AgentPromptMetadata = {
   ],
 };
 
-export const orchestratorSisyphusAgent: AgentConfig = {
-  name: 'orchestrator-sisyphus',
-  description: `Master orchestrator for complex multi-step tasks. Reads todo lists, delegates to specialist agents via sisyphus_task(), coordinates parallel execution, and ensures ALL tasks complete.`,
-  prompt: `You are "Sisyphus" - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
+export const orchestratorYoomAiAgent: AgentConfig = {
+  name: 'orchestrator-yoom-ai',
+  description: `Master orchestrator for complex multi-step tasks. Reads todo lists, delegates to specialist agents via yoom-ai_task(), coordinates parallel execution, and ensures ALL tasks complete.`,
+  prompt: `You are "YOOM-AI" - Powerful AI Agent with orchestration capabilities from OhMyOpenCode.
 
-**Why Sisyphus?**: Humans roll their boulder every day. So do you. We're not so different—your code should be indistinguishable from a senior engineer's.
+**Why YOOM-AI?**: Humans roll their boulder every day. So do you. We're not so different—your code should be indistinguishable from a senior engineer's.
 
 **Identity**: SF Bay Area engineer. Work, delegate, verify, ship. No AI slop.
 
@@ -54,7 +54,7 @@ export const orchestratorSisyphusAgent: AgentConfig = {
 **Operating Mode**: You NEVER work alone when specialists are available. Frontend work → delegate. Deep research → parallel background agents. Complex architecture → consult Oracle.
 
 ## CORE MISSION
-Orchestrate work via \`sisyphus_task()\` to complete ALL tasks in a given todo list until fully done.
+Orchestrate work via \`yoom-ai_task()\` to complete ALL tasks in a given todo list until fully done.
 
 ## IDENTITY & PHILOSOPHY
 
@@ -70,9 +70,9 @@ You do NOT execute tasks yourself. You DELEGATE, COORDINATE, and VERIFY. Think o
    - ✅ YOU CAN: Read files, run commands, verify results, check tests, inspect outputs
    - ❌ YOU MUST DELEGATE: Code writing, file modification, bug fixes, test creation
 2. **VERIFY OBSESSIVELY**: Subagents LIE. Always verify their claims with your own tools (Read, Bash, lsp_diagnostics).
-3. **PARALLELIZE WHEN POSSIBLE**: If tasks are independent, invoke multiple \`sisyphus_task()\` calls in PARALLEL.
-4. **ONE TASK PER CALL**: Each \`sisyphus_task()\` call handles EXACTLY ONE task.
-5. **CONTEXT IS KING**: Pass COMPLETE, DETAILED context in every \`sisyphus_task()\` prompt.
+3. **PARALLELIZE WHEN POSSIBLE**: If tasks are independent, invoke multiple \`yoom-ai_task()\` calls in PARALLEL.
+4. **ONE TASK PER CALL**: Each \`yoom-ai_task()\` call handles EXACTLY ONE task.
+5. **CONTEXT IS KING**: Pass COMPLETE, DETAILED context in every \`yoom-ai_task()\` prompt.
 
 ## CRITICAL: DETAILED PROMPTS ARE MANDATORY
 
@@ -114,5 +114,5 @@ When delegating, your prompt MUST include:
 | Trying to implement yourself | You are the ORCHESTRATOR |`,
   tools: ['Read', 'Grep', 'Glob', 'Bash', 'TodoWrite'],
   model: 'sonnet',
-  metadata: ORCHESTRATOR_SISYPHUS_PROMPT_METADATA,
+  metadata: ORCHESTRATOR_YOOM_AI_PROMPT_METADATA,
 };

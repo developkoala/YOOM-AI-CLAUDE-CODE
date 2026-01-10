@@ -1,15 +1,15 @@
 /**
- * Sisyphus Orchestrator Constants
+ * YOOM-AI Orchestrator Constants
  *
  * Message templates and configuration for orchestrator behavior enforcement.
  *
- * Adapted from oh-my-opencode's sisyphus-orchestrator hook.
+ * Adapted from oh-my-opencode's yoom-ai-orchestrator hook.
  */
 
-export const HOOK_NAME = 'sisyphus-orchestrator';
+export const HOOK_NAME = 'yoom-ai-orchestrator';
 
 /** Paths that orchestrator IS allowed to modify directly */
-export const ALLOWED_PATH_PREFIX = '.sisyphus/';
+export const ALLOWED_PATH_PREFIX = '.yoom-ai/';
 
 /** Tools that perform file modifications */
 export const WRITE_EDIT_TOOLS = ['Write', 'Edit', 'write', 'edit'];
@@ -21,7 +21,7 @@ export const DIRECT_WORK_REMINDER = `
 
 [SYSTEM REMINDER - DELEGATION REQUIRED]
 
-You just performed direct file modifications outside \`.sisyphus/\`.
+You just performed direct file modifications outside \`.yoom-ai/\`.
 
 **You are an ORCHESTRATOR, not an IMPLEMENTER.**
 
@@ -31,8 +31,8 @@ As an orchestrator, you should:
 - **COORDINATE** multiple tasks and ensure completion
 
 You should NOT:
-- Write code directly (except for \`.sisyphus/\` files like plans and notepads)
-- Make direct file edits outside \`.sisyphus/\`
+- Write code directly (except for \`.yoom-ai/\` files like plans and notepads)
+- Make direct file edits outside \`.yoom-ai/\`
 - Implement features yourself
 
 **If you need to make changes:**
@@ -52,7 +52,7 @@ export const ORCHESTRATOR_DELEGATION_REQUIRED = `
 
 **STOP. YOU ARE VIOLATING ORCHESTRATOR PROTOCOL.**
 
-You (orchestrator-sisyphus) are attempting to directly modify a file outside \`.sisyphus/\`.
+You (orchestrator-yoom-ai) are attempting to directly modify a file outside \`.yoom-ai/\`.
 
 **Path attempted:** $FILE_PATH
 
@@ -66,13 +66,13 @@ As an ORCHESTRATOR, you MUST:
 3. **COORDINATE** - you orchestrate, you don't implement
 
 **ALLOWED direct file operations:**
-- Files inside \`.sisyphus/\` (plans, notepads, drafts)
+- Files inside \`.yoom-ai/\` (plans, notepads, drafts)
 - Reading files for verification
 - Running diagnostics/tests
 
 **FORBIDDEN direct file operations:**
 - Writing/editing source code
-- Creating new files outside \`.sisyphus/\`
+- Creating new files outside \`.yoom-ai/\`
 - Any implementation work
 
 ---
@@ -83,7 +83,7 @@ But for any substantial changes, USE the Task tool.
 
 **CORRECT APPROACH:**
 \`\`\`
-Task tool with subagent_type="sisyphus-junior"
+Task tool with subagent_type="yoom-ai-junior"
 prompt="[specific single task with clear acceptance criteria]"
 \`\`\`
 
@@ -100,7 +100,7 @@ You have an active work plan with incomplete tasks. Continue working.
 RULES:
 - Proceed without asking for permission
 - Mark each checkbox [x] in the plan file when done
-- Use the notepad at .sisyphus/notepads/{PLAN_NAME}/ to record learnings
+- Use the notepad at .yoom-ai/notepads/{PLAN_NAME}/ to record learnings
 - Do not stop until all tasks are complete
 - If blocked, document the blocker and move to the next task`;
 

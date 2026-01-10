@@ -1,12 +1,12 @@
 # PROJECT KNOWLEDGE BASE
 
-**Project:** Oh-My-ClaudeCode-Sisyphus
+**Project:** Oh-My-ClaudeCode-YOOM-AI
 **Purpose:** Multi-agent orchestration system for Claude Code CLI
 **Inspired by:** oh-my-opencode
 
 ## OVERVIEW
 
-Oh-My-ClaudeCode-Sisyphus is an enhancement system for Claude Code (Anthropic's official CLI) that adds multi-agent orchestration, persistence mechanisms, and advanced productivity features. Think "oh-my-zsh" for Claude Code.
+Oh-My-ClaudeCode-YOOM-AI is an enhancement system for Claude Code (Anthropic's official CLI) that adds multi-agent orchestration, persistence mechanisms, and advanced productivity features. Think "oh-my-zsh" for Claude Code.
 
 **Key Features:**
 - Multi-agent orchestration with specialized subagents
@@ -20,7 +20,7 @@ Oh-My-ClaudeCode-Sisyphus is an enhancement system for Claude Code (Anthropic's 
 ## STRUCTURE
 
 ```
-oh-my-claude-sisyphus/
+oh-my-claude-yoom-ai/
 ├── src/
 │   ├── agents/              # 15 agent definitions
 │   │   ├── definitions.ts   # Agent registry & configs
@@ -29,13 +29,13 @@ oh-my-claude-sisyphus/
 │   │   ├── oracle.ts        # Complex debugging/architecture
 │   │   ├── explore.ts       # Fast codebase search
 │   │   ├── librarian.ts     # Documentation research
-│   │   ├── sisyphus-junior.ts  # Focused execution
+│   │   ├── yoom-ai-junior.ts  # Focused execution
 │   │   ├── frontend-engineer.ts # UI/UX work
 │   │   ├── document-writer.ts   # Technical docs
 │   │   ├── multimodal-looker.ts # Visual analysis
 │   │   ├── momus.ts         # Critical plan review
 │   │   ├── metis.ts         # Pre-planning analysis
-│   │   ├── orchestrator-sisyphus.ts  # Todo coordination
+│   │   ├── orchestrator-yoom-ai.ts  # Todo coordination
 │   │   └── prometheus.ts    # Strategic planning
 │   ├── hooks/               # 8 hook modules
 │   │   ├── keyword-detector/    # Magic keyword detection
@@ -44,7 +44,7 @@ oh-my-claude-sisyphus/
 │   │   ├── edit-error-recovery/ # Edit failure handling
 │   │   ├── think-mode/          # Enhanced thinking modes
 │   │   ├── rules-injector/      # Rule file injection
-│   │   ├── sisyphus-orchestrator/ # Orchestrator behavior
+│   │   ├── yoom-ai-orchestrator/ # Orchestrator behavior
 │   │   ├── auto-slash-command/  # Slash command detection
 │   │   └── bridge.ts            # Shell hook bridge
 │   ├── features/            # 5 feature modules
@@ -60,7 +60,7 @@ oh-my-claude-sisyphus/
 │   │   └── hooks.ts         # Hook generation
 │   └── index.ts             # Main exports
 ├── dist/                    # Build output (ESM)
-└── .sisyphus/               # Runtime state directory
+└── .yoom-ai/               # Runtime state directory
     ├── plans/               # Prometheus plans
     └── notepads/            # Session notes
 ```
@@ -86,13 +86,13 @@ oh-my-claude-sisyphus/
 | **oracle** | Opus | Architecture, debugging | Deep analysis, root cause finding |
 | **librarian** | Sonnet | Documentation, research | Multi-repo analysis, doc lookup |
 | **explore** | Haiku | Fast codebase search | Quick pattern matching |
-| **sisyphus-junior** | Sonnet | Focused execution | Direct task implementation |
+| **yoom-ai-junior** | Sonnet | Focused execution | Direct task implementation |
 | **frontend-engineer** | Sonnet | UI/UX work | Component design, styling |
 | **document-writer** | Haiku | Technical docs | README, API docs |
 | **multimodal-looker** | Sonnet | Visual analysis | Screenshots, diagrams |
 | **momus** | Opus | Plan review | Critical evaluation |
 | **metis** | Opus | Pre-planning | Hidden requirements |
-| **orchestrator-sisyphus** | Sonnet | Todo coordination | Task delegation |
+| **orchestrator-yoom-ai** | Sonnet | Todo coordination | Task delegation |
 | **prometheus** | Opus | Strategic planning | Interview-style planning |
 
 ## HOOKS
@@ -105,7 +105,7 @@ oh-my-claude-sisyphus/
 | **edit-error-recovery** | PostToolUse | Inject recovery hints on edit failures |
 | **think-mode** | UserPromptSubmit | Activate extended thinking |
 | **rules-injector** | PostToolUse (Read/Edit) | Inject matching rule files |
-| **sisyphus-orchestrator** | PreToolUse, PostToolUse | Enforce delegation, add verification |
+| **yoom-ai-orchestrator** | PreToolUse, PostToolUse | Enforce delegation, add verification |
 | **auto-slash-command** | UserPromptSubmit | Detect and expand /commands |
 
 ## SKILLS
@@ -113,7 +113,7 @@ oh-my-claude-sisyphus/
 | Skill | Description |
 |-------|-------------|
 | **orchestrator** | Master coordinator for complex tasks |
-| **sisyphus** | Multi-agent orchestration mode |
+| **yoom-ai** | Multi-agent orchestration mode |
 | **ralph-loop** | Self-referential loop until completion |
 | **frontend-ui-ux** | Designer-turned-developer aesthetic |
 | **git-master** | Atomic commits, rebasing, history search |
@@ -126,7 +126,7 @@ oh-my-claude-sisyphus/
 - **Package**: npm
 - **Testing**: Manual verification (no test framework)
 - **Hooks**: Shell-based (Claude Code native)
-- **State**: JSON files in `~/.claude/.sisyphus/`
+- **State**: JSON files in `~/.claude/.yoom-ai/`
 - **Naming**: kebab-case directories, createXXXHook factories
 
 ## ANTI-PATTERNS
@@ -151,10 +151,10 @@ npm run install:dev  # Install to ~/.claude
 
 | File | Purpose |
 |------|---------|
-| `~/.claude/.sisyphus/boulder.json` | Active plan state |
-| `~/.claude/.sisyphus/ralph.json` | Ralph Loop state |
-| `~/.claude/.sisyphus/rules-injector/*.json` | Injected rules tracking |
-| `~/.claude/.sisyphus/background-tasks/*.json` | Background task state |
+| `~/.claude/.yoom-ai/boulder.json` | Active plan state |
+| `~/.claude/.yoom-ai/ralph.json` | Ralph Loop state |
+| `~/.claude/.yoom-ai/rules-injector/*.json` | Injected rules tracking |
+| `~/.claude/.yoom-ai/background-tasks/*.json` | Background task state |
 
 ## CONFIGURATION
 
@@ -164,10 +164,10 @@ Settings live in `~/.claude/settings.json`:
 {
   "hooks": {
     "UserPromptSubmit": [
-      "~/.claude/sisyphus/hooks/keyword-detector.sh"
+      "~/.claude/yoom-ai/hooks/keyword-detector.sh"
     ],
     "Stop": [
-      "~/.claude/sisyphus/hooks/todo-continuation.sh"
+      "~/.claude/yoom-ai/hooks/todo-continuation.sh"
     ]
   }
 }
@@ -177,7 +177,7 @@ Settings live in `~/.claude/settings.json`:
 
 | Command | Description |
 |---------|-------------|
-| `/sisyphus <task>` | Activate multi-agent orchestration |
+| `/yoom-ai <task>` | Activate multi-agent orchestration |
 | `/ultrawork <task>` | Maximum performance mode |
 | `/plan <description>` | Start planning with Prometheus |
 | `/review [plan]` | Review plan with Momus |
@@ -200,8 +200,8 @@ Settings live in `~/.claude/settings.json`:
 ## NOTES
 
 - **Claude Code Version**: Requires Claude Code CLI
-- **Installation**: `npx oh-my-claude-sisyphus install`
+- **Installation**: `npx oh-my-claude-yoom-ai install`
 - **Updates**: Silent auto-update checks
 - **Compatibility**: Designed for Claude Code, not OpenCode
-- **State Persistence**: Uses ~/.claude/.sisyphus/ directory
+- **State Persistence**: Uses ~/.claude/.yoom-ai/ directory
 - **Hook System**: Shell scripts → TypeScript bridge → JSON output
