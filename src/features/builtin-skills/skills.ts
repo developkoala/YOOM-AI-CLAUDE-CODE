@@ -374,6 +374,37 @@ After initialization, you MUST remember these throughout the session:
 | **Code comments** | English | // This function handles... |
 | **Commit messages** | English | feat: Add user authentication |
 
+## IMPORTANT: Project Structure Awareness
+
+**All agents MUST be aware of these standard project paths:**
+
+| Path | Contains | When to Check |
+|------|----------|---------------|
+| \`docs/\` or \`doc/\` | Project documentation, architecture decisions, API specs | Before implementing new features |
+| \`tests/\` or \`test/\` | All E2E tests, integration tests, debugging scripts | Before writing tests, understanding test patterns |
+
+**Why this matters:**
+- Documentation shows the FULL PICTURE of what has been built
+- Tests show HOW features are expected to work
+- Agents should READ these before making assumptions
+
+**Agent Guidelines:**
+\`\`\`
+Before implementing:
+  → Check docs/ for existing documentation
+  → Check tests/ for existing test patterns
+
+Before writing tests:
+  → Check tests/ for project's test conventions
+  → Follow existing test structure
+
+Before debugging:
+  → Check tests/ for related test cases
+  → Understand expected behavior from docs/
+\`\`\`
+
+**Note**: Do NOT include full contents in Task prompts. Just remind agents that these paths exist and they should check them when needed.
+
 **Why English for inter-agent communication?**
 - LLMs perform better with English technical content
 - More precise technical vocabulary
