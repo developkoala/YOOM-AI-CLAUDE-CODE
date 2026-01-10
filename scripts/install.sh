@@ -942,7 +942,7 @@ questions: [{
   question: "Yoom 모드를 선택하세요",
   header: "Mode",
   options: [
-    { label: "AI Mode (Recommended)", description: "AI가 상황에 맞게 판단 (필수: 개발→테스트→커밋)" },
+    { label: "AI Mode (Recommended)", description: "필수: 계획→개발→테스트→커밋 (선택: 설계/리뷰/리팩토링/문서화)" },
     { label: "Full Mode", description: "모든 단계 수행 (설계→개발→리뷰→테스트→리팩토링→문서화→커밋)" },
     { label: "Custom Mode", description: "원하는 에이전트만 선택" }
   ],
@@ -966,9 +966,61 @@ questions: [{
 }]
 ```
 
-## AI Mode
+## AI Mode - MANDATORY WORKFLOW
 
-**Mandatory**: DEVELOP → TEST → COMMIT (if Git)
+**AI Mode는 "자유롭게"가 아니라 "필수 단계를 자동으로"라는 뜻!**
+
+### 🔒 MANDATORY STEPS (건너뛸 수 없음!)
+
+```
+PLAN → DEVELOP → TEST → COMMIT
+  │        │        │       │
+  │        │        │       └─ git add + commit (Git 있으면 필수)
+  │        │        └─ php artisan test / npm test + Browser E2E
+  │        └─ 실제 코드 작성/수정
+  └─ TodoWrite로 체크리스트 생성 (필수!)
+```
+
+### 📋 PLAN 단계 (TodoWrite 필수!)
+
+**작업 시작 전, 반드시 TodoWrite로 체크리스트 생성:**
+
+\`\`\`typescript
+TodoWrite({
+  todos: [
+    { content: "PLAN: 요구사항 분석", status: "completed", activeForm: "요구사항 분석 중" },
+    { content: "DEVELOP: [구체적 작업]", status: "in_progress", activeForm: "개발 중" },
+    { content: "TEST: API 테스트 실행", status: "pending", activeForm: "API 테스트 실행 중" },
+    { content: "TEST: Browser E2E 테스트", status: "pending", activeForm: "E2E 테스트 실행 중" },
+    { content: "COMMIT: 변경사항 커밋", status: "pending", activeForm: "커밋 중" },
+  ]
+})
+\`\`\`
+
+### ✅ VERIFICATION CHECKLIST (매 Feature 완료 전 확인)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  🔍 FEATURE COMPLETION VERIFICATION                     │
+│                                                         │
+│  □ PLAN: TodoWrite에 모든 단계 기록됨?                   │
+│  □ DEVELOP: 코드 작성/수정 완료?                         │
+│  □ TEST: API 테스트 통과? (php artisan test 등)          │
+│  □ TEST: Browser E2E 통과? (Console 0, Network 0)       │
+│  □ COMMIT: git commit 완료?                              │
+│                                                         │
+│  ⚠️ 모든 항목 체크 전까지 Feature 완료 불가!              │
+└─────────────────────────────────────────────────────────┘
+```
+
+### ❌ FORBIDDEN: 단계 건너뛰기
+
+| 상황 | ❌ WRONG | ✅ CORRECT |
+|------|----------|-----------|
+| 개발 완료 | "개발 완료!" 후 대기 | 바로 TEST 단계 시작 |
+| 테스트 완료 | "테스트 통과!" 후 대기 | 바로 COMMIT 단계 시작 |
+| 커밋 안 함 | Feature 끝났다고 보고 | 반드시 commit까지 완료 |
+
 **Optional (AI decides)**: DESIGN, REVIEW, REFACTOR, DOCUMENT
 
 ## Workflow
