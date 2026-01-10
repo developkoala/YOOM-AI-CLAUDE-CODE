@@ -16,8 +16,8 @@ import { homedir, tmpdir } from 'os';
 import { execSync } from 'child_process';
 
 /** GitHub repository information */
-export const REPO_OWNER = 'Yeachan-Heo';
-export const REPO_NAME = 'oh-my-claude-yoom-ai';
+export const REPO_OWNER = 'developkoala';
+export const REPO_NAME = 'YOOM-AI-CALUDE-CODE';
 export const GITHUB_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
 export const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}`;
 
@@ -315,14 +315,14 @@ export function formatUpdateNotification(checkResult: UpdateCheckResult): string
 
   const lines = [
     '╔═══════════════════════════════════════════════════════════╗',
-    '║           Oh-My-Claude-YOOM-AI Update Available!         ║',
+    '║           YOOM-AI-CLAUDE-CODE Update Available!          ║',
     '╚═══════════════════════════════════════════════════════════╝',
     '',
     `  Current version: ${checkResult.currentVersion ?? 'unknown'}`,
     `  Latest version:  ${checkResult.latestVersion}`,
     '',
     '  To update, run: /update',
-    '  Or run: curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash',
+    `  Or run: curl -fsSL ${GITHUB_RAW_URL}/main/scripts/install.sh | bash`,
     ''
   ];
 

@@ -832,12 +832,12 @@ I will check for available updates to Oh-My-Claude-YOOM-AI.
 **Automatic (Recommended):**
 Run the install script to update:
 \`\`\`bash
-curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main/scripts/install.sh | bash
 \`\`\`
 
 **Manual:**
 1. Check your current version in \`~/.claude/.yoom-ai-version.json\`
-2. Visit https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai/releases
+2. Visit https://github.com/developkoala/YOOM-AI-CALUDE-CODE/releases
 3. Download and run the install script from the latest release
 
 ### Version Info Location
@@ -1171,7 +1171,7 @@ INPUT=$(cat)
   STATE_FILE="$HOME/.claude/.yoom-ai-silent-update.json"
   LOG_FILE="$HOME/.claude/.yoom-ai-update.log"
   CHECK_INTERVAL_HOURS=24
-  REPO_URL="https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main"
+  REPO_URL="https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main"
 
   # Log function (silent - only to file)
   log() {
@@ -1695,7 +1695,7 @@ echo ""
 echo -e "${YELLOW}Updating:${NC}"
 echo "  /update                       # Check for and install updates"
 echo "  # Or run this install script again:"
-echo "  curl -fsSL https://raw.githubusercontent.com/Yeachan-Heo/oh-my-claude-yoom-ai/main/scripts/install.sh | bash"
+echo "  curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main/scripts/install.sh | bash"
 echo ""
 echo -e "${BLUE}Quick Start:${NC}"
 echo "  1. Run 'claude' to start Claude Code"

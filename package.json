@@ -52,11 +52,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai.git"
+    "url": "git+https://github.com/developkoala/YOOM-AI-CALUDE-CODE.git"
   },
-  "homepage": "https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai#readme",
+  "homepage": "https://github.com/developkoala/YOOM-AI-CALUDE-CODE#readme",
   "bugs": {
-    "url": "https://github.com/Yeachan-Heo/oh-my-claude-yoom-ai/issues"
+    "url": "https://github.com/developkoala/YOOM-AI-CALUDE-CODE/issues"
   },
   "author": "Yeachan Heo",
   "license": "MIT",
