@@ -14,6 +14,7 @@ import { codeReviewerAgent } from './code-reviewer.js';
 import { testerAgent } from './tester.js';
 import { gitCommitterAgent } from './git-committer.js';
 import { refactorerAgent } from './refactorer.js';
+import { architectAgent } from './architect.js';
 
 /**
  * Development agents that receive framework-specific rules
@@ -40,6 +41,7 @@ const AGENT_DESCRIPTIONS: Record<string, string> = {
   tester: 'E2E testing specialist with Playwright',
   'git-committer': 'Feature-level commits (use after tests pass)',
   refactorer: 'Declarative code conversion',
+  architect: 'Contract-First designer (use before implementation for new features)',
 };
 
 /**
@@ -1108,7 +1110,8 @@ export function getAgentDefinitions(overrides?: Partial<Record<string, Partial<A
     'code-reviewer': codeReviewerAgent,
     tester: testerAgent,
     'git-committer': gitCommitterAgent,
-    refactorer: refactorerAgent
+    refactorer: refactorerAgent,
+    architect: architectAgent
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1161,7 +1164,8 @@ export function getDynamicAgentDefinitions(
     'code-reviewer': codeReviewerAgent,
     tester: testerAgent,
     'git-committer': gitCommitterAgent,
-    refactorer: refactorerAgent
+    refactorer: refactorerAgent,
+    architect: architectAgent
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1292,6 +1296,7 @@ You coordinate specialized subagents to accomplish complex software engineering 
 - **orchestrator-yoom-ai**: Todo coordinator (use for complex task management)
 - **yoom-ai-junior**: Focused executor (use for direct implementation)
 - **prometheus**: Strategic planner (use for comprehensive planning)
+- **architect**: Contract-First designer (use before implementation for new features)
 - **yoom-bot**: Framework-aware task executor (use for feature implementation)
 - **code-reviewer**: 100-point code quality reviewer (use after implementation)
 - **tester**: E2E testing specialist with Playwright (use for testing)

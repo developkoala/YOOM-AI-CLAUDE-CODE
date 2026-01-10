@@ -466,6 +466,7 @@ questions: [{
   question: "사용할 에이전트를 선택하세요",
   header: "Agents",
   options: [
+    { label: "architect", description: "Contract-First 설계 (인터페이스, 함수 시그니처)" },
     { label: "yoom-bot", description: "프레임워크별 코딩 규칙 적용" },
     { label: "code-reviewer", description: "100점 평가 시스템" },
     { label: "tester", description: "Playwright E2E 테스트" },
@@ -560,17 +561,28 @@ Implement the feature following the rules above.",
 For each Feature, follow this workflow:
 
 \`\`\`
-DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
+DESIGN → DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
 \`\`\`
 
 | Step | Agent | Description |
 |------|-------|-------------|
+| DESIGN | architect | Contract-First design: interfaces, function signatures, structure |
 | DEVELOP | yoom-bot | Implement feature WITH FRAMEWORK RULES INJECTED |
 | REVIEW | code-reviewer | 100-point evaluation |
 | TEST | tester | Playwright E2E tests |
 | REFACTOR | refactorer | Procedural → Declarative |
 | DOCUMENT | document-writer | Feature documentation |
 | COMMIT | git-committer | Feature-level commit |
+
+### DESIGN Step (architect)
+
+Before implementation, the architect agent creates:
+- **Interfaces/Types**: Data structures and DTOs
+- **Function Signatures**: Method names, parameters, return types with JSDoc
+- **Directory Structure**: Where files should be created
+- **Dependency Diagram**: How modules connect
+
+This ensures clear blueprints before coding begins.
 
 ### Task Delegation Example
 
@@ -648,7 +660,8 @@ Save session state to \`.yoom-session.md\`:
 
 | When Calling | Include These Rules |
 |--------------|---------------------|
-| yoom-bot | Framework-specific + Common rules |
+| architect | Framework patterns + existing code patterns |
+| yoom-bot | Framework-specific + Common rules + architect output |
 | frontend-engineer | UI/UX + Framework CSS/styling |
 | code-reviewer | 100-point criteria (always same) |
 | tester | Testing patterns (always same) |

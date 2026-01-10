@@ -15,7 +15,7 @@ export interface ReviewDeduction {
   /** Points to deduct */
   points: number;
   /** Category for grouping */
-  category: 'purity' | 'unidirectional' | 'declarative' | 'debugging' | 'structure' | 'framework';
+  category: 'purity' | 'unidirectional' | 'declarative' | 'debugging' | 'structure' | 'framework' | 'typescript' | 'react' | 'backend' | 'security' | 'testing' | 'workflow';
 }
 
 /**

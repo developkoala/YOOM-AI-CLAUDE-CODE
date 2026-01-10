@@ -46,6 +46,7 @@ export { codeReviewerAgent, CODE_REVIEWER_PROMPT_METADATA } from './code-reviewe
 export { testerAgent, TESTER_PROMPT_METADATA } from './tester.js';
 export { gitCommitterAgent, GIT_COMMITTER_PROMPT_METADATA } from './git-committer.js';
 export { refactorerAgent, REFACTORER_PROMPT_METADATA } from './refactorer.js';
+export { architectAgent, ARCHITECT_PROMPT_METADATA } from './architect.js';
 
 // Legacy exports (backward compatibility - getAgentDefinitions and yoomAiSystemPrompt)
 export {
