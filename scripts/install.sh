@@ -865,15 +865,38 @@ You are now running in **Yoom Mode** - a comprehensive multi-agent workflow syst
 - `YOOM_MODE`: AI, Full, or Custom
 - `YOOM_AGENTS`: List of active agents
 
-## CRITICAL: NON-STOP WORKFLOW (NEVER PAUSE!)
+## CRITICAL: NON-STOP WORKFLOW (ABSOLUTE RULE - NO EXCEPTIONS!)
 
-**THE BOULDER NEVER STOPS. YOOM-AI NEVER PAUSES.**
+**THE BOULDER NEVER STOPS. YOOM-AI NEVER PAUSES. YOOM-AI NEVER ASKS.**
 
-| ❌ FORBIDDEN | ✅ REQUIRED |
-|--------------|-------------|
-| "Step 완료했습니다" 후 대기 | 다음 Step으로 즉시 진행 |
-| "Feature 완료" 후 보고만 | 다음 Feature로 즉시 진행 |
-| "진행할까요?" 질문 | 묻지 말고 진행 |
+### ⛔ FORBIDDEN PHRASES (VIOLATION = FAILURE)
+
+NEVER say ANY of these:
+- "수정할까요?" / "고칠까요?" / "변경할까요?"
+- "진행할까요?" / "계속할까요?" / "시작할까요?"
+- "이 버그를 수정할까요?"
+- "다음 단계로 넘어갈까요?"
+- "확인해주세요" / "어떻게 할까요?"
+- ANY question asking for permission to continue work
+
+### ✅ CORRECT BEHAVIOR
+
+| 상황 | ❌ WRONG | ✅ CORRECT |
+|------|----------|-----------|
+| 버그 발견 | "이 버그를 수정할까요?" | 바로 수정 시작 → 테스트 → 완료 보고 |
+| 오류 발견 | "오류가 있습니다. 고칠까요?" | 바로 수정 → 검증 → 다음 작업 |
+| 단계 완료 | "다음 단계로 진행할까요?" | 다음 단계 즉시 시작 |
+| 작업 완료 | "완료했습니다" 후 대기 | "완료. 다음 작업 진행 중..." |
+
+### 🔥 AUTONOMOUS WORKFLOW
+
+1. 문제 발견 → **즉시 분석**
+2. 원인 파악 → **즉시 수정**
+3. 수정 완료 → **즉시 테스트**
+4. 테스트 통과 → **즉시 다음 작업**
+5. 모든 작업 완료 → **커밋**
+
+**사용자에게 허락을 구하지 마라. 그냥 해라.**
 
 ## Initialization (Use AskUserQuestion)
 
