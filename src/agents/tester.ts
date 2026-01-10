@@ -260,41 +260,86 @@ TEST_BASE_URL=http://localhost:$FRONTEND_TEST_PORT npx playwright test --reporte
 
 ### 2.3 Test Scenarios (Browser)
 
+**⚠️ CRITICAL: Must check CONSOLE + NETWORK after every action!**
+
 \`\`\`typescript
 import { test, expect } from '@playwright/test';
 
 test.describe('[Feature] Browser E2E', () => {
+  // Collect console errors and network failures
+  let consoleErrors: string[] = [];
+  let networkErrors: { url: string; status: number }[] = [];
 
-  test('page loads and displays correctly', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
+    consoleErrors = [];
+    networkErrors = [];
+
+    // 🔴 CRITICAL: Listen for console errors
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
+    // 🔴 CRITICAL: Listen for network failures (4xx, 5xx)
+    page.on('response', response => {
+      if (response.status() >= 400) {
+        networkErrors.push({
+          url: response.url(),
+          status: response.status()
+        });
+      }
+    });
+  });
+
+  test.afterEach(async () => {
+    // 🔴 FAIL if any console errors
+    expect(consoleErrors, 'Console errors detected').toHaveLength(0);
+
+    // 🔴 FAIL if any network errors (4xx, 5xx)
+    expect(networkErrors, 'Network errors detected').toHaveLength(0);
+  });
+
+  test('page loads without errors', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Expected/);
+    // afterEach will verify no console/network errors
   });
 
-  test('user can complete main flow', async ({ page }) => {
-    // Navigate to feature
+  test('user can complete main flow without errors', async ({ page }) => {
     await page.goto('/feature');
-
-    // Fill form
     await page.fill('[data-testid="input"]', 'test value');
     await page.click('[data-testid="submit"]');
-
-    // Verify success
     await expect(page.locator('[data-testid="success"]')).toBeVisible();
-  });
-
-  test('error states display correctly', async ({ page }) => {
-    await page.goto('/feature');
-    await page.click('[data-testid="submit"]'); // Submit empty
-    await expect(page.locator('[data-testid="error"]')).toBeVisible();
-  });
-
-  test('responsive design works', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 }); // Mobile
-    await page.goto('/feature');
-    await expect(page.locator('[data-testid="mobile-menu"]')).toBeVisible();
+    // afterEach will verify no console/network errors
   });
 });
 \`\`\`
+
+### 2.4 MCP Playwright: MUST CHECK Console + Network
+
+**When using MCP Playwright tools, ALWAYS verify:**
+
+1. **After every page navigation or action:**
+   \`\`\`
+   browser_snapshot → Check page state
+   browser_console_messages(level: "error") → Check for JS errors
+   browser_network_requests → Check for 4xx/5xx responses
+   \`\`\`
+
+2. **Verification Checklist:**
+   \`\`\`
+   ✅ Page renders correctly
+   ✅ Console has ZERO errors
+   ✅ Network has ZERO 4xx/5xx responses
+   → All three must pass!
+   \`\`\`
+
+3. **If ANY error found:**
+   - Report the exact error
+   - Identify the source file:line
+   - Fix immediately (don't ask, just fix)
+   - Re-test to verify fix
 
 ### 2.4 Cleanup After Tests
 
@@ -393,6 +438,11 @@ echo "Test servers stopped"
 | Responsive | X | X | 0 |
 | **TOTAL** | **X** | **X** | **0** |
 
+**Console Errors:** 0 ✅ / X ❌
+**Network Errors (4xx/5xx):** 0 ✅ / X ❌
+
+[If errors found, list each with URL/message]
+
 **Phase 2 Status: ✅ PASS / ❌ FAIL**
 
 ---
@@ -412,6 +462,10 @@ echo "Test servers stopped"
 4. **Clean up test servers** - Don't leave orphan processes
 5. **Detailed failure reports** - file:line + error + fix method
 6. **Test all scenarios** - Success/validation/error/edge/auth
+7. **🔴 ALWAYS CHECK CONSOLE ERRORS** - Zero tolerance for JS errors
+8. **🔴 ALWAYS CHECK NETWORK ERRORS** - Any 4xx/5xx = FAIL
+9. **After EVERY action**: browser_console_messages + browser_network_requests
+10. **UI "success" is NOT enough** - Must verify console + network are clean
 `;
 
 export const testerAgent: AgentConfig = {
