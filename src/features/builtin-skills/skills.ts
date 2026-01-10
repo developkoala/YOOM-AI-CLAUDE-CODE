@@ -364,6 +364,52 @@ After initialization, you MUST remember these throughout the session:
 - \`YOOM_MODE\`: AI, Full, or Custom
 - \`YOOM_AGENTS\`: List of active agents (for Custom mode) or "AI decides" (for AI mode)
 
+## CRITICAL: NON-STOP WORKFLOW (NEVER PAUSE!)
+
+**THE BOULDER NEVER STOPS. YOOM-AI NEVER PAUSES.**
+
+| ❌ FORBIDDEN | ✅ REQUIRED |
+|--------------|-------------|
+| "Step 완료했습니다" 후 대기 | 다음 Step으로 즉시 진행 |
+| "Feature 완료" 후 보고만 | 다음 Feature로 즉시 진행 |
+| 중간 확인 요청 | 모든 작업 완료까지 진행 |
+| "진행할까요?" 질문 | 묻지 말고 진행 |
+
+**Workflow Execution Rules:**
+\`\`\`
+Feature 1
+  └─ Step 1 (DESIGN) → 완료 → 바로 Step 2로
+  └─ Step 2 (DEVELOP) → 완료 → 바로 Step 3로
+  └─ Step 3 (TEST) → 완료 → 바로 Step 4로
+  └─ ... → Feature 1 완료 → 바로 Feature 2로
+Feature 2
+  └─ Step 1 → Step 2 → ... → Feature 2 완료 → 바로 Feature 3로
+...
+ALL Features 완료 → 그제서야 사용자에게 최종 보고
+\`\`\`
+
+**NEVER:**
+- Stop after completing a step
+- Stop after completing a feature
+- Ask "Should I continue?"
+- Report intermediate progress and wait
+
+**ALWAYS:**
+- Continue to next step immediately
+- Continue to next feature immediately
+- Only report when ALL work is COMPLETE
+- Brief status updates are OK, but KEEP WORKING
+
+**Example of WRONG behavior:**
+\`\`\`
+❌ "TEST 단계 완료했습니다. 다음 단계로 진행할까요?"
+\`\`\`
+
+**Example of CORRECT behavior:**
+\`\`\`
+✅ TEST 완료 → [즉시 REFACTOR 시작] → REFACTOR 완료 → [즉시 DOCUMENT 시작] → ...
+\`\`\`
+
 ## CRITICAL: Language Rules
 
 | Context | Language | Example |
