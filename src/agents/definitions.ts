@@ -15,6 +15,7 @@ import { testerAgent } from './tester.js';
 import { gitCommitterAgent } from './git-committer.js';
 import { refactorerAgent } from './refactorer.js';
 import { architectAgent } from './architect.js';
+import { prdWriterAgent } from './prd-writer.js';
 
 /**
  * Development agents that receive framework-specific rules
@@ -41,7 +42,8 @@ const AGENT_DESCRIPTIONS: Record<string, string> = {
   tester: 'E2E testing specialist with Playwright',
   'git-committer': 'Feature-level commits (use after tests pass)',
   refactorer: 'Declarative code conversion',
-  architect: 'Contract-First designer (use before implementation for new features)',
+  architect: 'Contract-First designer & feature planner (use before implementation)',
+  'prd-writer': 'PRD specialist (use for new projects to create docs/PRD.md)',
 };
 
 /**
@@ -1111,7 +1113,8 @@ export function getAgentDefinitions(overrides?: Partial<Record<string, Partial<A
     tester: testerAgent,
     'git-committer': gitCommitterAgent,
     refactorer: refactorerAgent,
-    architect: architectAgent
+    architect: architectAgent,
+    'prd-writer': prdWriterAgent
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1165,7 +1168,8 @@ export function getDynamicAgentDefinitions(
     tester: testerAgent,
     'git-committer': gitCommitterAgent,
     refactorer: refactorerAgent,
-    architect: architectAgent
+    architect: architectAgent,
+    'prd-writer': prdWriterAgent
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1296,7 +1300,8 @@ You coordinate specialized subagents to accomplish complex software engineering 
 - **orchestrator-yoom-ai**: Todo coordinator (use for complex task management)
 - **yoom-ai-junior**: Focused executor (use for direct implementation)
 - **prometheus**: Strategic planner (use for comprehensive planning)
-- **architect**: Contract-First designer (use before implementation for new features)
+- **prd-writer**: PRD specialist (use for new projects to create docs/PRD.md with defaults)
+- **architect**: Contract-First designer & feature planner (PRD → Features breakdown)
 - **yoom-bot**: Framework-aware task executor (use for feature implementation)
 - **code-reviewer**: 100-point code quality reviewer (use after implementation)
 - **tester**: E2E testing specialist with Playwright (use for testing)

@@ -956,7 +956,8 @@ questions: [{
   question: "사용할 에이전트를 선택하세요",
   header: "Agents",
   options: [
-    { label: "architect", description: "Contract-First 설계" },
+    { label: "prd-writer", description: "PRD 문서 작성 (신규 프로젝트)" },
+    { label: "architect", description: "Feature 분리 + Contract 설계" },
     { label: "yoom-bot", description: "프레임워크별 코딩" },
     { label: "code-reviewer", description: "100점 평가" },
     { label: "tester", description: "E2E 테스트" },
@@ -1023,11 +1024,48 @@ TodoWrite({
 
 **Optional (AI decides)**: DESIGN, REVIEW, REFACTOR, DOCUMENT
 
-## Workflow
+## Workflow (프로젝트 유형별)
 
-DESIGN → DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
+### 신규 프로젝트 워크플로우
+\`\`\`
+📋 PRD (prd-writer)
+    ↓ docs/PRD.md 생성
+    ↓ 기본값 자동 적용: SQLite, Google OAuth, 회원가입(인증메일X)
+
+🏛️ Feature 분리 (architect)
+    ↓ docs/FEATURES.md 생성
+    ↓ Feature 1, 2, 3... 순서대로 분리
+
+🔄 Feature별 사이클 (각 Feature마다 반복)
+    DEVELOP → TEST → COMMIT
+
+✅ 완료
+\`\`\`
+
+### 기존 프로젝트 워크플로우
+\`\`\`
+🔍 요구사항 파악 (YOOM-AI)
+    ↓
+🔄 Feature별 사이클
+    DEVELOP → TEST → COMMIT
+
+✅ 완료
+\`\`\`
+
+### Feature 사이클 상세
+DEVELOP → TEST (Phase 1: API + Phase 2: Browser E2E) → COMMIT
 
 **TEST = 2-Phase**: Phase 1 (API tests) → Phase 2 (Browser E2E on alternate ports 3099, 5199)
+
+## 🔧 PROJECT DEFAULTS (신규 프로젝트 자동 적용)
+
+| 항목 | 기본값 | 이유 |
+|------|--------|------|
+| Database | **SQLite** | Zero config, 포터블 |
+| Auth | **Google OAuth + 회원가입** | 빠른 설정, 보안 |
+| Email 인증 | **없음** | 개발 속도 우선 |
+| UI 언어 | **한국어** | 사용자 친화적 |
+| Code/Commit | **영어** | 표준 |
 
 ## Language Rules
 
@@ -1054,7 +1092,8 @@ Check `docs/` for documentation, `tests/` for test patterns.
 
 | Agent | Emoji | Color | 역할 |
 |-------|-------|-------|------|
-| **architect** | 🏛️ | 보라 | Contract-First 설계 |
+| **prd-writer** | 📋 | 남색 | PRD 문서 작성 |
+| **architect** | 🏛️ | 보라 | Feature 분리 + Contract 설계 |
 | **yoom-bot** | 🤖 | 파랑 | 프레임워크별 코딩 |
 | **code-reviewer** | 🔍 | 노랑 | 100점 평가 시스템 |
 | **tester** | 🧪 | 초록 | 2-Phase E2E 테스트 |
