@@ -1495,12 +1495,12 @@ I will check for available updates to YOOM-AI-CLAUDE-CODE.
 **Automatic (Recommended):**
 Run the install script to update:
 \`\`\`bash
-curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CLAUDE-CODE/main/scripts/install.sh | bash
 \`\`\`
 
 **Manual:**
 1. Check your current version in \`~/.claude/.yoom-ai-version.json\`
-2. Visit https://github.com/developkoala/YOOM-AI-CALUDE-CODE/releases
+2. Visit https://github.com/developkoala/YOOM-AI-CLAUDE-CODE/releases
 3. Download and run the install script from the latest release
 
 ### Version Info Location

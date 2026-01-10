@@ -52,11 +52,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/developkoala/YOOM-AI-CALUDE-CODE.git"
+    "url": "git+https://github.com/developkoala/YOOM-AI-CLAUDE-CODE.git"
   },
-  "homepage": "https://github.com/developkoala/YOOM-AI-CALUDE-CODE#readme",
+  "homepage": "https://github.com/developkoala/YOOM-AI-CLAUDE-CODE#readme",
   "bugs": {
-    "url": "https://github.com/developkoala/YOOM-AI-CALUDE-CODE/issues"
+    "url": "https://github.com/developkoala/YOOM-AI-CLAUDE-CODE/issues"
   },
   "author": "Yeachan Heo",
   "license": "MIT",

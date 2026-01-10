@@ -1,12 +1,12 @@
 <div align="center">
 
-![yoom-ai-claude-code](https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE-website/main/social-preview.png)
+![yoom-ai-claude-code](https://raw.githubusercontent.com/developkoala/YOOM-AI-CLAUDE-CODE-website/main/social-preview.png)
 
 [![npm version](https://badge.fury.io/js/yoom-ai-claude-code.svg)](https://www.npmjs.com/package/yoom-ai-claude-code)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/developkoala/YOOM-AI-CALUDE-CODE)
-[![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/developkoala/YOOM-AI-CALUDE-CODE)
-[![Resurrections](https://img.shields.io/badge/Resurrections-∞-ff00ff)](https://github.com/developkoala/YOOM-AI-CALUDE-CODE)
+[![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/developkoala/YOOM-AI-CLAUDE-CODE)
+[![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/developkoala/YOOM-AI-CLAUDE-CODE)
+[![Resurrections](https://img.shields.io/badge/Resurrections-∞-ff00ff)](https://github.com/developkoala/YOOM-AI-CLAUDE-CODE)
 
 **Multi-agent orchestration system for [Claude Code](https://docs.anthropic.com/claude-code)**
 
@@ -37,7 +37,7 @@
 ### One-liner (macOS/Linux - recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CLAUDE-CODE/main/scripts/install.sh | bash
 ```
 
 ### Via npm (All platforms including Windows)
@@ -51,7 +51,7 @@ npm install -g yoom-ai-claude-code
 ### Manual Install (macOS/Linux)
 
 ```bash
-git clone https://github.com/developkoala/YOOM-AI-CALUDE-CODE.git
+git clone https://github.com/developkoala/YOOM-AI-CLAUDE-CODE.git
 cd yoom-ai-claude-code
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -365,7 +365,7 @@ Your custom system prompt here...
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/main/scripts/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CLAUDE-CODE/main/scripts/uninstall.sh | bash
 ```
 
 Or manually:

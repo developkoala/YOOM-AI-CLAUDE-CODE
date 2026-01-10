@@ -17,7 +17,7 @@ import { execSync } from 'child_process';
 
 /** GitHub repository information */
 export const REPO_OWNER = 'developkoala';
-export const REPO_NAME = 'YOOM-AI-CALUDE-CODE';
+export const REPO_NAME = 'YOOM-AI-CLAUDE-CODE';
 export const GITHUB_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
 export const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}`;
 
