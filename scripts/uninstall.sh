@@ -1,5 +1,5 @@
 #!/bin/bash
-# Oh-My-Claude-YOOM-AI Uninstaller
+# YOOM-AI-CLAUDE-CODE Uninstaller
 
 set -e
 
@@ -9,7 +9,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${BLUE}Oh-My-Claude-YOOM-AI Uninstaller${NC}"
+echo -e "${BLUE}YOOM-AI-CLAUDE-CODE Uninstaller${NC}"
 echo ""
 
 # Claude Code config directory (always ~/.claude)

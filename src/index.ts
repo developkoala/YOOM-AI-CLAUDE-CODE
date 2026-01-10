@@ -1,5 +1,5 @@
 /**
- * Oh-My-Claude-YOOM-AI
+ * YOOM-AI-CLAUDE-CODE
  *
  * A multi-agent orchestration system for the Claude Agent SDK.
  * Port of oh-my-opencode for Claude.
@@ -285,7 +285,7 @@ export interface YoomAiSession {
  *
  * @example
  * ```typescript
- * import { createYoomAiSession } from 'oh-my-claude-yoom-ai';
+ * import { createYoomAiSession } from 'yoom-ai-claude-code';
  * import { query } from '@anthropic-ai/claude-agent-sdk';
  *
  * const session = createYoomAiSession();

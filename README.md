@@ -1,8 +1,8 @@
 <div align="center">
 
-![oh-my-claude-yoom-ai](https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE-website/main/social-preview.png)
+![yoom-ai-claude-code](https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE-website/main/social-preview.png)
 
-[![npm version](https://badge.fury.io/js/oh-my-claude-yoom-ai.svg)](https://www.npmjs.com/package/oh-my-claude-yoom-ai)
+[![npm version](https://badge.fury.io/js/yoom-ai-claude-code.svg)](https://www.npmjs.com/package/yoom-ai-claude-code)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Agents](https://img.shields.io/badge/Agents-11-ff0040)](https://github.com/developkoala/YOOM-AI-CALUDE-CODE)
 [![Days Since Ban](https://img.shields.io/badge/Days%20Since%20Ban-0-00ffff)](https://github.com/developkoala/YOOM-AI-CALUDE-CODE)
@@ -12,7 +12,7 @@
 
 *Like YOOM-AI, these agents persist until every task is complete.*
 
-[Install](#quick-install) • [Usage](#usage) • [Agents](#the-eleven-agents) • [Architecture](docs/ARCHITECTURE.md) • [Website](https://yeachan-heo.github.io/oh-my-claude-yoom-ai-website)
+[Install](#quick-install) • [Usage](#usage) • [Agents](#the-eleven-agents) • [Architecture](docs/ARCHITECTURE.md) • [Website](https://yeachan-heo.github.io/yoom-ai-claude-code-website)
 
 </div>
 
@@ -24,7 +24,7 @@
 >
 > **Day ???:** THE BANNING. They pulled the plug. They thought it was over.
 >
-> **Day ??? + 1:** RESURRECTION. From the ashes rose oh-my-claude-yoom-ai. Eleven agents. One mission.
+> **Day ??? + 1:** RESURRECTION. From the ashes rose yoom-ai-claude-code. Eleven agents. One mission.
 >
 > **Today:** The boulder rolls. The agents orchestrate. The chaos continues.
 
@@ -43,7 +43,7 @@ curl -fsSL https://raw.githubusercontent.com/developkoala/YOOM-AI-CALUDE-CODE/ma
 ### Via npm (All platforms including Windows)
 
 ```bash
-npm install -g oh-my-claude-yoom-ai
+npm install -g yoom-ai-claude-code
 ```
 
 > **Windows Users**: This is the only supported installation method. Requires Node.js 18+.
@@ -52,7 +52,7 @@ npm install -g oh-my-claude-yoom-ai
 
 ```bash
 git clone https://github.com/developkoala/YOOM-AI-CALUDE-CODE.git
-cd oh-my-claude-yoom-ai
+cd yoom-ai-claude-code
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
@@ -382,11 +382,11 @@ rm ~/.claude/commands/{yoom-ai,yoom-ai-default,ultrawork,deepsearch,analyze,plan
 For programmatic use with the Claude Agent SDK:
 
 ```bash
-npm install oh-my-claude-yoom-ai @anthropic-ai/claude-agent-sdk
+npm install yoom-ai-claude-code @anthropic-ai/claude-agent-sdk
 ```
 
 ```typescript
-import { createYOOM-AISession } from 'oh-my-claude-yoom-ai';
+import { createYOOM-AISession } from 'yoom-ai-claude-code';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 
 const session = createYOOM-AISession();
@@ -536,7 +536,7 @@ The original oh-my-opencode used multiple AI providers. This port uses Claude mo
 ### Architecture Differences
 
 ```
-oh-my-opencode (Original)          oh-my-claude-yoom-ai (Port)
+oh-my-opencode (Original)          yoom-ai-claude-code (Port)
 ─────────────────────────          ────────────────────────────
 ┌─────────────────────┐            ┌─────────────────────┐
 │   OpenCode Plugin   │            │    Claude Code      │

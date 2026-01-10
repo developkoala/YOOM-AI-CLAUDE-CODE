@@ -1,5 +1,5 @@
 #!/bin/bash
-# Oh-My-Claude-YOOM-AI Installation Script
+# YOOM-AI-CLAUDE-CODE Installation Script
 # Installs the multi-agent orchestration system for Claude Code
 
 set -e
@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}"
 echo "╔═══════════════════════════════════════════════════════════╗"
-echo "║         Oh-My-Claude-YOOM-AI Installer                   ║"
+echo "║         YOOM-AI-CLAUDE-CODE Installer                   ║"
 echo "║   Multi-Agent Orchestration for Claude Code               ║"
 echo "╚═══════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
@@ -810,7 +810,7 @@ CMD_EOF
 # Update Command
 cat > "$CLAUDE_CONFIG_DIR/commands/update.md" << 'CMD_EOF'
 ---
-description: Check for and install Oh-My-Claude-YOOM-AI updates
+description: Check for and install YOOM-AI-CLAUDE-CODE updates
 ---
 
 [UPDATE CHECK]
@@ -819,7 +819,7 @@ $ARGUMENTS
 
 ## Checking for Updates
 
-I will check for available updates to Oh-My-Claude-YOOM-AI.
+I will check for available updates to YOOM-AI-CLAUDE-CODE.
 
 ### What This Does
 

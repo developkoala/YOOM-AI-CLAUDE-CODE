@@ -1,7 +1,7 @@
 /**
  * Auto-Update System
  *
- * Provides version checking and auto-update functionality for Oh-My-Claude-YOOM-AI.
+ * Provides version checking and auto-update functionality for YOOM-AI-CLAUDE-CODE.
  *
  * Features:
  * - Check for new versions from GitHub releases
@@ -84,14 +84,14 @@ export function getInstalledVersion(): VersionMetadata | null {
     // Try to detect version from package.json if installed via npm
     try {
       // Check if we can find the package in node_modules
-      const result = execSync('npm list -g oh-my-claude-yoom-ai --json 2>/dev/null', {
+      const result = execSync('npm list -g yoom-ai-claude-code --json 2>/dev/null', {
         encoding: 'utf-8',
         timeout: 5000
       });
       const data = JSON.parse(result);
-      if (data.dependencies?.['oh-my-claude-yoom-ai']?.version) {
+      if (data.dependencies?.['yoom-ai-claude-code']?.version) {
         return {
-          version: data.dependencies['oh-my-claude-yoom-ai'].version,
+          version: data.dependencies['yoom-ai-claude-code'].version,
           installedAt: new Date().toISOString(),
           installMethod: 'npm'
         };
@@ -140,7 +140,7 @@ export async function fetchLatestRelease(): Promise<ReleaseInfo> {
   const response = await fetch(`${GITHUB_API_URL}/releases/latest`, {
     headers: {
       'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'oh-my-claude-yoom-ai-updater'
+      'User-Agent': 'yoom-ai-claude-code-updater'
     }
   });
 
@@ -148,7 +148,7 @@ export async function fetchLatestRelease(): Promise<ReleaseInfo> {
     // No releases found - try to get version from package.json in repo
     const pkgResponse = await fetch(`${GITHUB_RAW_URL}/main/package.json`, {
       headers: {
-        'User-Agent': 'oh-my-claude-yoom-ai-updater'
+        'User-Agent': 'yoom-ai-claude-code-updater'
       }
     });
 
@@ -310,7 +310,7 @@ export async function performUpdate(options?: {
  */
 export function formatUpdateNotification(checkResult: UpdateCheckResult): string {
   if (!checkResult.updateAvailable) {
-    return `Oh-My-Claude-YOOM-AI is up to date (v${checkResult.currentVersion ?? 'unknown'})`;
+    return `YOOM-AI-CLAUDE-CODE is up to date (v${checkResult.currentVersion ?? 'unknown'})`;
   }
 
   const lines = [

@@ -1,18 +1,18 @@
 /**
  * Basic Usage Example
  *
- * This example demonstrates how to use Oh-My-Claude-YOOM-AI
+ * This example demonstrates how to use YOOM-AI-CLAUDE-CODE
  * with the Claude Agent SDK.
  */
 
-// Note: In real usage, import from 'oh-my-claude-yoom-ai'
+// Note: In real usage, import from 'yoom-ai-claude-code'
 import { createYoomAiSession, enhancePrompt } from '../src/index.js';
 
 // For demonstration - in real usage, import from '@anthropic-ai/claude-agent-sdk'
 // import { query } from '@anthropic-ai/claude-agent-sdk';
 
 async function main() {
-  console.log('=== Oh-My-Claude-YOOM-AI Example ===\n');
+  console.log('=== YOOM-AI-CLAUDE-CODE Example ===\n');
 
   // Create a YOOM-AI session
   const session = createYoomAiSession({

@@ -1473,7 +1473,7 @@ The Ralph Loop has been cancelled. You can stop working on the current task.
 If you want to start a new loop, use \`/ralph-loop "task description"\`.`,
 
   'update.md': `---
-description: Check for and install Oh-My-Claude-YOOM-AI updates
+description: Check for and install YOOM-AI-CLAUDE-CODE updates
 ---
 
 [UPDATE CHECK]
@@ -1482,7 +1482,7 @@ $ARGUMENTS
 
 ## Checking for Updates
 
-I will check for available updates to Oh-My-Claude-YOOM-AI.
+I will check for available updates to YOOM-AI-CLAUDE-CODE.
 
 ### What This Does
 

@@ -1,6 +1,6 @@
 # Agent Architecture: OpenCode vs Claude Code
 
-This document explains the architectural differences between OpenCode's swappable master agent system and Claude Code's skill-based routing, and how Oh-My-Claude-YOOM-AI bridges this gap elegantly.
+This document explains the architectural differences between OpenCode's swappable master agent system and Claude Code's skill-based routing, and how YOOM-AI-CLAUDE-CODE bridges this gap elegantly.
 
 ---
 

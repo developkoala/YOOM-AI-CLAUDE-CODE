@@ -20,7 +20,7 @@ Oh-My-ClaudeCode-YOOM-AI is an enhancement system for Claude Code (Anthropic's o
 ## STRUCTURE
 
 ```
-oh-my-claude-yoom-ai/
+yoom-ai-claude-code/
 ├── src/
 │   ├── agents/              # 15 agent definitions
 │   │   ├── definitions.ts   # Agent registry & configs
@@ -200,7 +200,7 @@ Settings live in `~/.claude/settings.json`:
 ## NOTES
 
 - **Claude Code Version**: Requires Claude Code CLI
-- **Installation**: `npx oh-my-claude-yoom-ai install`
+- **Installation**: `npx yoom-ai-claude-code install`
 - **Updates**: Silent auto-update checks
 - **Compatibility**: Designed for Claude Code, not OpenCode
 - **State Persistence**: Uses ~/.claude/.yoom-ai/ directory

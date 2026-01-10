@@ -176,7 +176,7 @@ Missing tool modules:
 ## Technical Considerations
 
 ### SDK Differences
-| Aspect | oh-my-opencode | oh-my-claude-yoom-ai |
+| Aspect | oh-my-opencode | yoom-ai-claude-code |
 |--------|----------------|----------------------|
 | SDK | @opencode-ai/sdk | @anthropic-ai/claude-agent-sdk |
 | Runtime | Bun | Node.js |

@@ -1,7 +1,7 @@
 /**
  * Advanced Usage Example
  *
- * This example demonstrates advanced features of Oh-My-Claude-YOOM-AI:
+ * This example demonstrates advanced features of YOOM-AI-CLAUDE-CODE:
  * - Custom agent configuration
  * - Custom system prompts
  * - Context file injection
@@ -16,7 +16,7 @@ import {
 } from '../src/index.js';
 
 async function main() {
-  console.log('=== Advanced Oh-My-Claude-YOOM-AI Example ===\n');
+  console.log('=== Advanced YOOM-AI-CLAUDE-CODE Example ===\n');
 
   // Example 1: Custom agent configuration
   console.log('Example 1: Custom Agents');
@@ -154,7 +154,7 @@ Always:
 
 import { createSdkMcpServer, tool } from '@anthropic-ai/claude-agent-sdk';
 import { z } from 'zod';
-import { createYoomAiSession } from 'oh-my-claude-yoom-ai';
+import { createYoomAiSession } from 'yoom-ai-claude-code';
 
 // Create custom MCP server with your tools
 const customTools = createSdkMcpServer({

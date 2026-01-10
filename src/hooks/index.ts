@@ -1,5 +1,5 @@
 /**
- * Hooks Module for Oh-My-Claude-YOOM-AI
+ * Hooks Module for YOOM-AI-CLAUDE-CODE
  *
  * This module provides the TypeScript bridge for Claude Code's native shell hook system.
  * Shell scripts call these TypeScript functions for complex logic processing.

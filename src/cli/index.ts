@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Oh-My-Claude-YOOM-AI CLI
+ * YOOM-AI-CLAUDE-CODE CLI
  *
  * Command-line interface for the YOOM-AI multi-agent system.
  *
@@ -49,7 +49,7 @@ try {
 const program = new Command();
 
 program
-  .name('oh-my-claude-yoom-ai')
+  .name('yoom-ai-claude-code')
   .description('Multi-agent orchestration system for Claude Agent SDK')
   .version(version);
 
@@ -66,7 +66,7 @@ program
     const targetPath = options.global ? paths.user : paths.project;
     const targetDir = dirname(targetPath);
 
-    console.log(chalk.blue('Oh-My-Claude-YOOM-AI Configuration Setup\n'));
+    console.log(chalk.blue('YOOM-AI-CLAUDE-CODE Configuration Setup\n'));
 
     // Check if config already exists
     if (existsSync(targetPath) && !options.force) {
@@ -82,8 +82,8 @@ program
     }
 
     // Generate config content
-    const configContent = `// Oh-My-Claude-YOOM-AI Configuration
-// See: https://github.com/your-repo/oh-my-claude-yoom-ai for documentation
+    const configContent = `// YOOM-AI-CLAUDE-CODE Configuration
+// See: https://github.com/your-repo/yoom-ai-claude-code for documentation
 {
   "$schema": "./yoom-ai-schema.json",
 
@@ -271,7 +271,7 @@ program
   .action(async () => {
     const session = createYoomAiSession();
 
-    console.log(chalk.blue.bold('\nOh-My-Claude-YOOM-AI System Information\n'));
+    console.log(chalk.blue.bold('\nYOOM-AI-CLAUDE-CODE System Information\n'));
     console.log(chalk.gray('━'.repeat(50)));
 
     console.log(chalk.blue('\nAvailable Agents:'));
@@ -339,7 +339,7 @@ program
   .option('-q, --quiet', 'Suppress output except for errors')
   .action(async (options) => {
     if (!options.quiet) {
-      console.log(chalk.blue('Oh-My-Claude-YOOM-AI Update\n'));
+      console.log(chalk.blue('YOOM-AI-CLAUDE-CODE Update\n'));
     }
 
     try {
@@ -412,7 +412,7 @@ program
   .action(async () => {
     const installed = getInstalledVersion();
 
-    console.log(chalk.blue.bold('\nOh-My-Claude-YOOM-AI Version Information\n'));
+    console.log(chalk.blue.bold('\nYOOM-AI-CLAUDE-CODE Version Information\n'));
     console.log(chalk.gray('━'.repeat(50)));
 
     console.log(`\n  Package version:   ${chalk.green(version)}`);
@@ -433,7 +433,7 @@ program
     }
 
     console.log(chalk.gray('\n━'.repeat(50)));
-    console.log(chalk.gray('\nTo check for updates, run: oh-my-claude-yoom-ai update --check'));
+    console.log(chalk.gray('\nTo check for updates, run: yoom-ai-claude-code update --check'));
   });
 
 /**
@@ -448,7 +448,7 @@ program
   .action(async (options) => {
     if (!options.quiet) {
       console.log(chalk.blue('╔═══════════════════════════════════════════════════════════╗'));
-      console.log(chalk.blue('║         Oh-My-Claude-YOOM-AI Installer                   ║'));
+      console.log(chalk.blue('║         YOOM-AI-CLAUDE-CODE Installer                   ║'));
       console.log(chalk.blue('║   Multi-Agent Orchestration for Claude Code               ║'));
       console.log(chalk.blue('╚═══════════════════════════════════════════════════════════╝'));
       console.log('');
@@ -538,12 +538,12 @@ program
     });
 
     if (result.success) {
-      console.log(chalk.green('✓ Oh-My-Claude-YOOM-AI installed successfully!'));
-      console.log(chalk.gray('  Run "oh-my-claude-yoom-ai info" to see available agents.'));
+      console.log(chalk.green('✓ YOOM-AI-CLAUDE-CODE installed successfully!'));
+      console.log(chalk.gray('  Run "yoom-ai-claude-code info" to see available agents.'));
     } else {
       // Don't fail the npm install, just warn
       console.warn(chalk.yellow('⚠ Could not complete YOOM-AI setup:'), result.message);
-      console.warn(chalk.gray('  Run "oh-my-claude-yoom-ai install" manually to complete setup.'));
+      console.warn(chalk.gray('  Run "yoom-ai-claude-code install" manually to complete setup.'));
     }
   });
 

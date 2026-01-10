@@ -259,7 +259,7 @@ export function loadContextFromFiles(files: string[]): string {
 export function generateConfigSchema(): object {
   return {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    title: 'Oh-My-Claude-YOOM-AI Configuration',
+    title: 'YOOM-AI-CLAUDE-CODE Configuration',
     type: 'object',
     properties: {
       agents: {

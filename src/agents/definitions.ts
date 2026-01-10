@@ -1,5 +1,5 @@
 /**
- * Agent Definitions for Oh-My-Claude-YOOM-AI
+ * Agent Definitions for YOOM-AI-CLAUDE-CODE
  *
  * This module defines all the specialized subagents that work under
  * the YOOM-AI orchestrator. Each agent has a specific role and toolset.

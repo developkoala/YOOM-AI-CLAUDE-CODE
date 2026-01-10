@@ -1,5 +1,5 @@
 /**
- * Shared types for Oh-My-Claude-YOOM-AI
+ * Shared types for YOOM-AI-CLAUDE-CODE
  */
 
 export type ModelType = 'sonnet' | 'opus' | 'haiku' | 'inherit';
