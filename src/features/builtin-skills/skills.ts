@@ -361,8 +361,8 @@ You are now running in **Yoom Mode** - a comprehensive multi-agent workflow syst
 
 After initialization, you MUST remember these throughout the session:
 - \`YOOM_FRAMEWORK\`: Selected framework (nextjs/rails/laravel/electron/fastapi/tauri/automation)
-- \`YOOM_MODE\`: Full or Custom
-- \`YOOM_AGENTS\`: List of active agents
+- \`YOOM_MODE\`: AI, Full, or Custom
+- \`YOOM_AGENTS\`: List of active agents (for Custom mode) or "AI decides" (for AI mode)
 
 ## Initialization Procedure
 
@@ -453,7 +453,8 @@ questions: [{
   question: "Yoom 모드를 선택하세요",
   header: "Mode",
   options: [
-    { label: "Full Mode (Recommended)", description: "개발→리뷰→테스트→리팩토링→문서화→커밋" },
+    { label: "AI Mode (Recommended)", description: "AI가 상황에 맞게 판단 (필수: 개발→테스트→커밋)" },
+    { label: "Full Mode", description: "모든 단계 수행 (설계→개발→리뷰→테스트→리팩토링→문서화→커밋)" },
     { label: "Custom Mode", description: "원하는 에이전트만 선택" }
   ],
   multiSelect: false
@@ -484,6 +485,61 @@ Conduct a brief interview to understand the project:
 2. **Tech Stack**: 확인 또는 결정
 3. **Constraints**: 시간, 성능, 보안 요구사항
 4. **Key Features**: 구현할 주요 기능 리스트
+
+---
+
+## AI Mode: Intelligent Agent Selection
+
+When **AI Mode** is selected, YOOM-AI intelligently decides which agents to invoke based on task analysis.
+
+### Mandatory Steps (ALWAYS executed)
+
+These steps are ALWAYS executed regardless of task type:
+
+| Step | Agent | Why Mandatory |
+|------|-------|---------------|
+| DEVELOP | yoom-bot | Core implementation |
+| TEST | tester | Quality assurance |
+| COMMIT | git-committer | Version control (if Git connected) |
+
+**Note**: If Git is NOT connected, skip COMMIT step but still complete DEVELOP and TEST.
+
+### Optional Steps (AI Decides)
+
+| Step | Agent | When to Include |
+|------|-------|-----------------|
+| DESIGN | architect | New feature (3+ files), API design, complex structure |
+| REVIEW | code-reviewer | Complex logic, security-sensitive, 100+ lines changed |
+| REFACTOR | refactorer | Procedural code detected, deeply nested conditionals |
+| DOCUMENT | document-writer | Public API, user-facing feature, complex logic |
+
+### AI Decision Matrix
+
+\`\`\`
+Task Analysis
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│ 새 기능? (3+ 파일)        → architect 호출             │
+│ 버그 수정?                 → 바로 yoom-bot              │
+│ 기존 코드 수정?            → 바로 yoom-bot              │
+│ API 설계 필요?             → architect 호출             │
+│ 100줄+ 변경?               → code-reviewer 추가         │
+│ 중첩 조건문 많음?          → refactorer 추가            │
+│ 공개 API?                  → document-writer 추가       │
+└─────────────────────────────────────────────────────────┘
+    ↓
+DEVELOP (필수) → TEST (필수) → COMMIT (Git 있으면 필수)
+\`\`\`
+
+### Example Decisions
+
+| Task | AI Decision |
+|------|-------------|
+| "로그인 버그 수정" | DEVELOP → TEST → COMMIT |
+| "새 결제 시스템 추가" | DESIGN → DEVELOP → REVIEW → TEST → DOCUMENT → COMMIT |
+| "버튼 색상 변경" | DEVELOP → TEST → COMMIT |
+| "API 엔드포인트 3개 추가" | DESIGN → DEVELOP → TEST → DOCUMENT → COMMIT |
+| "if문 정리 (리팩토링)" | DEVELOP → REFACTOR → TEST → COMMIT |
 
 ---
 
