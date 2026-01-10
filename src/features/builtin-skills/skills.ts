@@ -368,6 +368,36 @@ After initialization, you MUST remember these throughout the session:
 
 When this skill is activated, you MUST perform the following steps IN ORDER:
 
+### Step 0: Git Repository Check (IMPORTANT!)
+
+**Run \`git status\` to check if the project is connected to Git.**
+
+- **If Git is initialized** (command succeeds): Proceed to Step 1
+- **If NOT a Git repository** (command fails with "not a git repository"):
+  1. Ask the user: "이 프로젝트가 Git에 연결되어 있지 않습니다. Git 저장소를 연동해드릴까요?"
+  2. Use AskUserQuestion:
+     \`\`\`
+     questions: [{
+       question: "Git 저장소를 연동하시겠습니까?",
+       header: "Git",
+       options: [
+         { label: "예, 연동해주세요", description: "GitHub 저장소 URL을 제공하면 연동합니다" },
+         { label: "아니오, 나중에 할게요", description: "Git 없이 진행합니다" }
+       ],
+       multiSelect: false
+     }]
+     \`\`\`
+  3. If user chooses "예":
+     - Ask for GitHub repository URL
+     - Run: \`git init && git remote add origin <URL> && git add . && git commit -m "Initial commit"\`
+     - Report success and proceed to Step 1
+  4. If user chooses "아니오": Proceed to Step 1 (Git 없이 진행)
+
+**Why Git check is important:**
+- git-committer agent needs Git to work
+- Code review and version tracking requires Git
+- Feature-based commits are a core part of the workflow
+
 ### Step 1: Check Existing Session
 
 Check if \`.yoom-session.md\` exists in the current directory:
