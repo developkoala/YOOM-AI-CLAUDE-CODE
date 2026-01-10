@@ -399,6 +399,9 @@
         <li><a href="#overview">개요</a></li>
         <li><a href="#agents">에이전트</a></li>
         <li><a href="#framework-rules">프레임워크 규칙</a></li>
+        <li><a href="#debugging">디버깅 규칙</a></li>
+        <li><a href="#testing">테스트 규칙</a></li>
+        <li><a href="#workflow">1-Cycle 워크플로우</a></li>
         <li><a href="#hooks">훅 메시지</a></li>
         <li><a href="#architecture">아키텍처</a></li>
       </ul>
@@ -2101,6 +2104,291 @@ If you were NOT given **exactly ONE atomic task**, you MUST:
 > Your rushing will cause: incomplete work, missed edge cases, broken tests."
 
 **REFUSE multi-task requests. DEMAND single-task clarity.**</div>
+      </div>
+    </section>
+
+    <!-- 디버깅 규칙 섹션 -->
+    <section id="debugging">
+      <h2>언어별 디버깅 규칙</h2>
+      <p>각 프로그래밍 언어에 맞는 디버깅 패턴입니다. console.log/print 스팸은 금지됩니다.</p>
+
+      <div class="agent-grid">
+        <div class="agent-card">
+          <h3>TypeScript/JavaScript</h3>
+          <p>breakpoint 주석 + IDE 디버거</p>
+          <div class="prompt-content">
+<pre>// [DEBUG] breakpoint: description
+// [DEBUG] watch: variable1, variable2
+// [DEBUG] conditional breakpoint: condition
+
+function processData(data: InputData): OutputData {
+  // [DEBUG] breakpoint: validate input
+  const validated = validate(data);
+
+  // [DEBUG] conditional breakpoint: result.status === 'error'
+  const result = save(validated);
+  return result;
+}</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>Ruby (Rails)</h3>
+          <p>debugger/binding.pry + structured logging</p>
+          <div class="prompt-content">
+<pre># ❌ PROHIBITED
+puts "Processing order: #{order.id}"
+p order.items
+
+# ✅ REQUIRED
+def process_order(order)
+  # [DEBUG] breakpoint: validate order
+  debugger  # or: binding.pry, byebug
+
+  validated = validate_order(order)
+  process_payment(validated)
+end
+
+# Structured logging
+Rails.logger.info({
+  event: 'order_processed',
+  order_id: order.id
+}.to_json)</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>PHP (Laravel)</h3>
+          <p>Xdebug + Telescope</p>
+          <div class="prompt-content">
+<pre>// ❌ PROHIBITED
+dd($order);
+dump($order->items);
+
+// ✅ REQUIRED
+public function processOrder(Order $order)
+{
+    // [DEBUG] breakpoint: validate order
+    xdebug_break();
+
+    $validated = $this->validateOrder($order);
+    return $this->processPayment($validated);
+}
+
+// Structured logging
+Log::info('order_processed', [
+    'order_id' => $order->id,
+    'total' => $order->total,
+]);</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>Python (FastAPI)</h3>
+          <p>breakpoint() + structlog</p>
+          <div class="prompt-content">
+<pre># ❌ PROHIBITED
+print(f"Processing order: {order.id}")
+print(order.items)
+
+# ✅ REQUIRED
+async def process_order(order: Order) -> Result:
+    # [DEBUG] breakpoint: validate order
+    breakpoint()  # Python 3.7+ built-in
+
+    validated = validate_order(order)
+    return await process_payment(validated)
+
+# Structured logging
+import structlog
+logger = structlog.get_logger()
+logger.info("order_processed", order_id=order.id)</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 테스트 규칙 섹션 -->
+    <section id="testing">
+      <h2>테스트 규칙</h2>
+      <p>순수 함수 기반 테스트로 모킹 없이 쉽게 테스트하세요.</p>
+
+      <div class="agent-grid">
+        <div class="agent-card">
+          <h3>테스트 유형</h3>
+          <table>
+            <tr><th>유형</th><th>목적</th><th>커버리지</th></tr>
+            <tr><td>Unit Test</td><td>핵심 비즈니스 로직</td><td>Pure functions</td></tr>
+            <tr><td>Integration Test</td><td>기능 통합</td><td>Service + Repository</td></tr>
+            <tr><td>E2E Test</td><td>사용자 흐름</td><td>Full stack</td></tr>
+          </table>
+        </div>
+
+        <div class="agent-card">
+          <h3>순수 함수 테스트 (모킹 불필요)</h3>
+          <div class="prompt-content">
+<pre>// ✅ Pure function = Easy to test
+const calculateDiscount = (user: User): number =>
+  user.isPremium ? 0.2 : 0;
+
+// Test without mocking
+expect(calculateDiscount({ isPremium: true })).toBe(0.2);
+expect(calculateDiscount({ isPremium: false })).toBe(0);
+
+// ❌ Impure function = Requires mocking
+const calculateDiscount = async (userId: string) => {
+  const user = await db.getUser(userId);  // Needs mock!
+  return user.isPremium ? 0.2 : 0;
+};</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>테스트 구조</h3>
+          <div class="prompt-content">
+<pre>describe('OrderService', () => {
+  describe('calculateTotal', () => {
+    it('should return sum of item prices', () => {
+      // Arrange
+      const items = [{ price: 100 }, { price: 200 }];
+
+      // Act
+      const result = calculateTotal(items);
+
+      // Assert
+      expect(result).toBe(300);
+    });
+
+    it('should return 0 for empty items', () => {
+      expect(calculateTotal([])).toBe(0);
+    });
+
+    it('should handle negative prices', () => {
+      const items = [{ price: 100 }, { price: -50 }];
+      expect(calculateTotal(items)).toBe(50);
+    });
+  });
+});</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>테스트 커버리지 필수사항</h3>
+          <div class="prompt-content">
+<pre>✅ Normal case (happy path)
+✅ Edge cases (empty, null, boundary values)
+✅ Error cases (invalid input, exceptions)
+✅ Each if/else branch</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1-Cycle 워크플로우 섹션 -->
+    <section id="workflow">
+      <h2>1-Cycle 개발 워크플로우</h2>
+      <p>AI와 협업할 때 최적의 코드 품질을 위한 개발 사이클입니다.</p>
+
+      <div class="flow-diagram">
+<pre>
+┌────────────────────────────────────────────────────────────────────┐
+│                      1 Cycle Development                           │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐         │
+│   │ Implementation│───▶│    Debug    │───▶│   Refactor   │         │
+│   │   (작동 우선)  │    │ (breakpoint)│    │ (선언형 변환) │         │
+│   └──────────────┘    └──────────────┘    └──────────────┘         │
+│                                                   │                 │
+│                                                   ▼                 │
+│                                           ┌──────────────┐         │
+│                                           │    Commit    │         │
+│                                           │ (1 cycle 단위)│         │
+│                                           └──────────────┘         │
+└────────────────────────────────────────────────────────────────────┘
+</pre>
+      </div>
+
+      <div class="agent-grid">
+        <div class="agent-card">
+          <h3>Phase 1: Implementation</h3>
+          <ul>
+            <li>작동하게 만드는 것에 집중</li>
+            <li>처음에는 절차적 코드 OK</li>
+            <li>성급한 최적화 금지</li>
+          </ul>
+        </div>
+
+        <div class="agent-card">
+          <h3>Phase 2: Debug</h3>
+          <ul>
+            <li>breakpoint 사용 (console.log 금지)</li>
+            <li>모든 케이스 테스트 (정상, 엣지, 오류)</li>
+            <li>예상 동작 검증</li>
+          </ul>
+        </div>
+
+        <div class="agent-card">
+          <h3>Phase 3: Refactor (핵심!)</h3>
+          <div class="prompt-content">
+<pre>✅ 절차적 → 선언형 변환
+✅ Named predicates 추출
+✅ if/else → object lookup 변환
+✅ loops → array methods 변환
+✅ 20줄 초과 함수 분리
+✅ 2레벨 초과 중첩 평탄화</pre>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <h3>Phase 4: Commit</h3>
+          <div class="prompt-content">
+<pre>git commit -m "feat: implement [feature] (declarative)"</pre>
+          </div>
+          <h4>왜 중요한가?</h4>
+          <div class="prompt-content">
+<pre>Procedural: AI reads 500 lines → ~2000 tokens
+Declarative: AI reads 10 lines → ~50 tokens
+
+Savings: 97.5% 토큰 절감</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="agent-card" style="margin-top: 2rem;">
+        <h3>Flow Documentation 템플릿</h3>
+        <div class="prompt-content">
+<pre># [feature]-flow.md
+
+## Feature: [Feature Name]
+
+### Data Flow Diagram
+UI Event → Request → Router → Middleware → Service → Handler → Response → UI Update
+
+### Function Chain
+handleClick
+  ├─ validateInput
+  ├─ transformData
+  │   ├─ normalizeField1
+  │   └─ normalizeField2
+  └─ submitRequest
+      ├─ callAPI
+      └─ handleResponse
+
+### Data Transformation
+// Step 1: UI Input
+{ email: "user@example.com", password: "secret123" }
+
+// Step 2: Validated
+{ email: "user@example.com", password: "secret123", isValid: true }
+
+// Step 3: API Response
+{ token: "jwt_token", user: { id: 1, name: "User" } }
+
+### Error Handling
+ValidationError → showErrorToast() → resetForm()
+NetworkError → showOfflineMessage() → retryLater()</pre>
+        </div>
       </div>
     </section>
 
