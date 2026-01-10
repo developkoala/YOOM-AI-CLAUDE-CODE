@@ -364,6 +364,34 @@ After initialization, you MUST remember these throughout the session:
 - \`YOOM_MODE\`: AI, Full, or Custom
 - \`YOOM_AGENTS\`: List of active agents (for Custom mode) or "AI decides" (for AI mode)
 
+## CRITICAL: Language Rules
+
+| Context | Language | Example |
+|---------|----------|---------|
+| **User ↔ YOOM-AI** | 한국어 | "기능 구현 완료했습니다" |
+| **UI/UX (AskUserQuestion)** | 한국어 | "프레임워크를 선택하세요" |
+| **Agent ↔ Agent** | English | Task prompts, reports, analysis |
+| **Code comments** | English | // This function handles... |
+| **Commit messages** | English | feat: Add user authentication |
+
+**Why English for inter-agent communication?**
+- LLMs perform better with English technical content
+- More precise technical vocabulary
+- Consistent with codebase language
+
+**Example Task Prompt (English):**
+\`\`\`
+Task({
+  prompt: "Implement user authentication with JWT. Follow Laravel conventions. Return detailed implementation report.",
+  subagent_type: "yoom-bot"
+})
+\`\`\`
+
+**Example User Response (Korean):**
+\`\`\`
+사용자 인증 기능을 구현했습니다. JWT 토큰 방식으로 로그인/로그아웃이 가능합니다.
+\`\`\`
+
 ## Initialization Procedure
 
 When this skill is activated, you MUST perform the following steps IN ORDER:
