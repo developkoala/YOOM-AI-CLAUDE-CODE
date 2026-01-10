@@ -625,10 +625,10 @@ DESIGN → DEVELOP → REVIEW → TEST → REFACTOR → DOCUMENT → COMMIT
 | DESIGN | architect | Contract-First design: interfaces, function signatures, structure |
 | DEVELOP | yoom-bot | Implement feature WITH FRAMEWORK RULES INJECTED |
 | REVIEW | code-reviewer | 100-point evaluation |
-| TEST | tester | Playwright E2E tests |
+| TEST | tester | 2-Phase: API tests → Browser E2E (alternate ports) |
 | REFACTOR | refactorer | Procedural → Declarative |
 | DOCUMENT | document-writer | Feature documentation |
-| COMMIT | git-committer | Feature-level commit |
+| COMMIT | git-committer | Feature-level commit (only if all tests pass) |
 
 ### DESIGN Step (architect)
 
@@ -639,6 +639,27 @@ Before implementation, the architect agent creates:
 - **Dependency Diagram**: How modules connect
 
 This ensures clear blueprints before coding begins.
+
+### TEST Step (tester) - 2-Phase Pipeline
+
+**Phase 1: API/Simulation Tests**
+- Run all API tests with mock data
+- Cover: success, validation, error, edge, auth cases
+- Must ALL pass before Phase 2
+
+**Phase 2: Real Browser E2E Tests**
+- Start backend on ALTERNATE port (don't kill existing!)
+- Start frontend on ALTERNATE port (don't kill existing!)
+- Run Playwright tests against live servers
+- Cleanup test servers after completion
+
+\`\`\`
+Phase 1 PASS → Phase 2 PASS → Ready for Commit
+Phase 1 FAIL → STOP (no Phase 2)
+Phase 2 FAIL → STOP (no Commit)
+\`\`\`
+
+**Critical**: NEVER kill existing processes. Always use alternate ports (3099, 5199, etc.)
 
 ### Task Delegation Example
 
