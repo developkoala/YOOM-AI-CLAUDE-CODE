@@ -1241,6 +1241,7 @@ Before stopping, verify:
 - [ ] FUNCTIONALITY: All requested features work
 - [ ] TESTS: All tests pass (if applicable)
 - [ ] ERRORS: Zero unaddressed errors
+- [ ] COMMIT: Feature committed (if git repo connected)
 
 **If ANY checkbox is unchecked, CONTINUE WORKING.**
 SKILL_EOF
@@ -1957,6 +1958,7 @@ Before concluding ANY work session, verify:
 - [ ] FUNCTIONALITY: All requested features work
 - [ ] TESTS: All tests pass (if applicable)
 - [ ] ERRORS: Zero unaddressed errors
+- [ ] COMMIT: Feature committed (if git repo connected)
 - [ ] QUALITY: Code is production-ready
 
 **If ANY checkbox is unchecked, CONTINUE WORKING.**
