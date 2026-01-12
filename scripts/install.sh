@@ -1969,7 +1969,7 @@ else
 fi
 
 # Save version metadata for auto-update system
-VERSION="1.1.0"
+VERSION="1.1.2"
 VERSION_FILE="$CLAUDE_CONFIG_DIR/.yoom-ai-version.json"
 
 cat > "$VERSION_FILE" << VERSION_EOF
