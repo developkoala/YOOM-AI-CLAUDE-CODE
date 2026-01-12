@@ -40,7 +40,7 @@ export const SETTINGS_FILE = join(CLAUDE_CONFIG_DIR, 'settings.json');
 export const VERSION_FILE = join(CLAUDE_CONFIG_DIR, '.yoom-ai-version.json');
 
 /** Current version */
-export const VERSION = '1.1.1';
+export const VERSION = '1.1.2';
 
 /** Installation result */
 export interface InstallResult {
@@ -1871,6 +1871,7 @@ Before stopping, verify:
 - [ ] FUNCTIONALITY: All requested features work
 - [ ] TESTS: All tests pass (if applicable)
 - [ ] ERRORS: Zero unaddressed errors
+- [ ] COMMIT: Feature committed (if git repo connected)
 
 **If ANY checkbox is unchecked, CONTINUE WORKING.**
 `,
