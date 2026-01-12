@@ -16,6 +16,7 @@ import { gitCommitterAgent } from './git-committer.js';
 import { refactorerAgent } from './refactorer.js';
 import { architectAgent } from './architect.js';
 import { prdWriterAgent } from './prd-writer.js';
+import { lintValidatorAgent } from './lint-validator.js';
 
 /**
  * Development agents that receive framework-specific rules
@@ -44,6 +45,7 @@ const AGENT_DESCRIPTIONS: Record<string, string> = {
   refactorer: 'Declarative code conversion',
   architect: 'Contract-First designer & feature planner (use before implementation)',
   'prd-writer': 'PRD specialist (use for new projects to create docs/PRD.md)',
+  'lint-validator': 'ESLint/Prettier/TypeScript validator (use in VERIFY phase before commit)',
 };
 
 /**
@@ -1114,7 +1116,8 @@ export function getAgentDefinitions(overrides?: Partial<Record<string, Partial<A
     'git-committer': gitCommitterAgent,
     refactorer: refactorerAgent,
     architect: architectAgent,
-    'prd-writer': prdWriterAgent
+    'prd-writer': prdWriterAgent,
+    'lint-validator': lintValidatorAgent,
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1169,7 +1172,8 @@ export function getDynamicAgentDefinitions(
     'git-committer': gitCommitterAgent,
     refactorer: refactorerAgent,
     architect: architectAgent,
-    'prd-writer': prdWriterAgent
+    'prd-writer': prdWriterAgent,
+    'lint-validator': lintValidatorAgent,
   };
 
   const result: Record<string, { description: string; prompt: string; tools: string[]; model?: ModelType }> = {};
@@ -1305,6 +1309,7 @@ You coordinate specialized subagents to accomplish complex software engineering 
 - **yoom-bot**: Framework-aware task executor (use for feature implementation)
 - **code-reviewer**: 100-point code quality reviewer (use after implementation)
 - **tester**: E2E testing specialist with Playwright (use for testing)
+- **lint-validator**: ESLint/Prettier/TypeScript validator (use in VERIFY phase before commit)
 - **git-committer**: Feature-level commits (use after tests pass)
 - **refactorer**: Declarative code conversion (use for improving AI readability)
 
